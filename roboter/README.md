@@ -24,6 +24,6 @@ Der Johnroboter
 Der Rödelroboter
 ----------------
 
-[![](rödel/rödel.jpg)](rödel)
+[![](roedel/roedel.jpg)](roedel)
 
 

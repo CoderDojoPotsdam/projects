@@ -1,38 +1,26 @@
-Legokettenfahrzeug
-==================
+John
+====
 
-![](legokettenfahrzeug.jpg)
+![](john.jpg)
 
-Der Quelltext befindet sich in der Datei [Legokettenfahrzeug.ino](Legokettenfahrzeug.ino).
+Der Beispielquelltext befindet sich in der Datei [john.ino](john.ino). Er muss verändert werden und in eine neue Datei abgespeichert werden.
 
+Der Roboter kann nur vorwärts und rückwärts fahren. Beim Rückwärtsfahren lenkt er aber ein.
+Mit etwas Geschick kann man ihn sogar beherrschen.
 
-Man ruft in `void loop(){ ... }` die Funktion `fahre(int links, int rechts)` auf. 
+Wie man ihn nicht beherrscht zeigt der Beispielquelltext: 
 
-Ein Programm, das zwei Sekunden vorwärts und eine Sekunde rückwärts fährt, sieht so aus: 
-
-    void loop() {
-      fahre(1000, 1000)   // vorwaerts
-      delay(2000);        // fuer zwei Sekunden
-    
-      fahre(-1000, -1000) // rueckwaerts
-      delay(1000);        // fuer eine Sekunde
+    void loop () {
+      fahre_vor();
+      delay(1000);
+      fahre_zurueck();
+      delay(1000);
     }
 
-Der restliche Inhalt der [Legokettenfahrzeug.ino](Legokettenfahrzeug.ino)-Datei muss natürlich trotzdem da sein.
+Es stehen die Funktionen `fahre_vor();`, `fahre_zurueck();` und `anhalten()``in der Datei.
 
-Wenn man lenken möchte, benutzt man verschiedene Stärken für links und rechts:
+Repository
+----------
 
-    fahre(1000, 0)
-
-fährt links mehr.
-
-    fahre(0, 500)
-
-fährt auf halber Kraft rechts, mit null Kraft links.
-
-    fahre(0, -1000)
-
-fährt mit voller Kraft rechts rückwärts.
-
-Die Kräfte kann man beliebig kombinieren. 
+John ist ein ein lasergeschnittener Roboter und wird in einem [anderen Repository](https://github.com/niccokunzmann/rustyrobots) verwaltet.
 
