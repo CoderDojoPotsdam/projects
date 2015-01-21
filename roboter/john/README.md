@@ -8,7 +8,7 @@ Der Beispielquelltext befindet sich in der Datei [john.ino](john.ino). Er muss v
 Der Roboter kann nur vorwärts und rückwärts fahren. Beim Rückwärtsfahren lenkt er aber ein.
 Mit etwas Geschick kann man ihn sogar beherrschen.
 
-Wie man ihn nicht beherrscht zeigt der Beispielquelltext: 
+Wie man ihn nicht beherrscht, zeigt der Beispielquelltext: 
 
     void loop () {
       fahre_vor();
