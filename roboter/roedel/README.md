@@ -4,7 +4,7 @@ Rödel
 ![](roedel.jpg)
 
 
-Der Beispielquelltext befindet sich in der Datei [rödel.ino](rödel.ino). Er muss verändert werden und in eine neue Datei abgespeichert werden.
+Der Beispielquelltext befindet sich in der Datei [roedel.ino](roedel.ino). Er muss verändert werden und in eine neue Datei abgespeichert werden.
 
 Der Roboter robbt auf dem Boden lang. Wichtig zu wissen ist, wie man dem Servo sagt, an welche Position er sich stellen soll. Das Stellen des Servos bewegt den Roboter.
 

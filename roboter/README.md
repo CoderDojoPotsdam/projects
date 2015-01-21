@@ -8,22 +8,22 @@ Diese Roboter gibt es beim [Coder Dojo Potsdam](http://zen.coderdojo.com/dojo/86
 Das Kettenfahrzeug
 ------------------
 
-[![](legokettenfahrzeug/legokettenfahrzeug.jpg)](legokettenfahrzeug)
+[![](legokettenfahrzeug/legokettenfahrzeug.jpg)](legokettenfahrzeug#legokettenfahrzeug)
 
 Das Auto
 --------
 
-[![](legoauto/legoauto.jpg)](legoauto)
+[![](legoauto/legoauto.jpg)](legoauto#legoauto)
 
 Der Johnroboter
 ---------------
 
-[![](john/john.jpg)](john)
+[![](john/john.jpg)](john#john)
 
 
 Der Rödelroboter
 ----------------
 
-[![](roedel/roedel.jpg)](roedel)
+[![](roedel/roedel.jpg)](roedel#rödel)
 
 

@@ -17,7 +17,7 @@ Wie man ihn nicht beherrscht zeigt der Beispielquelltext:
       delay(1000);
     }
 
-Es stehen die Funktionen `fahre_vor();`, `fahre_zurueck();` und `anhalten()``in der Datei.
+Es stehen die Funktionen `fahre_vor()`, `fahre_zurueck()` und `anhalten()` in der Datei.
 
 Repository
 ----------

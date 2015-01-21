@@ -1,4 +1,22 @@
 
+void loop() {
+  digitalWrite(13, HIGH); // LED anschalten
+  fahre(0,0);
+  delay(1000);
+  digitalWrite(13, LOW); // LED ausschalten
+  fahre(1000, 0);
+  delay(1000);
+  fahre(1000, 1000);
+  delay(1000);
+  fahre(0, 1000);
+  delay(1000);
+}
+
+
+void setup() {
+  starte_motoren();
+  pinMode(13, OUTPUT);
+}
 
 
 const int motor_rechts_pin_weiss = 5;
@@ -38,21 +56,4 @@ void fahre(int links, int rechts) {
   }
 }
 
-void setup() {
-  starte_motoren();
-  pinMode(13, OUTPUT);
-}
 
-
-void loop() {
-  digitalWrite(13, HIGH);
-  fahre(0,0);
-  delay(1000);
-  digitalWrite(13, LOW);
-  fahre(1000, 0);
-  delay(1000);
-  fahre(1000, 1000);
-  delay(1000);
-  fahre(0, 1000);
-  delay(1000);
-}
