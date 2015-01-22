@@ -19,6 +19,11 @@ Wie man ihn nicht beherrscht, zeigt der Beispielquelltext:
 
 Es stehen die Funktionen `fahre_vor()`, `fahre_zurueck()` und `anhalten()` in der Datei.
 
+Motoransteuerung
+----------------
+
+Dieser Roboter verwendet eine [H-Brücke](../hbruecke) zur Ansteuerung des Motors.
+
 Repository
 ----------
 

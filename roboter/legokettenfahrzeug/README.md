@@ -36,3 +36,7 @@ fährt mit voller Kraft rechts rückwärts.
 
 Die Kräfte kann man beliebig kombinieren. 
 
+Motoransteuerung
+----------------
+
+Dieser Roboter verwendet eine [H-Brücke](../hbruecke) zur Ansteuerung des Motors.

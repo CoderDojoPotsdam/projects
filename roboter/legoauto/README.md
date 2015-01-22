@@ -25,3 +25,9 @@ Was zwischen `/*` und `*/` steht, wird auch ignoriert.
     /* wird ignoriert */
 
 Die Erklärungen stehen in der Datei immer in solchen Kommentaren.
+
+Motoransteuerung
+----------------
+
+Dieser Roboter verwendet eine [H-Brücke](../hbruecke) zur Ansteuerung des Motors.
+
