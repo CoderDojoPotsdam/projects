@@ -23,12 +23,12 @@ void anhalten() {
 void fahre_vor() {
   anhalten();
   analogWrite(pin_pwm_1, 0);
-  analogWrite(pin_pwm_2, 500); // 0 <= geschwindigkeit < 1024
+  analogWrite(pin_pwm_2, 255); // 0 <= geschwindigkeit <= 255
 }
 
 void fahre_zurueck() {
   anhalten();
-  analogWrite(pin_pwm_1, 500); // 0 <= geschwindigkeit < 1024
+  analogWrite(pin_pwm_1, 255); // 0 <= geschwindigkeit <= 255
   analogWrite(pin_pwm_2, 0);
 }
 
