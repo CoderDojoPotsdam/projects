@@ -1,0 +1,47 @@
+<html>
+	<head>
+	<title>ShadowLeaks</title>
+	<style type="text/css">
+
+	table, th{border:1px solid black;}
+
+	body{
+		background-color:#66FF00;
+	}
+
+	h1{
+	font-size:2em;
+	
+	}
+	</style>
+	</head>
+	<body>
+
+	<table>
+		<tr>
+			<td>Test</td>
+			<td>Missgeburt</td>
+			<td>Hure</td>
+		</tr>
+
+		<col>
+			<td>Du dummer Bastard</td>
+			<td>Du Kevin</td>
+			<td>Baum Man</td>
+		</col>
+
+	</table>
+
+	<h1>Test</h1>
+	<h2>J1</h2>
+
+	<a href=http://google.de/>Haze 0.5</a>
+	
+	<p>
+	Es geht<br />
+	
+	<cite><abbr title="Hier kannst du aber klicken">Nicht klicken </abbr><br /> 
+	
+	</p>
+	</body>
+</html>
