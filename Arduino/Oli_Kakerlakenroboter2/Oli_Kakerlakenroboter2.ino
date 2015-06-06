@@ -26,7 +26,7 @@ void setup()
 { 
   myservo.attach(9);  // attaches the servo on pin 9 to the servo object
   pinMode(13, OUTPUT);
-  pinMode(10, OUTPUT); 
+  pinMode(12, OUTPUT); 
 } 
  
 void loop() 
@@ -35,7 +35,7 @@ void loop()
   // map it to the range of the analog out:
   sensorValue2 = analogRead(analogInPin2);
   digitalWrite(13, HIGH);   // turn the LED on (HIGH is the voltage leve1)
-  digitalWrite(10, LOW);
+  digitalWrite(12, LOW);
   
   int offset = (sensorValue1>200) ? 30 : 0;
   offset = (sensorValue2>200) ? -30 : 0;
@@ -46,7 +46,7 @@ void loop()
     delay(15);                       // waits 15ms for the servo to reach the position 
   }
   digitalWrite(13, LOW);    // turn the LED off by making the voltage LOW
-  digitalWrite(10, HIGH);
+  digitalWrite(12, HIGH);
   for(pos = 100+offset; pos>=50+offset; pos-=2)     // goes from 180 degrees to 0 degrees 
   {                                
     myservo.write(pos);              // tell servo to go to position in variable 'pos' 
