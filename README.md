@@ -9,4 +9,4 @@ Jedes Projekt steht unter einer eigenen Lizenz. Wenn in dem Projekt keine genann
 - [Scratch](Scratch Projects)
 - [Contextfree Art](contextfree)
 - [Inkscape Zeichenprogramm](Inkscape)
-- [Windows](Windows batch)
+- [Windows Batch](Windows batch)
