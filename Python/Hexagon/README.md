@@ -1,7 +1,7 @@
 Hexagon
 =======
 
-Ein Spiel von Milan Zeiske.
+
 
 Installation
 ------------
