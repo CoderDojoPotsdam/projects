@@ -1,7 +1,7 @@
 Hexagon
 =======
 
-
+[![](hexagon.png)](hexagon.py)
 
 Installation
 ------------
