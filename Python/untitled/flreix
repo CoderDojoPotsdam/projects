@@ -1,0 +1,10 @@
+import turtle
+
+distance = 0
+while distance < 100:
+   turtle.forward(10)
+   print(turtle.distance)
+<<a<
+turtle.exitonclick()
+
+

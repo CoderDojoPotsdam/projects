@@ -4,35 +4,34 @@ import math
 import random
 class Game(object):
     def __init__(self,hexalist,random):
-        running = True
-        advance = True
-        
+        self.running = True
+        self.score=0
         self.currentTime=0
         self.oldTime=0
         self.timeDifference=0
         screen = pygame.display.set_mode([540,630])
         pygame.display.set_caption('hexagon.py')
         self.firstdraw(screen,hexalist,random)
-        self.update(running,screen,hexalist,random)
-    def update(self,status,frame,hexalist,random):
-        while status == True:
+        self.update(screen,hexalist,random)
+    def update(self,frame,hexalist,random):
+        while self.running == True:
             self.oldTime=self.currentTime
             for i in range(25):
                 hexalist[i].update(self.timeDifference,frame,random,self,hexalist)
-                hexalist[i].fl+=0.0000006
+                
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    status = False
+                    self.running = False
             pygame.display.flip()
             self.currentTime=pygame.time.get_ticks()
             self.timeDifference=self.currentTime-self.oldTime
         pygame.quit()
     def over(self,frame,hexalist):
-        frame.fill([200,0,0])
+        self.running=False
+        print("Game over!")
+        print("Score: ")
+        print(self.score)
         
-        for i in range(25):
-            hexalist[i].fillStatus=0
-            hexalist[i].timeupd=800000
     def firstdraw(self,frame,hexalist,random):
         x=30
         y=30
@@ -56,14 +55,11 @@ class Game(object):
             elif offset == 0:
                 offset = 1
             placeY=0
-            #sy=sy-offset*2+1
             placeX=placeX+1.5*size
 class Hexagon(object):
     def __init__(self,posX,posY,frame,random,hexalist):
         self.fillStatus=0
         self.size=60
-        #self.color=[255-self.fillStatus*255/5,255-self.fillStatus*128/5,255]
-        #self.draw(frame,posX,posY)
         self.timeSpent=0
         self.xcoord=posX
         self.ycoord=posY
@@ -74,19 +70,18 @@ class Hexagon(object):
         self.timeSpent=self.timeSpent+time
         if self.timeSpent>self.timeupd:
             self.timeSpent-=self.timeupd
+            self.fl+=0.000006
             if self.fillStatus>0:
-                self.hitbox(pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1],frame)
+                self.hitbox(pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1],frame,game)
             if random.random()<self.fl:
                 self.fill(frame,game,hexalist)
-    def hitbox(self,x,y,frame):
-        if y>self.ycoord*self.size*math.sqrt(3)/4 and y<self.ycoord+self.size*math.sqrt(3)*3/4:
-            if x>self.xcoord and x<self.xcoord+self.size*2:
+            
+    def hitbox(self,x,y,frame,game):
+        if y>self.ycoord and y<self.ycoord+self.size*math.sqrt(3):
+            if abs(y-self.ycoord-self.size*math.sqrt(3)/2)/math.sqrt(3)+abs(x-self.xcoord-self.size)<self.size:
                 self.clear(frame)
-                
-        elif y>self.ycoord and y<self.ycoord+self.size*math.sqrt(3):
-                if x>self.xcoord+self.size/2 and x<self.xcoord+self.size*3/2:
-                    self.clear(frame)
-                    
+                game.score+=1
+        
     def fill(self,frame,game,hexalist):
         self.fillStatus=self.fillStatus+1
         if self.fillStatus==6:
@@ -109,5 +104,4 @@ if __name__ == "__main__":
     pygame.init()
     random.seed()
     hexagonList=[]
-    game = Game(hexagonList,random)
-    
+    game = Game(hexagonList,random)  
