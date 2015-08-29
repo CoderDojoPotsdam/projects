@@ -19,4 +19,4 @@ Installation
         sudo apt-get -y install python
         sudo apt-get -y install python-pygame
 
-2. [Hexagon.py](hexagon.py) runterladen und spielen.
+2. [Hexagon.py](hexagon.py) und die anderen Dateien runterladen und spielen.
