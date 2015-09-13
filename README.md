@@ -16,4 +16,5 @@ Zu diesem Repository
 --------------------
 
 Diese Webseite ist [https://github.com/CoderDojoPotsdam/projects](https://github.com/CoderDojoPotsdam/projects). Dort wird dieser Ordner angezeigt.
-Besteht eine Internetverbindung, wird nach dem Starten eines Coder-Dojo-Potsdam-Computers automatisch der aktuelle Stand hochgeladen. Mit den `upload`-Dateien kann auch zwischendurch etwas hochgeladen werden.
+Besteht eine Internetverbindung, wird nach dem Starten eines Coder-Dojo-Potsdam-Computers automatisch der aktuelle Stand hochgeladen. 
+Mit den [upload-Dateien](upload) kann auch zwischendurch etwas hochgeladen werden.
