@@ -7,3 +7,5 @@ git commit -am"manual commit `whoami`@`hostname`"
 git pull
 git push
 
+firefox https://github.com/CoderDojoPotsdam/projects &
+

@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=upload
+Comment=Upload the current state of the projects repository.
+Exec=
+Icon=
+Terminal=true
+Type=Application
+Categories=Development;
+StartupNotify=false
+NoDisplay=true
+
+
+
