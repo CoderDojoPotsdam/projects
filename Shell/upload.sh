@@ -9,3 +9,5 @@ git push
 
 firefox https://github.com/CoderDojoPotsdam/projects &
 
+sleep 1
+
