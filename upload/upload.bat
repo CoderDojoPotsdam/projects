@@ -4,7 +4,7 @@ rem move to this directory
 cd %~dp0
 
 git pull origin master
-git add --all .
+git add --all ..
 git commit -m"manual commit by %USERNAME%@%COMPUTERNAME%"
 git push origin master
 
