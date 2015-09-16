@@ -10,7 +10,8 @@ Online
 Offline
 -------
 
-[![apen_bende](bilder/apen_bende.png)](apen_bende)
+[![Platform-Bob](bilder/Platform-Bob.png)](Platform-Bob.sb)
+[![apen_bende](bilder/apen_bende.png)](apen_bende)  
 [![Prinzessin Lola in ihrem Schloss](bilder/Prinzessin Lola in ihrem Schloss.png)](Prinzessin Lola in ihrem Schloss)
 
 Scratch Installieren

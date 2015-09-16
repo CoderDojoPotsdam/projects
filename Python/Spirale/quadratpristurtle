@@ -1,0 +1,12 @@
+_author__= 'coderdojo'
+import turtle
+def forward(distance):
+    while distance > 0:
+        if (not (not (turtle.xcor() > 100) and not (turtle.xcor() < -100) and not (turtle.ycor() > 100) and not (
+            turtle.ycor() < -100))):
+            turtle.setheading(turtle.towards(0,0))
+        turtle.forward(10)
+        turtle.left(10)
+        distance = distance - 1
+
+forward(100000)

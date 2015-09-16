@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=upload
+Comment=Upload the current state of the projects repository.
+Exec="/opt/repositories/projects/upload/upload.sh"
+Type=Application
+Terminal=false
+
+
+
