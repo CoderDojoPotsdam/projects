@@ -1,0 +1,1 @@
+Der Roboterarm ist im Mai im Coder Dojo programmiert worden. Baupläne sind hier: [https://github.com/niccokunzmann/mearm](https://github.com/niccokunzmann/mearm)
