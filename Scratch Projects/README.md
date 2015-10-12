@@ -10,9 +10,10 @@ Online
 Offline
 -------
 
-[![Platform-Bob](bilder/Platform-Bob.png)](Platform-Bob.sb)
-[![apen_bende](bilder/apen_bende.png)](apen_bende)  
-[![Prinzessin Lola in ihrem Schloss](bilder/Prinzessin Lola in ihrem Schloss.png)](Prinzessin Lola in ihrem Schloss)
+[![Platform-Bob](Platform-Bob/Platform-Bob.png)](Platform-Bob)
+[![apen_bende](apen_bende/apen_bende.png)](apen_bende)  
+[![Prinzessin Lola in ihrem Schloss](Prinzessin Lola in ihrem Schloss/Prinzessin Lola in ihrem Schloss.png)](Prinzessin Lola in ihrem Schloss)
+[![Controller-Game](bilder/Controller-Game.png)](Controller-Game.sb)  
 
 Scratch Installieren
 --------------------
