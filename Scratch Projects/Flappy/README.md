@@ -1,4 +1,4 @@
-Flappy
+Das ist eine Erweiterung des bekannten Spiels "Flappy".
 
 [Level 11](http://scratch.mit.edu/projects/65968620/#fullscreen)  
 [Level 12](http://scratch.mit.edu/projects/66198936/#fullscreen)  
