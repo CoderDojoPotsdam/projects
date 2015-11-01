@@ -2,6 +2,7 @@ Hexagon
 =======
 
 [![](hexagon.png)](hexagon.py)
+Ein Spiel von Milan Zeiske.
 
 Installation
 ------------
