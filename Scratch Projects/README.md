@@ -4,7 +4,8 @@ Scratch Spiele
 Online
 ------
 
-[![Frogger](bilder/Frogger.png)](http://scratch.mit.edu/projects/50050966/#fullscreen)
+[![Flappy](Flappy/Flappy.png)](Flappy/README.md)
+[![Frogger](bilder/Frogger.png)](http://scratch.mit.edu/projects/50050966/#fullscreen)  
 [![Ballonspiel](bilder/Ballonspiel.png)](http://scratch.mit.edu/projects/50059346/#fullscreen)
 
 Offline
@@ -21,5 +22,9 @@ Scratch Installieren
 
 [Hier wird gezeigt, wie Scratch 2 installiert werden kann.](https://scratch.mit.edu/scratch2download/)  
 Wenn Scratch 2 nicht geht, kann auch Scratch 1 installiert werden. Bei Ubuntu ist das standartmäßig im Paketmanager auffindbar.
+
+----
+
+Die Bilder sollten 360px*270px sein.
 
 
