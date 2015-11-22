@@ -5,9 +5,8 @@ import os
 import decimal
 directory = os.getcwd()
 music_file = os.path.join(directory, 'Blop-Mark_DiAngelo-79054334.mp3')
-
 class Game(object):
-    def __init__(self,hexalist,random):
+    def __init__(self,hexalist,random,h):
         self.running = True
         self.score=0
         self.currentTime=0
@@ -15,30 +14,52 @@ class Game(object):
         self.timeDifference=0
         self.clock=pygame.time.Clock()
         self.done=0
+        self.boost=0
+        self.laser=False
         screen=pygame.display.set_mode([540,630])
         pygame.display.set_caption('hexagon.py-Move mouse to make stuff white again')
         self.ze_font=pygame.font.Font(None,40)
         self.blop=pygame.mixer.Sound(music_file)
         self.firstdraw(screen,hexalist,random)
-        self.update(screen,hexalist,random)
-    def update(self,frame,hexalist,random):
+        self.update(screen,hexalist,random,h,self.boost,self.laser)
+    def update(self,frame,hexalist,random,h,boost,laser):#fcitucrzuxrui
         while self.running == True:
             self.clock.tick(50)
-            if self.done==25:
-                self.win(frame,hexalist)
-            self.done=0
-            for i in range(25):
-                hexalist[i].update(frame,random,self,hexalist)
-                if hexalist[i].red==20:
-                    self.done+=1
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
+                elif event.type==pygame.KEYDOWN:
+                    if self.boost >= 20:
+                        laser=True
+                        print("Laser")
+                        self.boost -= 20
+            if self.done==25:
+                self.win(frame,hexalist)
+            self.done=0
+            frame.fill([20,20,20])
+            pygame.draw.polygon(frame,[255,255,255],[[20*0.5+420,25],[20*1.5+420,25],[20*2+420,math.sqrt(3)*20/2+25],[20*1.5+420,math.sqrt(3)*20+25],[20*0.5+420,math.sqrt(3)*20+25],[420,math.sqrt(3)*20/2+25]])
+            if h == 'oRb':
+                ff = orb.update(frame)[0]
+                fh = orb.update(frame)[1]
+            else:
+                ff = pygame.mouse.get_pos()[0]
+                fh = pygame.mouse.get_pos()[1]
+            fg=fh
+            for i in range(25):
+                hexalist[i].update(frame,random,self,hexalist,ff,fg,boost,laser)
+                if hexalist[i].red == 20:
+                    self.done += 1
+            if laser == True:
+                pygame.draw.line(frame,[255,128,0],[0,fh],[640,fh],3)
+                laser = False
+            if h == "oRb":
+                orb.draw(frame)
             self.a_number=self.ze_font.render(str(self.score),True,[0,128,255],[20,20,20])
             frame.blit(self.a_number,[465,25])
-            pygame.display.flip()    
+            pygame.display.flip()
         pygame.quit()
     def over(self,frame,hexalist):
+        pygame.display.quit() 
         self.running=False
         print("Game over!")
         exit=raw_input("Restart?(yes/no)")
@@ -47,10 +68,15 @@ class Game(object):
             pygame.init()
             random.seed()
             hexagonList=[]
-            game = Game(hexagonList,random)
+            inp = raw_input("Select input mode (mouse,orb)")
+            if inp == 'orb':
+                game = Game(hexagonList,random,'oRb')
+            elif inp == 'mouse':
+                game = Game(hexagonList,random,'mOuse')
         elif exit == "no":
-            pass
+            pygame.quit()
     def win(self,frame,hexalist):
+        pygame.display.quit() 
         self.running=False
         print("You did it!")
         print("All tiles disappeared!")
@@ -60,9 +86,13 @@ class Game(object):
             pygame.init()
             random.seed()
             hexagonList=[]
-            game = Game(hexagonList,random)
+            inp=raw_input('Select input mode (mouse,orb)')
+            if inp == 'orb':
+                game = Game(hexagonList,random,'oRb')
+            elif inp == 'mouse':
+                game = Game(hexagonList,random,'mOuse')
         elif exit == "no":
-            pass
+            pygame.quit()
     def firstdraw(self,frame,hexalist,random):
         x=30
         y=30
@@ -88,6 +118,22 @@ class Game(object):
                 offset = 1
             placeY=0
             placeX=placeX+1.5*size
+class Orb(object):
+    def __init__(self):
+        self.x=240
+        self.y=315
+        self.mom_x=6
+        self.mom_y=0
+    def draw(self,frame):
+        pygame.draw.circle(frame,[255,200,0],[int(self.x),int(self.y)],5)
+    def update(self,frame):
+        self.tempx=self.x*0.998+pygame.mouse.get_pos()[0]*0.002+self.mom_x*0.96
+        self.tempy=self.y*0.998+pygame.mouse.get_pos()[1]*0.002+self.mom_y*0.96
+        self.mom_x=self.tempx-self.x
+        self.mom_y=self.tempy-self.y
+        self.x=self.tempx
+        self.y=self.tempy
+        return [self.x,self.y]
 class Hexagon(object):
     def __init__(self,posX,posY,frame,random,hexalist):
         self.fillStatus=0
@@ -98,28 +144,40 @@ class Hexagon(object):
         self.red=0
         self.draw(frame,posX,posY,self.red)
         self.fl=0.0005
-        self.increase=0.0000018
-    def update(self,frame,random,game,hexalist):
+        self.increase=0.0000014
+    def update(self,frame,random,game,hexalist,x,y,boost,laser):
         if self.fillStatus>0 and self.red<20:
-            self.hitbox(pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1],frame,game)
+            self.hitbox(x,y,frame,game,laser)
         if random.random()<self.fl and self.red<20:
             self.fill(frame,game,hexalist)
+        self.draw(frame,self.xcoord,self.ycoord,self.red)
         self.fl+=self.increase
-    def hitbox(self,x,y,frame,game):
+    def hitbox(self,x,y,frame,game,laser):
         if y>self.ycoord and y<self.ycoord+self.size*math.sqrt(3):
             if abs(y-self.ycoord-self.size*math.sqrt(3)/2)/math.sqrt(3)+abs(x-self.xcoord-self.size)<self.size:
                 self.clear(frame,game)
                 game.score+=1
+                game.boost +=1
+                print(game.boost)
+        if laser==True and y>self.ycoord and y<self.ycoord+self.size*math.sqrt(3):
+            if self.fillStatus<0:
+                fillStatus=0
+            self.clear(frame,game,True)
+            game.score+=1
+            game.boost+=1
+            self.fl-=0.00006
     def fill(self,frame,game,hexalist):
         self.fillStatus=self.fillStatus+1
-        self.draw(frame,self.xcoord,self.ycoord,self.red)
         if self.fillStatus==6:
             game.over(frame,hexalist)
-    def clear(self,frame,game):
+    def clear(self,frame,game,full=False):
         if self.red<20 and random.random()<0.5:
             self.red+=1
         game.blop.play()
-        self.fillStatus-=1
+        if full==True:
+            self.fillStatus=0
+        elif self.fillStatus>0:
+            self.fillStatus-=1
         self.draw(frame,self.xcoord,self.ycoord,self.red)
     def draw(self,frame,x,y,red):
         self.color = [255-self.fillStatus*255/6,255-self.fillStatus*(255*self.red/19)/6,255]
@@ -130,4 +188,9 @@ if __name__ == "__main__":
     pygame.init()
     random.seed()
     hexagonList=[]
-    game = Game(hexagonList,random)
+    orb=Orb()
+    inp=raw_input('Select input mode (mouse,orb)')
+    if inp == 'orb':
+        game = Game(hexagonList,random,'oRb')
+    elif inp == 'mouse':
+        game = Game(hexagonList,random,'mOuse')
