@@ -7,6 +7,5 @@ Diese Werke sind lizenziert unter einer [Creative Commons Namensnennung - Weiter
 Hintergrund
 -----------
 
-[scratch.mit.edu](https://scratch.mit.edu) verwendet die selbe Lizenz älterer Version. 
-Diese Lizenz erlaubt es, anderen auf der Arbeit aufzubauen, solange sie den Autor angemessen benennen. Das fördert unter anderem Offenheit und Mitarbeit. Das erlaubt uns auch, Showcaseprojekte zu zeigen und diese ordentlich zu benennen.
+Diese Lizenz erlaubt es, anderen auf der Arbeit aufzubauen, solange sie den Autor angemessen benennen. Das fördert unter anderem Offenheit und Mitarbeit. Das erlaubt uns auch, Showcaseprojekte zu zeigen und diese ordentlich zu benennen. Der Weiteren können wir so die Scratchprojekte auch auf [scratch.mit.edu](https://scratch.mit.edu) hochladen, da es die selbe Lizenz älterer Version verwendet. 
 
