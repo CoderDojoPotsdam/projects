@@ -1,0 +1,19 @@
+/*imperative program*/void main() {
+	while (vornFrei()) {
+		vor();
+	
+	}	   
+}
+
+void reset() {
+	linksUm();
+	linksUm();
+	linksUm();
+	linksUm();	
+}
+void rechtsUm() {
+	linksUm();
+	linksUm();
+	linksUm();
+}
+	

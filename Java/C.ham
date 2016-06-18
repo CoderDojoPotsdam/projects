@@ -1,0 +1,14 @@
+/*imperative program*/void main() {
+	while (vornFrei()) {
+		Schleife();
+	}	   
+}
+
+void Schleife() {
+	if (vornFrei))
+	{
+		vor();
+		if (
+	}
+	else
+}
