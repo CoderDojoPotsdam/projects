@@ -21,15 +21,15 @@ class Game(object):
         self.ze_font=pygame.font.Font(None,40)
         self.blop=pygame.mixer.Sound(music_file)
         self.firstdraw(screen,hexalist,random,d)
-        self.update(screen,hexalist,random,h,self.boost,self.laser)
-    def update(self,frame,hexalist,random,h,boost,laser):#fcitucrzuxrui
+        self.update(screen,hexalist,random,h,self.boost,self.laser,d)
+    def update(self,frame,hexalist,random,h,boost,laser,d):
         while self.running == True:
             self.clock.tick(50)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
             if self.done==25:
-                self.win(frame,hexalist)
+                self.win(frame,hexalist,h,d)
             self.done=0
             frame.fill([20,20,20])
             pygame.draw.polygon(frame,[255,255,255],[[20*0.5+420,25],[20*1.5+420,25],[20*2+420,math.sqrt(3)*20/2+25],[20*1.5+420,math.sqrt(3)*20+25],[20*0.5+420,math.sqrt(3)*20+25],[420,math.sqrt(3)*20/2+25]])
@@ -70,18 +70,19 @@ class Game(object):
                 game = Game(hexagonList,random,'mOuse')
         elif exit == "no":
             pygame.quit()
-    def win(self,frame,hexalist):
+    def win(self,frame,hexalist,h,d):
         pygame.display.quit() 
         self.running=False
         print("You did it!")
         print("All tiles disappeared!")
-        exit=raw_input("Restart(yes/no)?")
+        print("Difficulty: "+d.capitalize() + ", input mode: " + h.capitalize())
+        exit=raw_input("Restart(yes/no)? ")
         if exit == "yes":
             pygame.quit()
             pygame.init()
             random.seed()
             hexagonList=[]
-            inp=raw_input('Select input mode (mouse,orb)')
+            inp=raw_input('Select input mode (mouse,orb) ')
             if inp == 'orb':
                 game = Game(hexagonList,random,'oRb')
             elif inp == 'mouse':
@@ -129,7 +130,6 @@ class Orb(object):
         self.x=self.tempx
         self.y=self.tempy
         return [self.x,self.y]
-
 class Hexagon(object):
     def __init__(self,posX,posY,frame,random,hexalist,difficulty):
         self.fillStatus=0
@@ -148,7 +148,7 @@ class Hexagon(object):
             self.increase = 0.0000014
         else:
             self.fl = 0.0006
-            self.increase = 0.0000017
+            self.increase = 0.0000019
         self.death=0
     def update(self,frame,random,game,hexalist,x,y,boost,laser):
         if self.fillStatus == 6:
