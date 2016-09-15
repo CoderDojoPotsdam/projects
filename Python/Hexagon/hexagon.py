@@ -208,33 +208,38 @@ class Hexagon(object):
         #if self.red==20:
             #self.color=[20,20,20]
         pygame.draw.polygon(frame,self.color,[[self.size*0.5+x,y],[self.size*1.5+x,y],[self.size*2+x,math.sqrt(3)*self.size/2+y],[self.size*1.5+x,math.sqrt(3)*self.size+y],[self.size*0.5+x,math.sqrt(3)*self.size+y],[x,math.sqrt(3)*self.size/2+y]])
+class Main(object):
+    def __init__(self):
+        random.seed()
+        global hexagonList,orb
+        hexagonList=[]
+        orb=Orb()
+        def input1():
+            inp=raw_input('Select input mode (mouse,orb): ')
+            if inp == 'orb':
+                #game = Game(hexagonList,random,'oRb')
+                type1 = "oRb"
+            elif inp == 'mouse':
+                #game = Game(hexagonList,random,'mOuse')
+                type1 = "mOuse"
+            else:
+                print("Invalid input mode. Please select again.")
+                input1()
+            return type1
+        def input2():
+            inp2=raw_input('Select difficulty (easy, normal, hard): ')
+            if inp2 == 'easy':
+                type2 = 'easy'
+            elif inp2 == 'normal':
+                type2 = 'normal'
+            elif inp2 == 'hard':
+                type2 = 'hard'
+            else:
+                print("Invalid difficulty. Please select again.")
+                type2 = input2()
+            return type2
+        game = Game(hexagonList,random,input1(),input2())
 if __name__ == "__main__":
     pygame.init()
-    random.seed()
-    hexagonList=[]
-    orb=Orb()
-    def input1():
-        inp=raw_input('Select input mode (mouse,orb): ')
-        if inp == 'orb':
-            #game = Game(hexagonList,random,'oRb')
-            type1 = "oRb"
-        elif inp == 'mouse':
-            #game = Game(hexagonList,random,'mOuse')
-            type1 = "mOuse"
-        else:
-            print("Invalid input mode. Please select again.")
-            input1()
-        return type1
-    def input2():
-        inp2=raw_input('Select difficulty (easy, normal, hard): ')
-        if inp2 == 'easy':
-            type2 = 'easy'
-        elif inp2 == 'normal':
-            type2 = 'normal'
-        elif inp2 == 'hard':
-            type2 = 'hard'
-        else:
-            print("Invalid difficulty. Please select again.")
-            type2 = input2()
-        return type2
-    game = Game(hexagonList,random,input1(),input2())
+    main = Main()
+    
