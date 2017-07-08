@@ -1,0 +1,53 @@
+/*imperative program*/void main() {
+	wegTest();
+	/*while (vornFrei () ){ vor(); }
+
+	rechtsUm() ;*/
+    
+}
+	void rechtsUm()
+{
+	linksUm() ;
+	linksUm() ;
+	linksUm() ;	
+	}
+void laufBisWand () {
+		while (vornFrei () ){
+			vor(); 
+		}}
+void wegTest () {
+	laufBisWand ();
+	rechtsUm();
+	if (vornFrei(void main() {
+	wegTest();
+	/*while (vornFrei () ){ vor(); }
+
+	rechtsUm() ;*/
+    
+}
+	void rechtsUm()
+{
+	linksUm() ;
+	linksUm() ;
+	linksUm() ;	
+	}
+void laufBisWand () {
+		while (vornFrei () ){
+			vor(); 
+		}}
+void wegTest () {
+	laufBisWand ();
+	rechtsUm();
+	if (vornFrei() ) {
+	laufBisWand(); 
+	}else{
+	laufBisWand();
+	if (vornFrei() ) {
+	laufBisWand(); 
+	}else{
+	laufBisWand();
+	if (vornFrei() ) {
+	laufBisWand();
+	}
+	wegTest();
+	}}}
