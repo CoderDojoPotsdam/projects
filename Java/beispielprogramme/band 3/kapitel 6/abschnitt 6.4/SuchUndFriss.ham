@@ -1,0 +1,136 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+class SuchHamster extends AllroundHamster {
+
+    private int kornReihe, kornSpalte;
+
+    private boolean kornGefunden;
+
+    private boolean fertig;
+
+    private boolean vonLinksNachRechts;
+
+    SuchHamster() {
+        super(0, 0, Hamster.OST, 0);
+        this.vonLinksNachRechts = true;
+        this.kornReihe = 0;
+        this.kornSpalte = 0;
+        this.kornGefunden = false;
+        this.fertig = false;
+    }
+
+    public void run() {
+        this.laufeZurWandUndSuche();
+        while (this.weitereReiheExistiert()) {
+            this.begibDichInNaechsteReihe();
+            this.laufeZurWandUndSuche();
+        }
+        this.fertig = true;
+    }
+
+    private void laufeZurWandUndSuche() {
+        this.suche();
+        while (this.vornFrei()) {
+            this.vor();
+            this.suche();
+        }
+    }
+
+    private void suche() {
+        if (this.kornDa()) {
+            this.kornReihe = this.getReihe();
+            this.kornSpalte = this.getSpalte();
+            this.kornGefunden = true;
+        }
+
+        // warten, bis FressHamster das Korn gefressen hat
+        while (this.kornGefunden) {
+            // aktives Warten
+        }
+    }
+
+    private boolean weitereReiheExistiert() {
+        if (this.vonLinksNachRechts) {
+            return this.rechtsFrei();
+        } else {
+            return this.linksFrei();
+        }
+    }
+
+    private void begibDichInNaechsteReihe() {
+        if (this.vonLinksNachRechts) {
+            this.rechtsUm();
+            this.vor();
+            this.rechtsUm();
+        } else {
+            this.linksUm();
+            this.vor();
+            this.linksUm();
+        }
+        this.vonLinksNachRechts = !this.vonLinksNachRechts;
+    }
+
+    // Kommunikationsmethoden
+
+    public boolean kornGefunden() {
+        return this.kornGefunden;
+    }
+
+    public int getKornReihe() {
+        return this.kornReihe;
+    }
+
+    public int getKornSpalte() {
+        return this.kornSpalte;
+    }
+
+    public void habeKornGefressen() {
+        this.kornGefunden = false;
+    }
+
+    public boolean sucheBeendet() {
+        return this.fertig;
+    }
+}
+
+class FressHamster extends AllroundHamster {
+
+    SuchHamster helfer;
+
+    FressHamster(SuchHamster hamster) {
+        super(0, 0, Hamster.OST, 0);
+        this.helfer = hamster;
+    }
+
+    public void run() {
+        while (!this.helfer.sucheBeendet()) {
+
+            // warten, bis SuchHamster ein Korn gefunden hat
+            while (!(this.helfer.kornGefunden() || this.helfer
+                    .sucheBeendet())) {
+                // aktives Warten
+            }
+
+            // gefundenes Korn fressen
+            if (this.helfer.kornGefunden()) {
+                this.laufeZuKachel(this.helfer.getKornReihe(),
+                        this.helfer.getKornSpalte());
+                this.nimmAlle();
+                this.helfer.habeKornGefressen();
+            }
+        }
+    }
+}
+
+void main() {
+    SuchHamster paul = new SuchHamster();
+    FressHamster heidi = new FressHamster(paul);
+    paul.start();
+    heidi.start();
+}

@@ -1,0 +1,43 @@
+/*class*/class Konto {
+
+    private int kontostand;
+
+    private int summeBarEinzahlungen;
+
+    private int summeUeberweisungsEinzahlungen;
+
+    Konto() {
+        this.kontostand = 0;
+        this.summeBarEinzahlungen = 0;
+        this.summeUeberweisungsEinzahlungen = 0;
+    }
+
+    void barEinzahlen(int betrag) {
+        synchronized (this) {
+            this.summeBarEinzahlungen = this.summeBarEinzahlungen
+                    + betrag;
+            this.kontostand = this.kontostand + betrag;
+        }
+    }
+
+    void perUeberweisung(int betrag) {
+        synchronized (this) {
+            this.summeUeberweisungsEinzahlungen = 
+                this.summeUeberweisungsEinzahlungen + betrag;
+            this.kontostand = this.kontostand + betrag;
+        }
+    }
+
+    int getKontostand() {
+        synchronized (this) {
+            return this.kontostand;
+        }
+    }
+
+    int getProzentualeBarEinzahlungen() {
+        synchronized (this) {
+            return 100 * this.summeBarEinzahlungen
+                    / this.kontostand;
+        }
+    }
+}

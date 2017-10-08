@@ -1,0 +1,23 @@
+/*class*/class ZaehlHamster extends Hamster {
+
+    private static int anzahl = 0;
+
+    private static Object anzahlWaechter = new Object();
+
+    ZaehlHamster(int r, int s) {
+        super(r, s, Hamster.OST, 0);
+    }
+
+    public void run() {
+        while (this.kornDa()) {
+            this.nimm();
+            synchronized (ZaehlHamster.anzahlWaechter) {
+                ZaehlHamster.anzahl = ZaehlHamster.anzahl + 1;
+            }
+        }
+    }
+
+    static int getGesammelteKoerner() {
+        return ZaehlHamster.anzahl;
+    }
+}

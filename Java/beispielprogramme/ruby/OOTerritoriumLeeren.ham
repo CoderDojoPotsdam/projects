@@ -1,0 +1,77 @@
+/*ruby program*/# Ein neu erzeugter Hamster grast das Territorium ab und
+# zaehlt dabei die gesammelten Koerner
+
+class AbgrasHamster < Hamster
+     
+    def initialize(reihe, spalte, blickrichtung, anzahlKoerner)
+        super(reihe, spalte, blickrichtung, anzahlKoerner)
+        @gesammelt = 0
+    end
+        
+    def kehrt
+        linksUm
+        linksUm
+    end
+    
+    def rechtsUm
+        kehrt
+        linksUm
+    end
+
+    def laufeZurueck
+        while vornFrei
+            vor
+        end
+    end
+
+    def sammle
+        while kornDa
+            nimm
+            @gesammelt += 1
+        end
+    end
+
+    def laufeZurWand
+        while vornFrei
+            vor
+        end
+    end
+        
+    def laufeInEcke
+        laufeZurWand
+        linksUm
+        laufeZurWand
+        linksUm
+    end
+
+    def ernteEineReihe
+        sammle
+        while vornFrei
+            vor
+            sammle
+        end
+    end
+
+    def ernteEineReiheUndLaufeZurueck
+        ernteEineReihe
+        kehrt
+        laufeZurueck
+    end
+        
+    def gesammelteKoerner
+        return @gesammelt
+    end
+end
+
+# Hauptprogramm
+paul = AbgrasHamster.new(2, 3, Hamster.WEST, 0)
+paul.laufeInEcke
+paul.ernteEineReiheUndLaufeZurueck
+paul.rechtsUm
+while paul.vornFrei
+    paul.vor
+    paul.rechtsUm
+    paul.ernteEineReiheUndLaufeZurueck
+    paul.rechtsUm
+end
+paul.schreib("Gesammelte Koerner = " + paul.gesammelteKoerner.to_s)

@@ -1,0 +1,6 @@
+/*object-oriented program*/void main() {
+    URLNachmachHamster paul = new URLNachmachHamster(
+            Hamster.getStandardHamster(),
+            "http://www-is.informatik.uni-oldenburg.de/~dibo/hamster/band2/weg.txt");
+    paul.macheNach();
+}

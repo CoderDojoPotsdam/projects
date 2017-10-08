@@ -1,0 +1,41 @@
+/*prolog program*/%% Eintrittspunkt des Programms. 
+main :- 
+	% Laufe auf die Wand zu.
+	vornFrei,vor,main.
+main :-
+	laufeUmDieWand,!.
+
+% Laufe links rum um die Wand.
+laufeUmDieWand :-
+	not(vornFrei),rechtsUm,
+	laufeUmDieWand.
+laufeUmDieWand :-
+	vor, not(linksFrei),rechtsUm,
+	laufeUmDieWand.
+laufeUmDieWand :-
+	linksUm,vor,
+	laufeUmDieWand.
+
+% Prüft nach, ob links frei ist.
+linksFrei :-
+	linksUm,
+	vornFrei,
+	rechtsUm.
+
+% Prüft nach, ob rechts frei ist.
+rechtsFrei :-
+	rechtsUm,
+	vornFrei,
+	linksUm.
+
+% Kehrt-Aktion des Hamsters.
+kehrt :-
+	linksUm,
+	linksUm.
+
+% RechtsUm-Aktion des Hamsters.
+rechtsUm :-
+	linksUm,
+	linksUm,
+	linksUm.
+	

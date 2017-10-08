@@ -1,0 +1,21 @@
+/*object-oriented program*/class SammelHamster extends Hamster {
+
+    SammelHamster(Hamster hamster) {
+        super(hamster);
+    }
+
+    public void run() {
+        if (this.kornDa()) {
+            this.nimm();
+        }
+    }
+}
+
+void main() {
+    Hamster paul = new SammelHamster(Hamster
+            .getStandardHamster());
+    Hamster karl = new SammelHamster(Hamster
+            .getStandardHamster());
+    paul.start();
+    karl.start();
+}

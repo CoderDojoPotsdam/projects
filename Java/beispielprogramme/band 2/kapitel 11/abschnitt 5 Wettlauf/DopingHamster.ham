@@ -1,0 +1,15 @@
+/*class*/// realisiert gedopte Hamster, die beim Aufruf
+// des vor-Befehls gleich 2 Felder vorruecken
+class DopingHamster extends Hamster {
+    DopingHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    // ueberschriebene vor-Methode!
+    public void vor() {
+        super.vor();
+        if (this.vornFrei()) {
+            super.vor();
+        }
+    }
+}

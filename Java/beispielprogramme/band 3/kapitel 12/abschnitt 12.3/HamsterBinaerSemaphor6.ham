@@ -1,0 +1,88 @@
+/*class*/class HamsterBinaerSemaphor6 extends HamsterBinaerSemaphor5 {
+
+    public HamsterBinaerSemaphor6(Position eingang) {
+        super(eingang);
+    }
+
+    public void p(int dieserHamster, HoehlenHamster ham) {
+
+        // Wunsch zum Betreten der Hoehle signalisieren
+        ham.gib();
+
+        // unter Umstaenden warten, bis der andere Hamster die
+        // Hoehle verlaesst
+        ham.laufeZuKachel(this.eingangsSeiten[this
+                .andererHamster(dieserHamster)]);
+        while (ham.kornDa()) {
+
+            // ist dieser Hamster an der Reihe
+            ham.laufeZuKachel(this.eingang);
+            if (this.anzahlKoerner(ham) != dieserHamster) {
+
+                // turnusmaessig ist der andere Hamster an der
+                // Reihe
+
+                // dem anderen Hamster die Chance geben, die
+                // Hoehle zu betreten
+                ham
+                        .laufeZuKachel(this.eingangsSeiten[dieserHamster]);
+                ham.nimm();
+
+                // warten bis dieser Hamster an der Reihe ist
+                ham.laufeZuKachel(this.eingang);
+                while (this.anzahlKoerner(ham) != dieserHamster) {
+                    // aktives Warten
+                }
+
+                // Eintrittswunsch wiederholen
+                ham
+                        .laufeZuKachel(this.eingangsSeiten[dieserHamster]);
+                ham.gib();
+                ham.laufeZuKachel(this.eingangsSeiten[this
+                        .andererHamster(dieserHamster)]);
+            } else {
+                ham.laufeZuKachel(this.eingangsSeiten[this
+                        .andererHamster(dieserHamster)]);
+            }
+        }
+
+        // nun zum Haupteingang
+        ham.laufeZuKachel(this.eingang);
+        ham.setzeBlickrichtung(Hamster.OST);
+
+        // dieserHamster ist nun in der Hoehle
+    }
+
+    public void v(int dieserHamster, HoehlenHamster ham) {
+
+        // Prioritaet abgeben
+        this.alternieren(dieserHamster, ham);
+
+        // der Hamster entfernt sein Korn
+        ham.laufeZuKachel(this.eingangsSeiten[dieserHamster]);
+        ham.nimm();
+
+        // die Hoehle ist nun wieder frei
+    }
+
+    protected int anzahlKoerner(HoehlenHamster ham) {
+        if (ham.kornDa()) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    protected void alternieren(int dieserHamster,
+            HoehlenHamster ham) {
+        if (dieserHamster == 0) {
+            if (!ham.kornDa()) {
+                ham.gib();
+            }
+        } else {
+            if (ham.kornDa()) {
+                ham.nimm();
+            }
+        }
+    }
+}

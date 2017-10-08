@@ -1,0 +1,13 @@
+/*imperative program*/void main() {
+    if (vornFrei()) {  // bedingte Anweisung
+        vor();
+        linksUm();
+    }
+    
+    if (kornDa() && vornFrei()) { // Alternativanweisung
+        nimm();
+        vor();
+    } else {
+        linksUm();
+    }
+}

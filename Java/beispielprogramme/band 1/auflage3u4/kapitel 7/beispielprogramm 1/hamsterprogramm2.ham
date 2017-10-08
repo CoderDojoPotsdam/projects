@@ -1,0 +1,16 @@
+/*imperative program*/void main() {
+
+    // friss erstes Korn
+    linksUm(); 
+    vor(); 
+    vor(); 
+    nimm();
+
+    // friss zweites Korn
+    linksUm(); 
+    linksUm(); 
+    linksUm();
+    vor(); 
+    vor(); 
+    nimm();
+}

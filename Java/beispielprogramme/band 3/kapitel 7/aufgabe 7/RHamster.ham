@@ -1,0 +1,38 @@
+/*class*/public class RHamster extends Hamster {
+
+    public RHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    // der Hamster testet, ob links von ihm die Kachel frei ist
+    public synchronized boolean linksFrei() {
+        this.linksUm();
+        boolean frei = this.vornFrei();
+
+        // Vermeidung von Seiteneffekten
+        this.linksUm();
+        this.linksUm();
+        this.linksUm();
+
+        // liefere Ergebnis
+        return frei;
+    }
+
+    // der Hamster ermittelt die Anzahl an Koernern auf der
+    // aktuellen Kachel
+    public int zaehleAnzahlAnKoerner() {
+        int anzahl = 0;
+        while (this.kornDa()) {
+            this.nimm();
+            anzahl++;
+        }
+
+        // Vermeidung von Seiteneffekten
+        for (int i = 0; i < anzahl; i++) {
+            this.gib();
+        }
+
+        // liefere Ergebnis
+        return anzahl;
+    }
+}

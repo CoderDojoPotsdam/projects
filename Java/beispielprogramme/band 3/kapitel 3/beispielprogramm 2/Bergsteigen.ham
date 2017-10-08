@@ -1,0 +1,64 @@
+/*object-oriented program*//*
+Windows:
+  CLASSPATH: .;Programme\beispielprogramme\band 3
+Linux, Solaris:
+  CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+//Hamster dieser Klasse erklimmen einen Berg von links
+class KletterHamster extends AllroundHamster {
+
+    KletterHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    public void run() {
+        this.laufeBisZumBerg();
+        while (!this.gipfelErreicht()) {
+            this.erklimmeStufe();
+        }
+    }
+
+    void laufeBisZumBerg() {
+        while (this.vornFrei()) {
+            this.vor();
+        }
+    }
+
+    void erklimmeStufe() {
+        this.linksUm();
+        this.vor();
+        this.rechtsUm();
+        this.vor();
+    }
+
+    boolean gipfelErreicht() {
+        return this.vornFrei();
+    }
+}
+
+// Hamster dieser Klasse erklimmen einen Berg von rechts
+class RechtsKletterHamster extends KletterHamster {
+
+    RechtsKletterHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    void erklimmeStufe() {
+        this.rechtsUm();
+        this.vor();
+        this.linksUm();
+        this.vor();
+    }
+}
+
+void main() {
+    KletterHamster paul = new KletterHamster(Territorium
+            .getAnzahlReihen() - 1, 0, Hamster.OST, 0);
+    KletterHamster willi = new RechtsKletterHamster(
+            Territorium.getAnzahlReihen() - 1, Territorium
+                    .getAnzahlSpalten() - 1, Hamster.WEST, 0);
+    paul.start();
+    willi.start();
+}

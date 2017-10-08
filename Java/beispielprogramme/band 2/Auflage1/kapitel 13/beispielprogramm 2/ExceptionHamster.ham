@@ -1,0 +1,11 @@
+/*class*/class ExceptionHamster extends Hamster {
+
+  ExceptionHamster(int r, int s, int b, int k) {
+    super(r, s, b, k);
+  }
+  
+  // ueberschriebene Hamster-Testbefehle
+  final public boolean vornFrei() { return true; }
+  final public boolean kornDa() { return true; }
+  final public boolean maulLeer() { return false; }
+}

@@ -1,0 +1,16 @@
+/*class*/class SammelHamster extends Hamster {
+
+    private static Object kornWaechter = new Object();
+
+    SammelHamster(Hamster hamster) {
+        super(hamster);
+    }
+
+    public void run() {
+        synchronized (SammelHamster.kornWaechter) {
+            if (this.kornDa()) {
+                this.nimm();
+            }
+        }
+    }
+}

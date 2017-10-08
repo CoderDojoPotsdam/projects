@@ -1,0 +1,39 @@
+/*imperative program*/void main()
+{
+    gib(); // markiere Ausgangsposition
+    vor();
+    while (!kornDa()) // irgendwann kehrt der Hamster hierher zurueck
+    {
+      while (vornFrei() && !rechtsFrei() && !kornDa())
+      {
+        vor();
+      }
+      if (!kornDa()) // Ausgangsposition erreicht
+      {
+        if (rechtsFrei())
+        {
+          rechtsUm();
+          vor();
+        }
+        else // vorne und rechts stehen Mauern
+        {
+          linksUm();
+        }
+      }
+    }
+}
+
+boolean rechtsFrei()
+{
+    rechtsUm();
+    if (vornFrei())
+    {
+      linksUm(); return true;
+    }
+    else
+    {   
+      linksUm(); return false;
+    }
+}  
+
+void rechtsUm() { linksUm(); linksUm(); linksUm(); }

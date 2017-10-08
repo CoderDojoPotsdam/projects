@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<FSM>
+	<startState name="laufeZumBerg"></startState>
+	<numberingOfStates int="2"></numberingOfStates>
+	<typeOfFsm>true</typeOfFsm>
+	
+	<state name="laufeZumBerg" initial="true" final="false" x="120" y="152">
+
+		<transition fromState="laufeZumBerg" toState="laufeZumBerg">
+			<descriptions>
+				<description>
+					<input>
+
+							<booleanObject name="vornFrei" positioning="0"></booleanObject>
+					</input>
+					<output>
+						<voidObject name="vor"></voidObject>
+					</output>
+				</description>
+			</descriptions>
+		</transition>
+
+		<transition fromState="laufeZumBerg" toState="erklimmeStufe" x="291" y="80">
+			<descriptions>
+				<description>
+					<input>
+
+						<booleanObject name="nicht" positioning="0">
+						<child>
+							<booleanObject name="vornFrei" positioning="1"></booleanObject>
+
+						</child>
+
+						</booleanObject>
+					</input>
+					<output>
+						<voidObject name="linksUm"></voidObject>
+						<voidObject name="vor"></voidObject>
+						<voidObject name="linksUm"></voidObject>
+						<voidObject name="linksUm"></voidObject>
+						<voidObject name="linksUm"></voidObject>
+						<voidObject name="vor"></voidObject>
+					</output>
+				</description>
+			</descriptions>
+		</transition>
+	</state>
+
+	<state name="erklimmeStufe" initial="false" final="true" x="486" y="152">
+
+		<transition fromState="erklimmeStufe" toState="erklimmeStufe">
+			<descriptions>
+				<description>
+					<input>
+
+						<booleanObject name="nicht" positioning="0">
+						<child>
+							<booleanObject name="vornFrei" positioning="1"></booleanObject>
+
+						</child>
+
+						</booleanObject>
+					</input>
+					<output>
+						<voidObject name="linksUm"></voidObject>
+						<voidObject name="vor"></voidObject>
+						<voidObject name="linksUm"></voidObject>
+						<voidObject name="linksUm"></voidObject>
+						<voidObject name="linksUm"></voidObject>
+						<voidObject name="vor"></voidObject>
+					</output>
+				</description>
+			</descriptions>
+		</transition>
+	</state>
+</FSM>

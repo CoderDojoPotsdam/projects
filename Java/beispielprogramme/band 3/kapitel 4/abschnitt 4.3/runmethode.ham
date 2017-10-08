@@ -1,0 +1,25 @@
+/*object-oriented program*/class LaufHamster extends Hamster {
+
+    LaufHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    public void run() {
+        while (this.vornFrei()) {
+            this.vor();
+        }
+    }
+}
+
+void main() {
+    Hamster paul = Hamster.getStandardHamster();
+    LaufHamster willi = new LaufHamster(1, 0, Hamster.OST, 0);
+    willi.run();
+    // direkter Aufruf der run-Methode: Willi laeuft bis zur
+    // Mauer
+
+    // erst jetzt ist Paul an der Reihe
+    while (paul.vornFrei()) {
+        paul.vor();
+    }
+}

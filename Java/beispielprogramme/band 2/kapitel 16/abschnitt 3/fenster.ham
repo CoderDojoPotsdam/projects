@@ -1,0 +1,44 @@
+/*object-oriented program*/import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+class SammelHamster extends Hamster {
+
+    SammelHamster(int r, int s, int b) {
+        super(r, s, b, 0);
+    }
+
+    public void schreib(String zeichenkette) {
+        JFrame fenster = new JFrame("Schreib-Fenster");
+        fenster
+                .setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        JLabel ausgabe = new JLabel(zeichenkette);
+        fenster.add(ausgabe);
+        fenster.setLocation(100, 200);
+        fenster.pack();
+        fenster.setVisible(true);
+    }
+
+    void laufeUndSammle() {
+        while (this.vornFrei()) {
+            this.vor();
+            this.sammle();
+        }
+    }
+
+    void sammle() {
+        while (this.kornDa()) {
+            this.nimm();
+        }
+    }
+}
+
+void main() {
+    SammelHamster paul = new SammelHamster(0, 0, Hamster.OST);
+    paul.laufeUndSammle();
+    paul.schreib("Ich habe " + paul.getAnzahlKoerner()
+            + " Koerner im Maul!");
+
+    Hamster willi = Hamster.getStandardHamster();
+    willi.schreib("Ich habe " + willi.getAnzahlKoerner()
+            + " Koerner im Maul!");
+}

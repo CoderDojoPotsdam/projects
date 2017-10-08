@@ -1,0 +1,21 @@
+/*object-oriented program*/void main() {
+    Hamster paul = new Hamster(1, 0, Hamster.OST, 0);
+    Hamster willi = new Hamster(2, 0, Hamster.OST, 0);
+
+    // Paul und Willi laufen solange abwechselnd nach
+    // vorne, bis einer die naechste Mauer erreicht
+    while (paul.vornFrei() && willi.vornFrei()) {
+        paul.vor();
+        willi.vor();
+    }
+
+    // evtl. hat Paul noch nicht die naechste Mauer erreicht
+    while (paul.vornFrei()) {
+        paul.vor();
+    }
+
+    // evtl. hat Willi noch nicht die naechste Mauer erreicht
+    while (willi.vornFrei()) {
+        willi.vor();
+    }
+}

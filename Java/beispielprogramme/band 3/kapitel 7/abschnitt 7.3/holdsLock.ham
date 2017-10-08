@@ -1,0 +1,18 @@
+/*object-oriented program*/void main() {
+    Hamster paul = Hamster.getStandardHamster();
+    Object sperrObjekt = new Object();
+
+    if (Thread.holdsLock(sperrObjekt)) {
+        paul.schreib("Ich halte den Lock!");
+    } else {
+        paul.schreib("Ich halte den Lock nicht!");
+    }
+
+    synchronized (sperrObjekt) {
+        if (Thread.holdsLock(sperrObjekt)) {
+            paul.schreib("Ich halte den Lock!");
+        } else {
+            paul.schreib("Ich halte den Lock nicht!");
+        }
+    }
+}

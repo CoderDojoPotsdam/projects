@@ -1,0 +1,22 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+void main() {
+    Position kachel1 = new Position(0, 1);
+    Position kachel2 = new Position(2, 1);
+    Verwalter verwalter = new Verwalter();
+
+    // Paul nimmt erst das obere und dann das untere Korn
+    ProbierHamster paul = new ProbierHamster(1, 0,
+            Hamster.OST, 0, kachel1, kachel2, verwalter);
+
+    // Willi nimmt erst das untere und dann das obere Korn
+    ProbierHamster willi = new ProbierHamster(1, 2,
+            Hamster.WEST, 0, kachel2, kachel1, verwalter);
+
+    paul.start();
+    willi.start();
+}

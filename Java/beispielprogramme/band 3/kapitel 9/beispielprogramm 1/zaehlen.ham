@@ -1,0 +1,91 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+ */
+import util.AllroundHamster;
+
+class Doppelzaehler {
+
+    private int anzahl;
+
+    private Doppelzaehler partner;
+
+    Doppelzaehler() {
+        this.anzahl = 0;
+        this.partner = null;
+    }
+
+    synchronized void setPartner(Doppelzaehler partner) {
+        this.partner = partner;
+    }
+
+    synchronized int getAnzahl() {
+        return this.anzahl;
+    }
+
+    synchronized void inkrementAnzahl(int anzahl) {
+        this.anzahl += anzahl;
+    }
+
+    synchronized int getGesamtAnzahl() {
+        return this.anzahl + this.partner.getAnzahl();
+    }
+}
+
+class SammelHamster extends AllroundHamster {
+
+    private SammelHamster kollege;
+
+    private Doppelzaehler anzahlKoerner;
+
+    private boolean fertig;
+
+    SammelHamster(int r) {
+        super(r, 0, Hamster.OST, 0);
+        this.kollege = null;
+        this.anzahlKoerner = new Doppelzaehler();
+        this.fertig = false;
+    }
+
+    void setKollege(SammelHamster ham) {
+        this.kollege = ham;
+        this.anzahlKoerner
+                .setPartner(this.kollege.anzahlKoerner);
+    }
+
+    public void run() {
+
+        // Reihe abgrasen
+        this.anzahlKoerner.inkrementAnzahl(this.nimmAlle());
+        while (this.vornFrei()) {
+            this.vor();
+            this.anzahlKoerner.inkrementAnzahl(this.nimmAlle());
+        }
+
+        // auf Kollegen warten
+        synchronized (SammelHamster.class) {
+            this.fertig = true;
+            SammelHamster.class.notify();
+            if (!this.kollege.fertig)
+                try {
+                    SammelHamster.class.wait();
+                } catch (InterruptedException exc) {
+                }
+        }
+
+        // Ergebnis verkuenden
+        this.schreib("Gesamtanzahl an Koernern = "
+                + this.anzahlKoerner.getGesamtAnzahl());
+    }
+}
+
+void main() {
+    SammelHamster paul = new SammelHamster(0);
+    SammelHamster willi = new SammelHamster(1);
+    paul.setKollege(willi);
+    willi.setKollege(paul);
+    paul.start();
+    willi.start();
+}

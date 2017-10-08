@@ -1,0 +1,33 @@
+/*imperative program*/void main() {
+    laufeZumBerg();
+    erklimmeGipfel();
+}
+
+void laufeZumBerg() {
+    while (vornFrei()) {
+        vor();
+    }
+}
+
+void erklimmeGipfel() {
+    do {
+        erklimmeEineStufe();
+    } while (!vornFrei());
+}
+
+void erklimmeEineStufe() {
+    linksUm(); 
+    vor(); 
+    rechtsUm(); 
+    vor();
+}
+
+void rechtsUm() { 
+    kehrt(); 
+    linksUm(); 
+}
+
+void kehrt() { 
+    linksUm(); 
+    linksUm(); 
+}

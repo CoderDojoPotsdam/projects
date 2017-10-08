@@ -1,0 +1,30 @@
+/*class*//*
+Windows:
+  CLASSPATH: Programme\beispielprogramme\band 2\kapitel 15
+Linux, Solaris:
+  CLASSPATH: Programme/beispielprogramme/band 2/kapitel 15
+*/
+package hamsterkalah;
+
+import kalah.*;
+
+// Hilfsklasse der Klasse StrategieHamster, die einen 
+// Spielzug plus Bewertung repraesentiert
+class WertSpielzug {
+
+  private Spielzug zug;
+  private int wert;
+
+  WertSpielzug(Spielzug z, int w) {
+    this.zug = z;
+    this.wert = w;
+  }
+
+  Spielzug getZug() {
+    return this.zug;
+  }
+
+  int getWert() {
+    return this.wert;
+  }
+}

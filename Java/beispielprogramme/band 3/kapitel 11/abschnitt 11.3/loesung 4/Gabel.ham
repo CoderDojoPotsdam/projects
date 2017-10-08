@@ -1,0 +1,34 @@
+/*class*/class Gabel {
+
+    private boolean verfuegbar;
+
+    private boolean istVergoldet;
+
+    Gabel() {
+        this(false);
+    }
+
+    Gabel(boolean istVergoldet) {
+        this.istVergoldet = istVergoldet;
+        this.verfuegbar = true;
+    }
+
+    synchronized void aufnehmen() {
+        while (!this.verfuegbar) {
+            try {
+                this.wait();
+            } catch (Exception e) {
+            }
+        }
+        this.verfuegbar = false;
+    }
+
+    synchronized void ablegen() {
+        this.verfuegbar = true;
+        this.notify(); // Nachbarn informieren
+    }
+
+    boolean istVergoldet() {
+        return this.istVergoldet;
+    }
+}

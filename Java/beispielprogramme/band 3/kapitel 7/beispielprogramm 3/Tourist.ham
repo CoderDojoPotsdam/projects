@@ -1,0 +1,44 @@
+/*class*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+class Tourist extends AllroundHamster {
+
+    Tourist() {
+        super(Territorium.getAnzahlReihen() - 1, 0, Hamster.OST,
+                0);
+    }
+
+    public void run() {
+        while (true) {
+            this.laufeZumTurm();
+            this.besteigeTurm();
+            this.laufeZurueck();
+        }
+    }
+
+    private void laufeZumTurm() {
+        while (!this.kornDa()) {
+            this.vor();
+        }
+    }
+
+    private void besteigeTurm() {
+        this.linksUm();
+        TurmWaechter waechter = TurmWaechter
+                .getTurmWaechter(this.getSpalte());
+        waechter.turmBesteigen(this);
+        this.rechtsUm();
+    }
+
+    private void laufeZurueck() {
+        while (this.vornFrei()) {
+            this.vor();
+        }
+        this.kehrt();
+    }
+}

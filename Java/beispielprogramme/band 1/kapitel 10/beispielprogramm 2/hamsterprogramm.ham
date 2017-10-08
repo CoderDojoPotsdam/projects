@@ -1,0 +1,32 @@
+/*imperative program*/void main() {
+    begibDichInEineEcke();
+
+    /*
+     * die Iterationsanweisung der folgenden while-Schleife
+     * wird genau viermal ausgefuehrt; danach steht der
+     * Hamster in der Ausgangsecke, wo er das erste Korn
+     * abgelegt hat
+     */
+    while (!kornDa()) {
+        gib(); 
+        laufeInDieNaechsteEcke(); 
+        linksUm();
+    }
+}
+
+void begibDichInEineEcke() {
+    laufeZurNaechstenWand(); 
+    linksUm();
+    laufeZurNaechstenWand(); 
+    linksUm();
+}
+
+void laufeZurNaechstenWand() {
+    while (vornFrei()) {
+        vor();
+    }
+}
+ 
+void laufeInDieNaechsteEcke() { 
+    laufeZurNaechstenWand(); 
+}

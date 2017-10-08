@@ -1,0 +1,9 @@
+/*imperative program*/boolean mauerDa() {
+    return !vornFrei();
+}
+
+void main() {
+    if (mauerDa()) {
+        linksUm();
+    }
+}

@@ -1,0 +1,31 @@
+/*object-oriented program*/class Hamster1 extends Hamster {
+    int gesammelteKoerner;
+
+    void sammle() {
+        while (this.kornDa()) {
+            this.nimm();
+            this.gesammelteKoerner = this.gesammelteKoerner + 1;
+        }
+    }
+}
+
+class Hamster2 extends Hamster1 {
+    int gesammelteKoerner;
+
+    void legAb() {
+        while (this.gesammelteKoerner > 0) {
+        // while (super.gesammelteKoerner > 0) {
+            this.gib();
+            this.gesammelteKoerner = this.gesammelteKoerner - 1;
+            // super.gesammelteKoerner =
+            //     super.gesammelteKoerner - 1;
+        }
+    }
+}
+
+void main() {
+    Hamster2 paul = new Hamster2();
+    paul.init(0, 0, Hamster.SUED, 3);
+    paul.sammle();
+    paul.legAb();
+}

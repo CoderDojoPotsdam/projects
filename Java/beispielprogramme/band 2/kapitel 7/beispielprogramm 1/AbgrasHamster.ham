@@ -1,0 +1,24 @@
+/*class*/class AbgrasHamster extends AllroundHamster {
+
+    AbgrasHamster(Hamster hamster) {
+        super(hamster);
+    }
+
+    // grast das komplette Territorium ab
+    void abgrasen() {
+        int r = 0;
+        while (r < Territorium.getAnzahlReihen()) {
+            int s = 0;
+            while (s < Territorium.getAnzahlSpalten()) {
+                if (Territorium.getAnzahlKoerner(r, s) > 0) {
+                    this.laufeZuKachel(r, s);
+                    this
+                            .nimm(Territorium.getAnzahlKoerner(
+                                    r, s));
+                }
+                s = s + 1;
+            }
+            r = r + 1;
+        }
+    }
+}

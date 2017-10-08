@@ -1,0 +1,37 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+import java.util.TimerTask;
+import java.util.Timer;
+
+class LaufHamster extends AllroundHamster {
+
+    LaufHamster() {
+        super(0, 0, Hamster.OST, 0);
+    }
+
+    public void run() {
+        while (true) {
+            this.laufeZurWand();
+            this.rechtsUm();
+        }
+    }
+}
+
+class Starter extends TimerTask {
+
+    public void run() {
+        LaufHamster laeufer = new LaufHamster();
+        laeufer.start();
+    }
+}
+
+void main() {
+    Starter starter = new Starter();
+    Timer zeitschaltuhr = new Timer();
+    zeitschaltuhr.scheduleAtFixedRate(starter, 0, 3000);
+}

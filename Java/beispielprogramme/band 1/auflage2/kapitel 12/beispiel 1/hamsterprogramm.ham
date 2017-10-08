@@ -1,0 +1,45 @@
+/*imperative program*/// der Hamster soll zunaechst bis zum Berg laufen
+// und dann den Berg erklimmen
+void main()
+{
+    laufeZumBerg();
+    erklimmeDenBerg();
+}
+
+// der Hamster soll zum Berg laufen
+void laufeZumBerg()
+  {
+    while (vornFrei())
+    {
+      vor();
+    }
+    gib(); // am Fusse des Berges legt der Hamster ein Korn ab
+}
+
+// der Hamster soll den Berg erklimmen
+void erklimmeDenBerg()
+{
+    do
+    {
+      erklimmeEineStufe();
+    } while (!gipfelErreicht());
+}
+
+// der Hamster soll eine Stufe erklimmen
+void erklimmeEineStufe()
+{
+    linksUm();  // nun schaut der Hamster nach oben
+    vor();      // der Hamster erklimmt die Mauer
+    rechtsUm(); // der Hamster wendet sich wieder dem Berg zu
+    vor();      // der Hamster springt auf den naechsten Vorsprung
+    gib();      // der Hamster legt ein Korn ab
+}
+
+// der Hamster dreht sich nach rechts um
+void rechtsUm() { linksUm(); linksUm(); linksUm(); }
+
+// hat der Hamster den Gipfel erreicht?
+boolean gipfelErreicht()
+{
+    return vornFrei();
+}

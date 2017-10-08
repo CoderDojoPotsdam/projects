@@ -1,0 +1,45 @@
+/*imperative program*/void main() {
+
+    /*
+     * lokale Variable; 
+     * speichert die Groesse des aktuellen Radius
+     */
+    int radius = 1;     
+    while (!kornDa()) {
+
+        // radius wird als Parameter uebergeben
+        testeEinenKreis(radius); 
+
+        // nach jeder Runde wird der Radius ein Feld groesser
+        radius++;
+    }
+    nimm();
+}
+ 
+void testeEinenKreis(int radius) {
+    int richtungen = 0;  
+
+    // ein Kreis besteht aus vier Richtungen
+    while (!kornDa() && (richtungen < 4)) {
+        testeEineRichtung(radius);
+        richtungen++;
+    }
+}
+    
+void testeEineRichtung(int radius) {
+    int schritte = 0;
+
+    /*
+     * die Ueberpruefung einer Richtung besteht aus der 
+     * Ueberpruefung von so vielen Feldern, wie der Radius 
+     * des Kreises aktuell betraegt
+     */
+    while (!kornDa() && (schritte < radius) && vornFrei()) {
+        vor();
+        schritte++;
+    }
+
+    if (!kornDa()) {
+        linksUm();
+    }
+}

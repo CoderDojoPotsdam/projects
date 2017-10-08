@@ -1,0 +1,31 @@
+/*object-oriented program*/class MeinHamster extends Hamster {
+
+    MeinHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    void rechtsUm() {
+        this.linksUm();
+        this.linksUm();
+        this.linksUm();
+    }
+}
+
+class EinsamerHamster extends AllroundHamster {
+    EinsamerHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    void suchen() {
+        this.schreib("Ich suche eine Frau!");
+    }
+}
+
+void main() {
+    AllroundHamster julia = new AllroundHamster(5, 2,
+            Hamster.SUED, 0);
+    MeinHamster paul = new MeinHamster(2, 6, Hamster.NORD, 0);
+    EinsamerHamster romeo = new EinsamerHamster(3, 4,
+            Hamster.OST, 0);
+    Sammeln.sammeln(0, 0);
+}

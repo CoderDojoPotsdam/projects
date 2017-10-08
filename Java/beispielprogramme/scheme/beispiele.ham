@@ -1,0 +1,75 @@
+/*scheme program*/(define (start Territorium)
+ (nimmAlle Territorium)
+)
+
+
+(define (kehrt T)
+  (linksUm (linksUm T))
+)
+
+(define (rechtsUm T)
+  (kehrt (linksUm T))
+)
+
+(define (nimmAlle T)
+  (if (kornDa? T) 
+    (nimmAlle (nimm T))
+    T
+  )
+)
+
+(define (gibAlle T)
+  (if (not (maulLeer? T)) 
+    (gibAlle (gib T))
+    T
+  )
+)
+
+(define (vorwaerts n T)
+  (if (and (vornFrei? T) (> n 0)) 
+    (vorwaerts (- n 1) (vor T))
+    T
+  )
+)
+
+(define (zurMauer T)
+  (if (vornFrei? T)
+    (zurMauer (vor T))
+    T
+  )
+)
+
+(define (hinUndZurueck T)
+  (if (vornFrei? T)
+    (vor (hinUndZurueck (vor T)))
+    (kehrt T)
+  )
+)
+
+(define (reiheBearbeiten T)
+  (if (vornFrei? T)
+    (reiheBearbeiten (vor (nimmAlle T)))
+    (nimmAlle T)
+  )
+)
+
+(define (linksFrei? T)
+  (let ((T1 (linksUm T)))
+   (if (vornFrei? T1)
+      (begin (rechtsUm T1) #t)
+      (begin (rechtsUm T1) #f)
+   )
+  )
+)
+
+(define (rechtsFrei? T)
+  (let ((T1 (rechtsUm T)))
+   (if (vornFrei? T1)
+      (begin (linksUm T1) #t)
+      (begin (linksUm T1) #f)
+   )
+  )
+)
+
+
+

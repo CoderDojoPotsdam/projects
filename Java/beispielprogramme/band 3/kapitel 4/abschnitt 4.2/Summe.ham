@@ -1,0 +1,32 @@
+/*class*/class Summe extends Thread {
+
+    int summeBis;
+
+    int summe;
+
+    boolean fertig;
+
+    Summe(int bis) {
+        this.summeBis = bis;
+        this.summe = 0;
+        this.fertig = false;
+    }
+
+    // berechnet die Summe der Zahlen 1 bis summeBis
+    public void run() {
+        for (int zahl = 1; zahl <= this.summeBis; zahl++) {
+            this.summe = this.summe + zahl;
+        }
+        this.fertig = true;
+    }
+
+    // liefert die berechnete Summe
+    int getSumme() throws NochNichtFertigException {
+        if (!this.fertig)
+            throw new NochNichtFertigException();
+        return this.summe;
+    }
+}
+
+class NochNichtFertigException extends Exception {
+}

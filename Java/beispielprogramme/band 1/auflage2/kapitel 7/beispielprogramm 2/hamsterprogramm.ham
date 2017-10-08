@@ -1,0 +1,15 @@
+/*imperative program*/void main() 
+{
+    // begib dich an den Rand
+    vor(); linksUm();
+    // laufe in die rechte untere Ecke
+    vor(); vor(); vor(); vor(); gib(); linksUm();
+    // laufe in die rechte obere Ecke
+    vor(); vor(); vor(); gib(); linksUm();
+    // laufe in die linke obere Ecke
+    vor(); vor(); vor(); vor(); vor(); gib(); linksUm();
+    // laufe in die linke untere Ecke
+    vor(); vor(); vor(); gib(); linksUm();
+    // begib dich in deine Ausgangsposition zurueck
+    vor(); linksUm(); vor(); linksUm(); linksUm();
+}

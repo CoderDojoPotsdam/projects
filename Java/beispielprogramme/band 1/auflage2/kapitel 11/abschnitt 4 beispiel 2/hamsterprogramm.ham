@@ -1,0 +1,29 @@
+/*imperative program*/void main()
+{
+    while (vornFrei() && !linksFrei())
+    {
+      vor();
+    }
+    if (linksFrei())
+    {
+      linksUm();
+      vor();
+    }
+}
+
+boolean linksFrei()
+{
+    linksUm();
+    if (vornFrei())
+    {
+      rechtsUm();
+      return true;
+    }
+    else
+    {   
+      rechtsUm();
+      return false;
+    }
+}  
+
+void rechtsUm() { linksUm(); linksUm(); linksUm(); }

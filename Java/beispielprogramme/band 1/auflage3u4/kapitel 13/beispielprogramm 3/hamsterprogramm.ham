@@ -1,0 +1,32 @@
+/*imperative program*/boolean genauEineMauerNebenan() {
+     boolean vornMauer = !vornFrei();
+     linksUm();
+     boolean linksMauer = !vornFrei();
+     linksUm();
+     boolean hintenMauer = !vornFrei();
+     linksUm();
+     boolean rechtsMauer = !vornFrei();
+     linksUm();  // zur Vermeidung von Seiteneffekten
+     return
+         vornMauer && 
+             !(hintenMauer || rechtsMauer || linksMauer) 
+         ||
+         linksMauer && 
+             !(hintenMauer || rechtsMauer || vornMauer) 
+         ||
+         hintenMauer && 
+             !(linksMauer || rechtsMauer || vornMauer) 
+         ||
+         rechtsMauer && 
+             !(hintenMauer || linksMauer || vornMauer);
+}
+
+// einfaches Testprogramm 
+void main()  { 
+    if (genauEineMauerNebenan()) {
+        linksUm(); 
+    } else {  
+        linksUm(); 
+        linksUm();
+    } 
+} 

@@ -1,0 +1,66 @@
+/*imperative program*/void main()
+{
+    sucheGangAb();
+}
+
+boolean gefunden = false;
+  
+void sucheGangAb()
+{
+    if (kornDa()) // Problem geloest
+    {
+      nimm();
+      gefunden = true;
+    }
+
+    // Suche nach Abzweigungen
+  
+    if (!gefunden && linksFrei()) 
+    { // links vorhandenen Gang absuchen
+      linksUm();
+      vor();
+      sucheGangAb();
+      vor();
+      linksUm();
+    }
+  
+    if (!gefunden && rechtsFrei()) 
+    { // rechts vorhandenen Gang absuchen
+      rechtsUm();
+      vor();
+      sucheGangAb();
+      vor();
+      rechtsUm();
+    }
+  
+    if (!gefunden && vornFrei())
+    { // restlichen Gang absuchen
+      vor();
+      sucheGangAb();
+      vor();  // zuruecklaufen
+    }
+    else
+    {
+      kehrt();
+    }
+}
+  
+boolean linksFrei()
+{
+    linksUm();
+    boolean frei = vornFrei();
+    rechtsUm();
+    return frei;
+}
+  
+boolean rechtsFrei()
+{
+    rechtsUm();
+    boolean frei = vornFrei();
+    linksUm();
+    return frei;
+}
+  
+void rechtsUm() { linksUm(); kehrt(); }
+  
+void kehrt() { linksUm(); linksUm(); }

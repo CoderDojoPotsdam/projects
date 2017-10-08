@@ -1,0 +1,28 @@
+/*class*/class UnglaublicherHamster extends Hamster {
+
+    private int wert;
+
+    // gemeinsame Variablen
+    static int globalA = 0;
+
+    static int globalB = 0;
+
+    UnglaublicherHamster(int wert) {
+        super(0, 0, Hamster.OST, 0);
+        this.wert = wert;
+    }
+
+    public void run() {
+        int lokalA = 0;
+        int lokalB = 0;
+        if (this.wert > 0) {
+            lokalA = globalA;     // Anweisung 1
+            globalB = 1;          // Anweisung 2
+            this.schreib("Wert von lokalA = " + lokalA);
+        } else {
+            lokalB = globalB;     // Anweisung 3
+            globalA = 2;          // Anweisung 4
+            this.schreib("Wert von lokalB = " + lokalB);
+        }
+    }
+}

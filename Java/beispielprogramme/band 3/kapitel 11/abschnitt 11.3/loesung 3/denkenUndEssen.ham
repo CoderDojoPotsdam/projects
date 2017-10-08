@@ -1,0 +1,25 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+void main() {
+    Tisch tisch = new Tisch(8);
+    Philosoph p1 = new Philosoph(2, 1, Hamster.OST, tisch, 0);
+    Philosoph p2 = new Philosoph(4, 1, Hamster.OST, tisch, 1);
+    Philosoph p3 = new Philosoph(5, 2, Hamster.NORD, tisch, 2);
+    Philosoph p4 = new Philosoph(5, 4, Hamster.NORD, tisch, 3);
+    Philosoph p5 = new Philosoph(4, 5, Hamster.WEST, tisch, 4);
+    Philosoph p6 = new Philosoph(2, 5, Hamster.WEST, tisch, 5);
+    Philosoph p7 = new Philosoph(1, 4, Hamster.SUED, tisch, 6);
+    Philosoph p8 = new Philosoph(1, 2, Hamster.SUED, tisch, 7);
+    p1.lebe();
+    p2.lebe();
+    p3.lebe();
+    p4.lebe();
+    p5.lebe();
+    p6.lebe();
+    p7.lebe();
+    p8.lebe();
+}

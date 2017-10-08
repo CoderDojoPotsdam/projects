@@ -1,0 +1,59 @@
+/*object-oriented program*/class RunningHamsterM extends Hamster {
+
+    private RunningHamsterM naechster;
+
+    private boolean ichBinAnDerReihe;
+
+    RunningHamsterM(int r, int s, int b, int k,
+            boolean ichBinDran) {
+        super(r, s, b, k);
+        this.naechster = null;
+        this.ichBinAnDerReihe = ichBinDran;
+    }
+
+    RunningHamsterM(int r, int s, int b, int k) {
+        super(r, s, b, k);
+        this.naechster = null;
+        this.ichBinAnDerReihe = false;
+    }
+
+    void setNaechster(RunningHamsterM naechster) {
+        this.naechster = naechster;
+    }
+
+    public void run() {
+        while (this.vornFrei()) {
+            while (!this.ichBinAnDerReihe) {
+                // aktives Warten
+            }
+
+            // jetzt bin ich dran
+            this.vor();
+
+            // der Naechste bitte!
+            this.ichBinAnDerReihe = false;
+            this.naechster.duBistDran();
+        }
+    }
+
+    // Kommunikationsmethode
+
+    void duBistDran() {
+        this.ichBinAnDerReihe = true;
+    }
+}
+
+void main() {
+    RunningHamsterM paul = new RunningHamsterM(0, 0,
+            Hamster.OST, 0, true);
+    RunningHamsterM willi = new RunningHamsterM(1, 0,
+            Hamster.OST, 0);
+    RunningHamsterM heidi = new RunningHamsterM(2, 0,
+            Hamster.OST, 0);
+    paul.setNaechster(willi);
+    willi.setNaechster(heidi);
+    heidi.setNaechster(paul);
+    paul.start();
+    willi.start();
+    heidi.start();
+}

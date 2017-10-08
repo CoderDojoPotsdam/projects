@@ -1,0 +1,36 @@
+/*class*/class SchreibZustandHamster extends Hamster {
+
+    SchreibZustandHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    void schreibThreadZustaende(Thread[] ts) {
+        for (int i = 0; i < ts.length; i++) {
+            Thread.State zustand = ts[i].getState();
+            String meldung = "Thread " + ts[i].getName()
+                    + " befindet sich im Zustand " + zustand
+                    + ", d.h. ";
+            switch (zustand) {
+            case NEW:
+                meldung = meldung
+                        + "er wurde noch nicht gestartet.";
+                break;
+            case TERMINATED:
+                meldung = meldung + "er ist bereits beendet.";
+                break;
+            case BLOCKED:
+            case WAITING:
+            case TIMED_WAITING:
+                meldung = meldung + "er ist gerade blockiert.";
+                break;
+            case RUNNABLE:
+                meldung = meldung + "er ist gerade rechnend, "
+                        + "rechenwillig oder "
+                        + "wartet auf eine "
+                        + "Betriebssystemressource.";
+                break;
+            }
+            this.schreib(meldung);
+        }
+    }
+}

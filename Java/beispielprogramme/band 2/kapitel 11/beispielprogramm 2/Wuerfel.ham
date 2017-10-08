@@ -1,0 +1,5 @@
+/*class*/class Wuerfel {
+    int wuerfeln() {
+        return (int) (Math.random() * 7);
+    }
+}

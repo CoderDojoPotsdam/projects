@@ -1,0 +1,17 @@
+/*object-oriented program*/void main() {
+    LaufHamster3 paul = new LaufHamster3(0, 0, Hamster.OST,
+            0, 9);
+    while (paul.vornFrei()) {
+        paul.lauf();
+    }
+
+    Hamster heidi = Hamster.getStandardHamster();
+
+    LaufHamster3 willi = new LaufHamster3(2, 0, Hamster.OST,
+            0, heidi.getAnzahlKoerner());
+    while (willi.vornFrei()) {
+        willi.lauf();
+    }
+
+    // LaufHamster3 karl = new LaufHamster3(); // Fehler!
+}

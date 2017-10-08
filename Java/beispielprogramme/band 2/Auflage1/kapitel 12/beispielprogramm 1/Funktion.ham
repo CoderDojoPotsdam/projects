@@ -1,0 +1,4 @@
+/*class*/interface Funktion {
+  // liefert den Funktionswert der Funktion an der Stelle x
+  public abstract int f(int x);
+}

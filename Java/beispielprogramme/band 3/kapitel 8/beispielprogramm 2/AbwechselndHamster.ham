@@ -1,0 +1,30 @@
+/*class*/class AbwechselndHamster extends Hamster {
+
+    private static Object wechsel = new Object();
+
+    AbwechselndHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    void aufgabeErledigen() {
+        if (this.vornFrei()) {
+            this.vor();
+        } else {
+            this.linksUm();
+            this.linksUm();
+        }
+    }
+
+    public void run() {
+        while (true) {
+            synchronized (AbwechselndHamster.wechsel) {
+                this.aufgabeErledigen();
+                AbwechselndHamster.wechsel.notify();
+                try {
+                    AbwechselndHamster.wechsel.wait();
+                } catch (InterruptedException exc) {
+                }
+            }
+        }
+    }
+}

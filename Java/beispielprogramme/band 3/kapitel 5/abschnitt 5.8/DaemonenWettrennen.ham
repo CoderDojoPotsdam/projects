@@ -1,0 +1,27 @@
+/*object-oriented program*/class LaufHamster extends Hamster {
+
+    LaufHamster(int r, int s) {
+        super(r, s, Hamster.OST, 0);
+    }
+
+    public void run() {
+        while (this.vornFrei()) {
+            this.vor();
+        }
+    }
+}
+
+class FaulerLaufHamster extends LaufHamster {
+
+    FaulerLaufHamster(int r, int s) {
+        super(r, s);
+        this.setDaemon(true);
+    }   
+}
+
+void main() {
+    LaufHamster paul = new LaufHamster(0, 0);
+    LaufHamster heidi = new FaulerLaufHamster(1, 0);
+    paul.start();
+    heidi.start();
+}

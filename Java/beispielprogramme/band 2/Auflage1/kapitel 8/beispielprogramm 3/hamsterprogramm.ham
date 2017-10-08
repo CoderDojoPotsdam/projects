@@ -1,0 +1,6 @@
+/*object-oriented program*/void main() {
+  AuskunftsHamster egon = new AuskunftsHamster(0, 0, Hamster.OST);
+  egon.ermittleDirektVerbindungen();
+  egon.berechneAlleVerbindungen();
+  egon.gibAlleVerbindungenAus();
+}

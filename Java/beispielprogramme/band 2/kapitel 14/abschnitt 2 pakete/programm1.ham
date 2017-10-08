@@ -1,0 +1,9 @@
+/*object-oriented program*/void main() {
+    reversi.ReversiHamster paul = new reversi.ReversiHamster();
+    reversi.Spielbrett brett = new reversi.Spielbrett();
+    reversi.Spielzug zug = paul.liefereSpielzug();
+    if (reversi.Regeln.spielzugOk(zug)) {
+        //...
+    }
+    //...
+}

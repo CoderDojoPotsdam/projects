@@ -1,0 +1,5 @@
+/*object-oriented program*/void main() {
+    Hamster paul = Hamster.getStandardHamster();
+    Thread mainThread = Thread.currentThread();
+    paul.schreib("Name des Main-Threads: " + mainThread.getName());
+}

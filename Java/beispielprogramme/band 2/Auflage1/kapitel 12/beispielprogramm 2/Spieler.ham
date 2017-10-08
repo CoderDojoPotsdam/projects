@@ -1,0 +1,5 @@
+/*class*/interface Spieler {
+  // Ausfuehren eines Spielzuges; es wird genau dann true geliefert,
+  // wenn der Spieler nach dem Spielzug gewonnen hat
+  public abstract boolean spielzug();
+}

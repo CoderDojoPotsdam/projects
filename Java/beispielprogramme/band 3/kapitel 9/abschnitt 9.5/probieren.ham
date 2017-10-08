@@ -1,0 +1,26 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+void main() {
+    DeadlockErkenner zentrale = new DeadlockErkenner();
+    zentrale.start();
+
+    Position kachel1 = new Position(0, 1);
+    Position kachel2 = new Position(2, 1);
+
+    // Paul nimmt erst das obere und dann das untere Korn
+    ProbierHamster paul = new ProbierHamster(1, 0,
+            Hamster.OST, kachel1, kachel2, zentrale);
+    zentrale.neuerHamster(paul);
+
+    // Willi nimmt erst das untere und dann das obere Korn
+    ProbierHamster willi = new ProbierHamster(1, 2,
+            Hamster.WEST, kachel2, kachel1, zentrale);
+    zentrale.neuerHamster(willi);
+
+    paul.start();
+    willi.start();
+}

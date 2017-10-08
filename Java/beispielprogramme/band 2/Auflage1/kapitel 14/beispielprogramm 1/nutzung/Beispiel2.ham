@@ -1,0 +1,19 @@
+/*class*//*
+Windows:
+  CLASSPATH: Programme\beispielprogramme\band 2\kapitel 14\beispielprogramm 1
+Linux, Solaris:
+  CLASSPATH: Programme/beispielprogramme/band 2/kapitel 14/beispielprogramm 1
+*/
+package nutzung;
+
+import beispiel.Beispiel;
+
+public class Beispiel2 {
+  public Beispiel2() {
+    Beispiel bsp = new Beispiel();
+    bsp.iPrivate = 8;   // Fehler
+    bsp.iOhne = 9;      // Fehler
+    bsp.iProtected = 7; // Fehler
+    bsp.iPublic = 5;
+  }
+}

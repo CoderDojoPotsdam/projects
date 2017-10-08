@@ -1,0 +1,54 @@
+/*class*/class HamsterBinaerSemaphor3 extends HamsterBinaerSemaphor {
+
+    protected Position eingang;
+
+    protected Position[] eingangsSeiten; // links und rechts
+
+    public HamsterBinaerSemaphor3(Position eingang) {
+
+        // der Eingang
+        this.eingang = eingang;
+
+        // Seiten links und rechts
+        this.eingangsSeiten = new Position[2];
+
+        // linke Seite des Eingangs
+        this.eingangsSeiten[0] = new Position(
+                eingang.getReihe() - 1, eingang.getSpalte());
+
+        // rechte Seite des Eingangs
+        this.eingangsSeiten[1] = new Position(
+                eingang.getReihe() + 1, eingang.getSpalte());
+    }
+
+    public void p(int dieserHamster, HoehlenHamster ham) {
+
+        // solange der andere Hamster ein Korn abgelegt
+        // und noch nicht wieder entfernt hat: warten
+        ham.laufeZuKachel(this.eingangsSeiten[this
+                .andererHamster(dieserHamster)]);
+        while (ham.kornDa()) {
+            // aktives Warten
+        }
+        // nun ist die Hoehle frei
+
+        // der Hamster markiert, dass er nun in der Hoehle ist
+        ham.laufeZuKachel(this.eingangsSeiten[dieserHamster]);
+        ham.gib();
+
+        // nun begibt er sich zum Haupteingang
+        ham.laufeZuKachel(this.eingang);
+        ham.setzeBlickrichtung(Hamster.OST);
+
+        // dieserHamster ist nun in der Hoehle
+    }
+
+    public void v(int dieserHamster, HoehlenHamster ham) {
+
+        // der Hamster entfernt sein Korn
+        ham.laufeZuKachel(this.eingangsSeiten[dieserHamster]);
+        ham.nimm();
+
+        // die Hoehle ist nun wieder frei
+    }
+}

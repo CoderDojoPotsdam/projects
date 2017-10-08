@@ -1,0 +1,9 @@
+/*imperative program*/void main() 
+{
+    // nehme erstes Korn
+    linksUm(); vor(); vor(); nimm();
+
+    // nehme zweites Korn
+    linksUm(); linksUm(); linksUm();
+    vor(); vor(); nimm();
+}

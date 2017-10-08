@@ -1,0 +1,24 @@
+/*class*/public class BinaerSemaphor2 {
+
+    // zuerst darf Thread 0 in den kritischen Abschnitt
+    private int anDerReihe = 0;
+
+    public void p(int dieserThread) {
+        while (this.anDerReihe != dieserThread) {
+            // aktives Warten
+        }
+
+        // kritischer Abschnitt kann nun betreten werden
+    }
+
+    public void v(int dieserThread) {
+        this.anDerReihe = this.andererThread(dieserThread);
+
+        // kritischer Abschnitt ist wieder verlassen worden und
+        // ist damit frei
+    }
+
+    private int andererThread(int dieserThread) {
+        return (dieserThread + 1) % 2;
+    }
+}

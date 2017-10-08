@@ -1,0 +1,13 @@
+/*class*/class Hamster1 extends Hamster {
+    int gesammelteKoerner;
+
+    Hamster1(int r, int s, int b, int k) {
+        this.init(r, s, b, k);
+        this.gesammelteKoerner = 0;
+    }
+
+    Hamster1() {
+        this.init(0, 0, Hamster.NORD, 0);
+        this.gesammelteKoerner = 0;
+    }
+}

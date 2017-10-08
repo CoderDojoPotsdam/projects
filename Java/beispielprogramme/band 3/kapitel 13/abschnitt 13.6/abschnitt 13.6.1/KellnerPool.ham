@@ -1,0 +1,28 @@
+/*class*/import java.util.concurrent.LinkedBlockingQueue;
+
+class KellnerPool {
+
+    private LinkedBlockingQueue<Bestellung> bestellungen;
+
+    KellnerPool(int anzahlKellner) {
+        this.bestellungen = new LinkedBlockingQueue<Bestellung>();
+
+        // Kellner des Pools erzeugen und starten
+        for (int i = 0; i < anzahlKellner; i++) {
+            (new Kellner(this)).start();
+        }
+    }
+
+    void bedienen(Bestellung bestellung) {
+        try {
+
+            // Bestellung eintragen
+            this.bestellungen.put(bestellung);
+        } catch (InterruptedException exc) {
+        }
+    }
+
+    LinkedBlockingQueue<Bestellung> getBestellungen() {
+        return this.bestellungen;
+    }
+}

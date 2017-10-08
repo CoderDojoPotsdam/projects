@@ -1,0 +1,91 @@
+/*class*/class Belegungszustand {
+
+    private int gesamtAnzahlInstanzen;
+
+    private int freieInstanzen;
+
+    private Belegung[] belegungen;
+
+    Belegungszustand(int gesamt, Belegung[] belegungen) {
+        this.gesamtAnzahlInstanzen = gesamt;
+        this.freieInstanzen = this.gesamtAnzahlInstanzen;
+        this.belegungen = belegungen;
+    }
+
+    Belegungszustand(Belegungszustand zustand) {
+        this.gesamtAnzahlInstanzen = zustand.gesamtAnzahlInstanzen;
+        this.freieInstanzen = zustand.freieInstanzen;
+        this.belegungen = new Belegung[zustand.belegungen.length];
+        for (int i = 0; i < this.belegungen.length; i++) {
+            this.belegungen[i] = new Belegung(
+                    zustand.belegungen[i]);
+        }
+    }
+
+    protected Belegungszustand clone() {
+        return new Belegungszustand(this);
+    }
+
+    int getFreieInstanzen() {
+        return this.freieInstanzen;
+    }
+
+    void belegen(Thread thread, int anzahlInstanzen) {
+        this.getBelegung(thread).belegen(anzahlInstanzen);
+        this.freieInstanzen -= anzahlInstanzen;
+    }
+
+    void freigeben(Thread thread, int anzahlInstanzen) {
+        this.getBelegung(thread).belegen(anzahlInstanzen);
+        this.freieInstanzen += anzahlInstanzen;
+    }
+
+    boolean istSicher(Thread thread,
+            int anzahlGewuenschteBelegungen) {
+        Belegungszustand klon = this.clone();
+        klon.belegen(thread, anzahlGewuenschteBelegungen);
+        return klon.istSicher();
+    }
+
+    private Belegung getBelegung(Thread thread) {
+        for (Belegung belegung : this.belegungen) {
+            if (belegung.getThread() == thread) {
+                return belegung;
+            }
+        }
+        return null;
+    }
+
+    private boolean istSicher() {
+        while (!this.alleThreadsBeendet()) {
+            Belegung belegung = this.ermittleMoeglichenThread();
+            if (belegung == null) {
+                return false;
+            } else {
+                this.freieInstanzen += belegung
+                        .getAktuelleBelegung();
+                belegung.beenden();
+            }
+        }
+        return true;
+    }
+
+    private boolean alleThreadsBeendet() {
+        for (Belegung belegung : this.belegungen) {
+            if (!belegung.istBeendet()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private Belegung ermittleMoeglichenThread() {
+        for (Belegung belegung : this.belegungen) {
+            if (!belegung.istBeendet()
+                    && belegung.getNochMoeglicheBelegung() <= this.freieInstanzen) {
+                return belegung;
+            }
+        }
+        return null;
+    }
+}

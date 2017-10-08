@@ -1,0 +1,20 @@
+/*class*/class MeinHamster extends Hamster {
+    
+    // Definition von Attributen
+    int gesammelteKoerner = 0;
+
+    // Definition von Methoden
+    void sammle() {
+        while (this.kornDa()) {
+            this.nimm();
+            this.gesammelteKoerner = this.gesammelteKoerner + 1;
+        }
+    }
+
+    void legeGesammelteKoernerAb() {
+        while (this.gesammelteKoerner > 0) {
+            this.gib();
+            this.gesammelteKoerner = this.gesammelteKoerner - 1;
+        }
+    }
+}

@@ -1,0 +1,20 @@
+/*object-oriented program*/void main() {
+    Hamster paul = Hamster.getStandardHamster();
+    int zahl = paul.liesZahl("Positive Zahl: ");
+
+    Summe summe = new Summe(zahl);
+    Task<Integer> aufgabe = new Task<Integer>(summe);
+    aufgabe.start(); // nebenläufige Berechnung der Summe
+
+    // Berechung des Produktes
+    int produkt = 1;
+    for (int z = 1; z <= zahl; z++) {
+        produkt = produkt * z;
+    }
+
+    // Ausgabe der berechneten Ergebnisse
+    paul.schreib("Summe von 1 bis " + zahl + " = "
+            + aufgabe.get());
+    paul.schreib("Produkt von 1 bis " + zahl + " = "
+            + produkt);
+}

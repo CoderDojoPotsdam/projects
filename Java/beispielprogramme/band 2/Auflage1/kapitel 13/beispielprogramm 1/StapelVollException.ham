@@ -1,0 +1,9 @@
+/*class*/class StapelVollException extends Exception {
+  int maxGroesse;
+  StapelVollException(int max) {
+    this.maxGroesse = max;
+  }
+  int getMaxGroesse() {
+    return this.maxGroesse;
+  }
+}

@@ -1,0 +1,22 @@
+/*class*/import java.util.concurrent.atomic.AtomicBoolean;
+
+class BinaerSemaphor {
+
+    private AtomicBoolean frei = new AtomicBoolean(true);
+
+    public void p() {
+        while (!this.frei.compareAndSet(true, false)) {
+            // aktives Warten
+        }
+
+        // kritischer Abschnitt kann nun betreten werden und ist
+        // damit belegt
+    }
+
+    public void v() {
+        this.frei.set(true);
+
+        // kritischer Abschnitt ist wieder verlassen worden und
+        // ist damit frei
+    }
+}

@@ -1,0 +1,18 @@
+/*class*//*
+Windows:
+  CLASSPATH: Programme\beispielprogramme\band 2\kapitel 14\beispielprogramm 1
+Linux, Solaris:
+  CLASSPATH: Programme/beispielprogramme/band 2/kapitel 14/beispielprogramm 1
+*/
+package nutzung;
+
+import beispiel.Beispiel;
+
+public class Beispiel3 extends Beispiel {
+  public Beispiel3() {
+    this.iPrivate = 1;   // Fehler
+    this.iOhne = 2;      // Fehler
+    this.iProtected = 3;
+    this.iPublic = 4;
+  }
+}

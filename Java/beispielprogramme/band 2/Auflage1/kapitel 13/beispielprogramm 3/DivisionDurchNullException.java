@@ -1,0 +1,2 @@
+// Fehlertyp: es wurde versucht, durch 0 zu dividieren
+import de.hamster.debugger.model.Territorium;import de.hamster.model.HamsterException;import de.hamster.model.HamsterInitialisierungsException;import de.hamster.model.HamsterNichtInitialisiertException;import de.hamster.model.KachelLeerException;import de.hamster.model.MauerDaException;import de.hamster.model.MaulLeerException;import de.hamster.debugger.model.Hamster;class DivisionDurchNullException extends Exception {}

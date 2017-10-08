@@ -1,0 +1,15 @@
+/*class*/import java.io.BufferedReader;
+import java.io.FileReader;
+
+public class IONachmachHamster extends NachmachHamster {
+
+    public IONachmachHamster(Hamster hamster, String dateiName) {
+        super(hamster);
+        try {
+            this.quelle = new BufferedReader(new FileReader(
+                    dateiName));
+        } catch (Exception exc) {
+            this.quelle = null;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+/*object-oriented program*/class SammelHamster extends Hamster {
+
+    SammelHamster(int r, int s, int b, int k, String name) {
+        super(r, s, b, k);
+        this.setName(name);
+    }
+
+    public void run() {
+        while (this.kornDa()) {
+            this.nimm();
+        }
+        this.schreib("Ich, " + this.getName() + ", bin fertig!");
+    }
+}
+
+void main() {
+    Hamster paul = Hamster.getStandardHamster();
+    String eingabe = paul
+            .liesZeichenkette("Wie soll der neue Hamster heissen?");
+
+    SammelHamster hamster = new SammelHamster(paul
+            .getReihe(), paul.getSpalte(), Hamster.OST, 0,
+            eingabe);
+    hamster.start();
+}

@@ -1,0 +1,10 @@
+/*class*/class ZeichneVierHamster extends ZeichneZifferHamster {
+    ZeichneVierHamster(int r, int s, int b, int k) {
+      super(r, s, b, k);
+    }
+
+    // zeichnet die Ziffer 4 mit Koernern ins Territorium
+    void zeichne() {  // ueberschriebene und implementierte Methode
+      // Implementierung ist Ihre Aufgabe
+    }
+}

@@ -1,0 +1,14 @@
+/*object-oriented program*/enum Richtung {
+	NORD, WEST, SUED, OST
+}
+
+void main() {
+    Richtung meineRichtung = Richtung.OST;
+    if (meineRichtung == Richtung.WEST) {
+       // ...
+    }
+    // ...
+    if (meineRichtung != Richtung.NORD) {
+       // ...
+    }
+}

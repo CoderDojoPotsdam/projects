@@ -1,0 +1,57 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+ 
+ class GibHamster extends AllroundHamster {
+
+    int kornReihe;
+
+    int kornSpalte;
+
+    GibHamster(int r, int s, int b, int kr, int ks) {
+        super(r, s, b, 1);
+        this.kornReihe = kr;
+        this.kornSpalte = ks;
+    }
+
+    public void run() {
+        this.laufeZuKachel(this.kornReihe, this.kornSpalte);
+        this.gib();
+    }
+}
+
+class NimmHamster extends AllroundHamster {
+
+    int kornReihe;
+
+    int kornSpalte;
+
+    NimmHamster(int r, int s, int b, int kr, int ks) {
+        super(r, s, b, 0);
+        this.kornReihe = kr;
+        this.kornSpalte = ks;
+    }
+
+    public void run() {
+        this.laufeZuKachel(this.kornReihe, this.kornSpalte);
+        while (!this.kornDa()) {
+            // aktives Warten
+        }
+        this.nimm();
+    }
+}
+
+void main() {
+    int r = Hamster.getStandardHamster().getReihe();
+    int s = Hamster.getStandardHamster().getSpalte();
+    NimmHamster willi = new NimmHamster(Territorium
+            .getAnzahlReihen() - 1, Territorium
+            .getAnzahlSpalten() - 1, Hamster.WEST, r, s);
+    GibHamster paul = new GibHamster(0, 0, Hamster.OST, r, s);
+    willi.start();
+    paul.start();
+}

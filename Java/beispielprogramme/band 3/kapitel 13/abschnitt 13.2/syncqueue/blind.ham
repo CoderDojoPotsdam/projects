@@ -1,0 +1,51 @@
+/*object-oriented program*/import java.util.concurrent.SynchronousQueue;
+
+class BlinderHamster extends Hamster {
+
+    private SynchronousQueue<Integer> queue;
+
+    BlinderHamster(Hamster ham) {
+        super(ham);
+        this.queue = new SynchronousQueue<Integer>();
+    }
+
+    public void run() {
+        int schritte = 0;
+        Hamster helfer = new SuchHamster(this, this.queue);
+        helfer.start();
+        try {
+            schritte = this.queue.take(); // warten auf Infos
+        } catch (InterruptedException exc) {
+        }
+        for (int i = 0; i < schritte; i++) {
+            this.vor();
+        }
+    }
+}
+
+class SuchHamster extends Hamster {
+
+    private SynchronousQueue<Integer> queue;
+
+    SuchHamster(Hamster ham, SynchronousQueue<Integer> queue) {
+        super(ham);
+        this.queue = queue;
+    }
+
+    public void run() {
+        int schritte = 0;
+        while (this.vornFrei()) {
+            this.vor();
+            schritte++;
+        }
+        try {
+            this.queue.put(schritte); // Uebergabe der Infos
+        } catch (InterruptedException exc) {
+        }
+    }
+}
+
+void main() {
+    (new BlinderHamster(Hamster.getStandardHamster()))
+            .start();
+}

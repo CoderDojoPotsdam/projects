@@ -1,0 +1,8 @@
+/*object-oriented program*/void main() {
+    AbwechselndHamster paul = new AbwechselndHamster(0, 0,
+            Hamster.OST, 0);
+    AbwechselndHamster willi = new AbwechselndHamster(1, 0,
+            Hamster.OST, 0);
+    paul.start();
+    willi.start();
+}

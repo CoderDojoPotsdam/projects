@@ -1,0 +1,35 @@
+/*class*/class RennHamster extends AllroundHamster {
+  
+  RennHamster(int reihe) {
+    super(reihe, 0, Hamster.OST, 0);
+  }
+  
+  boolean renn() {
+    int rennSchritte = 
+      Territorium.getAnzahlKoerner(this.getReihe(), 
+                                   this.getSpalte());
+    if (rennSchritte == 0) {
+      if (this.vornFrei()) {
+        this.vor();
+      }
+      return !this.vornFrei();
+    }
+    for (int i=0; 
+         i < rennSchritte;
+         i++) {
+      if (this.vornFrei()) {
+        this.vor();
+      } else {
+        // geschafft
+        return true;
+      }
+    }
+    return !this.vornFrei();
+  }
+  
+  void jubeln() {
+    for (int i=0; i<8; i++) {
+      this.linksUm();
+    }
+  }
+}

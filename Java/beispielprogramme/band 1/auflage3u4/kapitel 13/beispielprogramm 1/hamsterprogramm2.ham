@@ -1,0 +1,28 @@
+/*imperative program*/// globale Variable
+boolean geradeAnzahl = true; // 0 Koerner eingesammelt
+
+void main()  {
+    sammle();
+    while (vornFrei()) {
+        vor();
+        sammle();
+    }
+    if (geradeAnzahl) {
+        while (!maulLeer()) {  
+            gib();   
+        }
+    } 
+}   
+    
+// sammle alle Koerner auf aktuellem Feld auf
+void sammle() {
+    while (kornDa()) {
+        nimm();
+      
+        /*
+         * auf jede gerade folgt eine ungerade 
+         * Zahl und umgekehrt
+         */
+        geradeAnzahl = !geradeAnzahl;  
+    }
+}

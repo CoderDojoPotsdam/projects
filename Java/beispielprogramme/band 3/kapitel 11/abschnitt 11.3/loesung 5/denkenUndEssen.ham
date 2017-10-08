@@ -1,0 +1,37 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+void main() {
+    Gabel[] gabeln = new Gabel[8];
+    gabeln[0] = new Gabel(true); // vergoldet
+    for (int i = 1; i < 8; i++) {
+        gabeln[i] = new Gabel();
+    }
+    Philosoph p1 = new Philosoph(2, 1, Hamster.OST,
+            gabeln[0], gabeln[1]);
+    Philosoph p2 = new Philosoph(4, 1, Hamster.OST,
+            gabeln[1], gabeln[2]);
+    Philosoph p3 = new Philosoph(5, 2, Hamster.NORD,
+            gabeln[2], gabeln[3]);
+    Philosoph p4 = new Philosoph(5, 4, Hamster.NORD,
+            gabeln[3], gabeln[4]);
+    Philosoph p5 = new Philosoph(4, 5, Hamster.WEST,
+            gabeln[4], gabeln[5]);
+    Philosoph p6 = new Philosoph(2, 5, Hamster.WEST,
+            gabeln[5], gabeln[6]);
+    Philosoph p7 = new Philosoph(1, 4, Hamster.SUED,
+            gabeln[6], gabeln[7]);
+    Philosoph p8 = new Philosoph(1, 2, Hamster.SUED,
+            gabeln[7], gabeln[0]);
+    p1.lebe();
+    p2.lebe();
+    p3.lebe();
+    p4.lebe();
+    p5.lebe();
+    p6.lebe();
+    p7.lebe();
+    p8.lebe();
+}

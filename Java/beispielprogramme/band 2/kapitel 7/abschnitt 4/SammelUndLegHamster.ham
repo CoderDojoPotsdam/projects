@@ -1,0 +1,17 @@
+/*class*/class SammelUndLegHamster extends Hamster {
+    int gesammelteKoerner = 0;
+
+    void sammle() {
+        while (this.kornDa()) {
+            this.nimm();
+            this.gesammelteKoerner = this.gesammelteKoerner + 1;
+        }
+    }
+
+    void legAb() {
+        while (this.gesammelteKoerner > 0) {
+            this.gib();
+            this.gesammelteKoerner = this.gesammelteKoerner - 1;
+        }
+    }
+}

@@ -1,0 +1,12 @@
+/*object-oriented program*/void main() {
+    Koordinator koordinationsObjekt = new Koordinator();
+    LaufendeHamsterGO paul = new LaufendeHamsterGO(0, 0,
+            Hamster.OST, 0, koordinationsObjekt);
+    LaufendeHamsterGO willi = new LaufendeHamsterGO(1, 0,
+            Hamster.OST, 0, koordinationsObjekt);
+    LaufendeHamsterGO heidi = new LaufendeHamsterGO(2, 0,
+            Hamster.OST, 0, koordinationsObjekt);
+    paul.start();
+    willi.start();
+    heidi.start();
+}

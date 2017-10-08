@@ -1,0 +1,8 @@
+/*class*/class SammelUndLegAlleHamster extends SammelUndLegHamster {
+    void legAb() {
+        while (!this.maulLeer()) {
+            this.gib();
+        }
+        this.gesammelteKoerner = 0;
+    }
+}

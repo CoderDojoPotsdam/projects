@@ -1,0 +1,105 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+// Repraesentation von Kachelpositionen
+class Position {
+    private int reihe;
+
+    private int spalte;
+
+    Position(int r, int s) {
+        this.reihe = r;
+        this.spalte = s;
+    }
+
+    int getReihe() {
+        return this.reihe;
+    }
+
+    int getSpalte() {
+        return this.spalte;
+    }
+}
+
+// Hamster, die zwei Koerner gleichzeitig probieren wollen
+class ProbierHamster extends AllroundHamster {
+
+    private Position pos1; // Position des ersten Korns
+
+    private Position pos2; // Position des zweiten Korns
+
+    ProbierHamster(int r, int s, int b, int k, Position pos1,
+            Position pos2) {
+        super(r, s, b, k);
+        this.pos1 = pos1;
+        this.pos2 = pos2;
+    }
+
+    public void run() {
+        // erstes Korn nehmen
+        this.laufeZuKachel(this.pos1.getReihe(), this.pos1
+                .getSpalte());
+        this.sicheresNimm();
+
+        // zweites Korn nehmen
+        this.laufeZuKachel(this.pos2.getReihe(), this.pos2
+                .getSpalte());
+        sicheresNimm();
+
+        // probieren
+        this.schreib("Hmmmm, das schmeckt");
+
+        // erstes Korn ablegen
+        this.gibUndBenachrichtige();
+
+        // zweites Korn ablegen
+        this.laufeZuKachel(this.pos1.getReihe(), this.pos1
+                .getSpalte());
+        this.gibUndBenachrichtige();
+    }
+
+    void sicheresNimm() {
+        Object kachel = Territorium.getKachel(this.getReihe(),
+                this.getSpalte());
+        synchronized (kachel) {
+            while (!this.kornDa()) {
+                try {
+                    kachel.wait();
+                } catch (InterruptedException exc) {
+                }
+            }
+            this.nimm();
+        }
+    }
+
+    void gibUndBenachrichtige() {
+        Object kachel = Territorium.getKachel(this.getReihe(),
+                this.getSpalte());
+        synchronized (kachel) {
+            this.gib();
+            kachel.notify();
+        }
+    }
+}
+
+void main() {
+    Position kachel1 = new Position(0, 1);
+    Position kachel2 = new Position(2, 1);
+
+    // Paul nimmt erst das obere und dann das untere Korn
+    ProbierHamster paul = new ProbierHamster(1, 0,
+            Hamster.OST, 0, kachel1, kachel2);
+
+    // Willi nimmt erst das untere und dann das obere Korn
+    ProbierHamster willi = new ProbierHamster(1, 2,
+            Hamster.WEST, 0, kachel2, kachel1);
+
+    paul.start();
+    willi.start();
+}
+

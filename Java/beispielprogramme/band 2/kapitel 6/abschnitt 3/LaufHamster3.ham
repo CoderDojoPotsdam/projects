@@ -1,0 +1,21 @@
+/*class*/class LaufHamster3 extends Hamster {
+
+    int maximaleSchritte;
+
+    int schritte;
+
+    // Konstruktor
+    LaufHamster3(int r, int s, int b, int k, int maxSchritte) {
+        this.init(r, s, b, k);
+        this.schritte = 0;
+        this.maximaleSchritte = maxSchritte;
+    }
+
+    void lauf() {
+        if (this.schritte < this.maximaleSchritte
+                && this.vornFrei()) {
+            this.vor();
+            schritte = schritte + 1;
+        }
+    }
+}

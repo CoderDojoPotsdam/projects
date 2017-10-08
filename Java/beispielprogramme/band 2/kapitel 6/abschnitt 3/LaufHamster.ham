@@ -1,0 +1,14 @@
+/*class*/class LaufHamster extends Hamster {
+
+    int maximaleSchritte = 10;
+
+    int schritte = 0;
+
+    void lauf() {
+        if (this.schritte < this.maximaleSchritte
+                && this.vornFrei()) {
+            this.vor();
+            schritte = schritte + 1;
+        }
+    }
+}

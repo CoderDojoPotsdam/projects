@@ -1,0 +1,22 @@
+/*class*/class Tisch {
+    private boolean belegt;
+
+    Tisch() {
+        this.belegt = false;
+    }
+
+    synchronized void reserviereGabeln() {
+        while (this.belegt) {
+            try {
+                this.wait();
+            } catch (Exception e) {
+            }
+        }
+        this.belegt = true;
+    }
+
+    synchronized void gibGabelnFrei() {
+        this.belegt = false;
+        this.notify(); // nun kann ein anderer Hamster essen
+    }
+}

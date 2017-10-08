@@ -1,0 +1,3 @@
+/*class*/interface VornKornHamster {
+    public abstract boolean vornKorn();
+}

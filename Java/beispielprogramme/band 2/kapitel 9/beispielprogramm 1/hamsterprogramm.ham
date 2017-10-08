@@ -1,0 +1,20 @@
+/*object-oriented program*/void main() {
+    Zwillinge beide = new Zwillinge(0, 0, Hamster.OST, 0);
+
+    // zur naechsten Mauer rennen und Koerner einsammeln
+    while (beide.vornFrei()) {
+        beide.vor();
+        while (beide.kornDa()) {
+            beide.nimm();
+        }
+    }
+
+    // umdrehen, zuruecklaufen und dabei Koerner ablegen
+    beide.linksUm();
+    beide.linksUm();
+    beide.gib();
+    while (!beide.maulLeer() && beide.vornFrei()) {
+        beide.vor();
+        beide.gib();
+    }
+}

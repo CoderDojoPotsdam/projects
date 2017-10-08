@@ -1,0 +1,8 @@
+/*class*/class AktionsGenerator {
+    static Aktion naechsteAktion() {
+        int zufall = (int) (Math.random() * 2);
+        if (zufall == 0)
+            return new VorAktion();
+        return new LinksUmAktion();
+    }
+}

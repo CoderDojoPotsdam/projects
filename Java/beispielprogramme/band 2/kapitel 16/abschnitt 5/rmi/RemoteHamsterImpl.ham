@@ -1,0 +1,10 @@
+/*class*/import java.rmi.RemoteException;
+
+public class RemoteHamsterImpl extends Hamster implements
+        RemoteHamster {
+
+    public RemoteHamsterImpl(int r, int s, int b, int k)
+            throws RemoteException {
+        super(r, s, b, k);
+    }
+}

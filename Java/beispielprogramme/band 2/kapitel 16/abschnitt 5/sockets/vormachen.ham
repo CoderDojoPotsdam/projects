@@ -1,0 +1,6 @@
+/*object-oriented program*/void main() {
+    SocketVormachHamster willi = new SocketVormachHamster(Hamster
+            .getStandardHamster(), 2345);
+    willi.macheVor();
+    willi.beendeArbeit();
+}

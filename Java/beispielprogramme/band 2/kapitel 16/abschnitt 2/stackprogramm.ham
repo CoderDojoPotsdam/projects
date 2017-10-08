@@ -1,0 +1,30 @@
+/*object-oriented program*/import java.util.Random;
+import java.util.Stack;
+
+void main() {
+    AllroundHamster paul = new AllroundHamster(Hamster
+            .getStandardHamster());
+
+    Stack<Kachel> kachelSpeicher = new Stack<Kachel>();
+
+    Random zufall = new Random();
+    while (!paul.maulLeer()) {
+        int reihe = zufall.nextInt(Territorium
+                .getAnzahlReihen());
+        int spalte = zufall.nextInt(Territorium
+                .getAnzahlSpalten());
+        paul.laufeZuKachel(reihe, spalte);
+        paul.gib();
+        kachelSpeicher.push(new Kachel(reihe, spalte));
+    }
+
+    AllroundHamster willi = new AllroundHamster(Hamster
+            .getStandardHamster());
+
+    while (!kachelSpeicher.isEmpty()) {
+        Kachel kachel = kachelSpeicher.pop();
+        willi.laufeZuKachel(kachel.getReihe(), kachel
+                .getSpalte());
+        willi.nimm();
+    }
+}

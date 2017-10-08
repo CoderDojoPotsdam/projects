@@ -1,0 +1,13 @@
+/*object-oriented program*/void main() {
+    Hamster paul = Hamster.getStandardHamster();
+    String antwort;
+    do {
+        int anzahl = paul.liesZahl("Anzahl:");
+        while (anzahl > 0) {
+            paul.linksUm();
+            anzahl = anzahl - 1;
+        }
+        antwort = paul
+                .liesZeichenkette("Noch einmal (ja/nein)?");
+    } while (antwort.equals("ja"));
+}

@@ -1,0 +1,50 @@
+/*object-oriented program*/import java.applet.Applet;
+import java.applet.AudioClip;
+import java.io.File;
+
+class SoundHamster extends AllroundHamster {
+
+    private AudioClip audioClip;
+
+    public SoundHamster(int r, int s, int b, int k,
+            String soundDatei) {
+        super(r, s, b, k);
+        try {
+            File f = new File(soundDatei);
+            this.audioClip = Applet.newAudioClip(f.toURI()
+                    .toURL());
+        } catch (Exception exc) {
+            this.audioClip = null;
+        }
+    }
+
+    public void startSound() {
+        if (this.audioClip != null) {
+            this.audioClip.play();
+        }
+    }
+
+    public void stopSound() {
+        if (this.audioClip != null) {
+            this.audioClip.stop();
+        }
+    }
+
+    public void loopSound() {
+        if (this.audioClip != null) {
+            this.audioClip.loop();
+        }
+    }
+}
+
+void main() {
+    SoundHamster paul = new SoundHamster(0, 0, Hamster.OST,
+            0, "C:\\sounds\\musik.wav");
+    paul.loopSound();  // Starte Hintergrundmusik
+	
+    paul.nimmAlle();
+    while (paul.vornFrei()) {
+        paul.vor();
+        paul.nimmAlle();
+    }
+}

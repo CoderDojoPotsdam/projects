@@ -1,0 +1,56 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+import java.util.concurrent.Exchanger;
+
+class AustauschHamster extends AllroundHamster {
+
+    private Exchanger<Integer> exchanger;
+
+    AustauschHamster(int s, int b, Exchanger<Integer> ex) {
+        super(0, s, b, 0);
+        this.exchanger = ex;
+    }
+
+    public void run() {
+        try {
+            int ersteSchritte = this.hinLaufen();
+
+            // Anzahl an Schritten austauschen
+            int weitereSchritte = this.exchanger
+                    .exchange(ersteSchritte);
+            this.weiterLaufen(weitereSchritte);
+        } catch (InterruptedException exc) {
+        }
+    }
+
+    private int hinLaufen() {
+        int schritte = 0;
+        while (!this.kornDa()) {
+            this.vor();
+            schritte++;
+        }
+        return schritte;
+    }
+
+    private void weiterLaufen(int schritte) {
+        for (int i = 0; i < schritte; i++) {
+            this.vor();
+        }
+    }
+}
+
+void main() {
+    Exchanger<Integer> exchanger = new Exchanger<Integer>();
+    AustauschHamster paul = new AustauschHamster(0,
+            Hamster.OST, exchanger);
+    AustauschHamster maria = new AustauschHamster(
+            Territorium.getAnzahlSpalten() - 1,
+            Hamster.WEST, exchanger);
+    paul.start();
+    maria.start();
+}

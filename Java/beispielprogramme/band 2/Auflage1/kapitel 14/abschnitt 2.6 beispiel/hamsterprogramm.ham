@@ -1,0 +1,15 @@
+/*object-oriented program*//*
+Windows:
+  CLASSPATH: .;Programme\beispielprogramme\band 2\kapitel 14\abschnitt 2.6 beispiel\x
+  oder: .;Programme\beispielprogramme\band 2\kapitel 14\abschnitt 2.6 beispiel\y
+Linux, Solaris:
+  CLASSPATH: .:Programme/beispielprogramme/band 2/kapitel 14/abschnitt 2.6 beispiel/x
+  oder: .:Programme/beispielprogramme/band 2/kapitel 14/abschnitt 2.6 beispiel/y
+*/
+
+import meinhamster.MeinHamster;
+
+void main() {
+    MeinHamster paul = new MeinHamster(2, 3, Hamster.NORD, 4);
+    paul.rechtsUm();
+}

@@ -1,0 +1,64 @@
+/*object-oriented program*/class NochNichtFertigException extends Exception {
+}
+
+class Summe implements Runnable {
+    // nicht von Thread abgeleitet!!!
+
+    int summeBis;
+
+    int summe;
+
+    boolean fertig;
+
+    Summe(int bis) {
+        this.summeBis = bis;
+        this.summe = 0;
+        this.fertig = false;
+    }
+
+    // berechnet die Summe der Zahlen 1 bis summeBis
+    public void run() {
+        for (int zahl = 1; zahl <= this.summeBis; zahl++) {
+            this.summe = this.summe + zahl;
+        }
+        this.fertig = true;
+    }
+
+    // liefert die berechnete Summe
+    int getSumme() throws NochNichtFertigException {
+        if (!this.fertig)
+            throw new NochNichtFertigException();
+        return this.summe;
+    }
+}
+
+void main() {
+    Hamster paul = Hamster.getStandardHamster();
+    int zahl = paul.liesZahl("Positive Zahl: ");
+
+    Summe summe = new Summe(zahl);
+
+    // Erzeugung und Start eines neuen Threads, der die
+    // run-Methode des Objektes summe ausführt
+    Thread summenThread = new Thread(summe);
+    summenThread.start();
+    // nebenläufige Berechnung der Summe
+
+    // Berechung des Produktes
+    int produkt = 1;
+    for (int z = 1; z <= zahl; z++) {
+        produkt = produkt * z;
+    }
+
+    // Ausgabe der berechneten Ergebnisse
+    while (true) {
+        try {
+            paul.schreib("Summe von 1 bis " + zahl + " = "
+                    + summe.getSumme());
+            paul.schreib("Produkt von 1 bis " + zahl + " = "
+                    + produkt);
+            return;
+        } catch (NochNichtFertigException exc) {
+        }
+    }
+}

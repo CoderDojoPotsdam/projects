@@ -1,0 +1,7 @@
+/*class*/class ManipulierterWuerfel extends Wuerfel {
+    // Ueberschreiben der geerbten Methode
+    int wuerfeln() {
+        // liefert immer die Hoechstzahl 6
+        return 6;
+    }
+}

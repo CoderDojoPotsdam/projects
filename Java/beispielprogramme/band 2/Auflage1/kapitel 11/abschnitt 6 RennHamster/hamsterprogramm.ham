@@ -1,0 +1,15 @@
+/*object-oriented program*/void main() {
+    Hamster[] hamster = new Hamster[4];
+    hamster[0] = new Hamster(0, 0, Hamster.OST, 0);
+    hamster[1] = new Hamster(1, 0, Hamster.OST, 0);
+    hamster[2] = new DopingHamster(2, 0, Hamster.OST, 0);
+    hamster[3] = new RennHamster(3, 0, Hamster.OST, 0);
+
+    Hamster sieger = Wettlauf.durchfuehren(hamster);
+
+    // der Sieger darf sich einmal im Kreis drehen!
+    sieger.linksUm();
+    sieger.linksUm();
+    sieger.linksUm();
+    sieger.linksUm();
+}

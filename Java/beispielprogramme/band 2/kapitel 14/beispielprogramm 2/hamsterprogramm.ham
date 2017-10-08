@@ -1,0 +1,13 @@
+/*object-oriented program*/import landschaft.Landschaft;
+
+void main() {
+    AllroundHamster paul = new AllroundHamster(0, 0,
+            Hamster.OST, 0);
+    Landschaft gebiet = Landschaft.getLandschaft();
+    for (int r = 0; r < gebiet.getAnzahlReihen(); r++) {
+        for (int s = 0; s < gebiet.getAnzahlSpalten(); s++) {
+            paul.laufeZuKachel(r, s);
+            paul.nimmAlle();
+        }
+    }
+}

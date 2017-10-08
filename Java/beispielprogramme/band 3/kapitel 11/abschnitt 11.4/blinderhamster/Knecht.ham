@@ -1,0 +1,33 @@
+/*class*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+class Knecht extends AllroundHamster {
+
+    private Mailbox mailbox;
+
+    Knecht(Hamster ham, Mailbox box) {
+        super(ham);
+        this.mailbox = box;
+    }
+
+    public void run() {
+        while (this.vornFrei()) {
+            this.vor();
+            if (this.kornDa()) {
+
+                // blinden Hamster benachrichtigen
+                Position pos = new Position(this.getReihe(),
+                        this.getSpalte());
+                this.mailbox.asynchronesSenden(pos);
+            }
+        }
+
+        // Ende signalisieren
+        this.mailbox.asynchronesSenden(true);
+    }
+}

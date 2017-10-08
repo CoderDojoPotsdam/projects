@@ -1,0 +1,15 @@
+/*class*/class Position3D extends Position {
+    // Attribute
+    int tiefe;
+
+    // Konstruktor
+    Position3D(int rWert, int sWert, int tWert) {
+        super(rWert, sWert);
+        this.tiefe = tWert;
+    }
+
+    // Methoden
+    int getTiefe() {
+        return this.tiefe;
+    }
+}

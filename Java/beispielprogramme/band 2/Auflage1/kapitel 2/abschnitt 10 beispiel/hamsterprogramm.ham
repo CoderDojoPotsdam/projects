@@ -1,0 +1,14 @@
+/*imperative program*/void hinUndZurueck() {
+    if (vornFrei()) {
+      vor();
+      hinUndZurueck();  // rekursiver Funktionsaufruf
+      vor();
+    } else {
+      linksUm(); linksUm();
+    }
+}
+
+void main() {
+    // der Hamster laeuft zur naechsten Wand und zurueck
+    hinUndZurueck();
+}

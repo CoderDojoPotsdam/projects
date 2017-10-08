@@ -1,0 +1,9 @@
+/*object-oriented program*/void main() {
+    Superhirn paul = new Superhirn();
+    if (!paul.ueberpruefeSpielfeld()) {
+        paul
+                .schreib("Das Territorium ist nicht gross genug!");
+    } else {
+        paul.spiele();
+    }
+}

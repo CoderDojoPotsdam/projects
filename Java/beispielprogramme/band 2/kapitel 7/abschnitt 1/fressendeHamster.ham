@@ -1,0 +1,24 @@
+/*object-oriented program*/class FressHamster extends Hamster {
+
+    int gesammelteKoerner = 0;
+
+    void friss() {
+        if (this.gesammelteKoerner < 7 && // neues Attribut
+                this.getAnzahlKoerner() < 10 &&
+                    // geerbte Methode
+                this.kornDa()) { // geerbte Methode
+            this.nimm(); // geerbte Methode
+            this.gesammelteKoerner = this.gesammelteKoerner + 1;
+        }
+    }
+}
+
+void main() {
+    FressHamster paul = new FressHamster();
+    paul.init(0, 0, Hamster.NORD, 4);
+    paul.friss();
+    while (paul.vornFrei()) {
+        paul.friss();
+        paul.vor();
+    }
+}

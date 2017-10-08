@@ -1,0 +1,92 @@
+/*class*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+class Philosoph extends AllroundHamster {
+
+    private int sitzReihe;
+
+    private int sitzSpalte;
+
+    private int sitzRichtung;
+
+    private Gabel linkeGabel;
+
+    private Gabel rechteGabel;
+
+    Philosoph(int r, int s, int b, Gabel linkeGabel,
+            Gabel rechteGabel) {
+        super(r, s, b, 0);
+        this.sitzReihe = r;
+        this.sitzSpalte = s;
+        this.sitzRichtung = b;
+        this.linkeGabel = linkeGabel;
+        this.rechteGabel = rechteGabel;
+    }
+
+    public void lebe() {
+        this.start();
+    }
+
+    public void run() {
+        while (true) {
+            this.denken();
+            this.nimmGabeln();
+            this.essen();
+            this.gibGabeln();
+        }
+    }
+
+    private void nimmGabeln() {
+
+        // nimm linke Gabel
+        this.linkeGabel.aufnehmen();
+        this.laufeZuKachel(this.linkeGabel.getReihe(),
+                this.linkeGabel.getSpalte());
+        this.nimm();
+
+        // nimm rechte Gabel
+        this.rechteGabel.aufnehmen();
+        this.laufeZuKachel(this.rechteGabel.getReihe(),
+                this.rechteGabel.getSpalte());
+        this.nimm();
+
+        // zurueck zum Platz
+        this.laufeZuKachel(this.sitzReihe, this.sitzSpalte);
+        this.setzeBlickrichtung(this.sitzRichtung);
+    }
+
+    private void gibGabeln() {
+
+        // gib linke Gabel
+        this.laufeZuKachel(this.linkeGabel.getReihe(),
+                this.linkeGabel.getSpalte());
+        this.gib();
+        this.linkeGabel.ablegen();
+
+        // gib rechte Gabel
+        this.laufeZuKachel(this.rechteGabel.getReihe(),
+                this.rechteGabel.getSpalte());
+        this.gib();
+        this.rechteGabel.ablegen();
+
+        // zurueck zum Platz
+        this.laufeZuKachel(this.sitzReihe, this.sitzSpalte);
+        this.setzeBlickrichtung(this.sitzRichtung);
+    }
+
+    private void denken() {
+        int bedenkZeit = (int) (Math.random() * 5000);
+        this.schlafen(bedenkZeit);
+    }
+
+    private void essen() {
+        this.schreib("Hmmmm, das schmeckt!");
+        int kauZeit = (int) (Math.random() * 3000);
+        this.schlafen(kauZeit);
+    }
+}

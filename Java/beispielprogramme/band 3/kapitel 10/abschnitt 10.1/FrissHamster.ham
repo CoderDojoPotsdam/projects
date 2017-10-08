@@ -1,0 +1,25 @@
+/*class*/class FrissHamster extends Hamster {
+
+    private static int gesamtAnzahlAnKoernernImMaul = 0;
+
+    FrissHamster(int r, int s) {
+        super(r, s, Hamster.OST, 0);
+    }
+
+    public void run() {
+        while (true) {
+            synchronized (FrissHamster.class) {
+                if (this.kornDa()) {
+                    this.nimm();
+                    FrissHamster.gesamtAnzahlAnKoernernImMaul++;
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+
+    synchronized static int getGesamtAnzahlAnKoernernImMaul() {
+        return FrissHamster.gesamtAnzahlAnKoernernImMaul;
+    }
+}

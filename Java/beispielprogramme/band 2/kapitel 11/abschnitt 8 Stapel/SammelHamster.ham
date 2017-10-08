@@ -1,0 +1,22 @@
+/*class*/class SammelHamster extends Hamster {
+    int anzahl;
+
+    SammelHamster(int s) {
+        super(0, s, Hamster.SUED, 0);
+        this.anzahl = 0;
+    }
+
+    void sammle() {
+        while (this.kornDa()) {
+            this.nimm();
+            this.anzahl = this.anzahl + 1;
+        }
+    }
+
+    void legAb() {
+        while (this.anzahl > 0) {
+            this.gib();
+            this.anzahl = this.anzahl - 1;
+        }
+    }
+}

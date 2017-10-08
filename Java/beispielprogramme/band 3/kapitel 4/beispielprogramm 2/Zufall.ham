@@ -1,0 +1,5 @@
+/*class*/class Zufall {
+    static int erzeugeZufallsZahl(int max) {
+        return (int) (Math.random() * (max + 1));
+    }
+}

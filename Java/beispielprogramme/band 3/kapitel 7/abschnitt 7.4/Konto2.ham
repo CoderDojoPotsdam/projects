@@ -1,0 +1,18 @@
+/*class*/class Konto2 extends Konto {
+
+    Konto2() {
+        super();
+    }
+
+    void barEinzahlen(int betrag) {
+        this.kontostand = this.kontostand + betrag;
+        this.summeBarEinzahlungen = this.summeBarEinzahlungen
+                + betrag;
+    }
+
+    synchronized void perUeberweisung(int betrag) {
+        this.kontostand = this.kontostand + betrag;
+        this.summeUeberweisungsEinzahlungen = this.summeUeberweisungsEinzahlungen
+                + betrag;
+    }
+}

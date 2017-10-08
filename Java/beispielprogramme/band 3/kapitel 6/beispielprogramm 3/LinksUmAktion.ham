@@ -1,0 +1,5 @@
+/*class*/class LinksUmAktion implements Aktion {
+    public void ausfuehren(Hamster hamster) {
+        hamster.linksUm();
+    }
+}

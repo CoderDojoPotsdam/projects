@@ -1,0 +1,8 @@
+/*python program*/paul = Hamster.getStandardHamster()
+willi = Hamster(paul)
+maria = Hamster(paul.getReihe()+1, paul.getSpalte(), paul.getBlickrichtung(), 0)
+while paul.vornFrei() and willi.vornFrei() and maria.vornFrei():
+    paul.vor()
+    willi.vor()
+    maria.vor()
+paul.schreib("Fertig!")

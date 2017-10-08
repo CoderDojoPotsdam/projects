@@ -1,0 +1,15 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+void main() {
+    int ANZAHL_KELLNER = 2;
+    int ANZAHL_GAESTE = 3;
+    KellnerPool kellnerPool = new KellnerPool(ANZAHL_KELLNER);
+    for (int i = 0; i < ANZAHL_GAESTE; i++) {
+        (new Gast(Territorium.getAnzahlSpalten() - i - 1,
+                kellnerPool)).start();
+    }
+}

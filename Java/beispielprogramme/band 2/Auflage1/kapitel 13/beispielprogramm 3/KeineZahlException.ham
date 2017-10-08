@@ -1,0 +1,19 @@
+/*class*/// Fehlertyp: ein String repraesentiert keine Zahl
+class KeineZahlException extends Exception {
+  
+  String eingabe;
+  
+  KeineZahlException() {
+    super();
+    this.eingabe = null;
+  }
+  
+  KeineZahlException(String str) {
+    super(str);
+    this.eingabe = str;
+  }
+  
+  String getEingabe() {
+    return this.eingabe;
+  }
+}

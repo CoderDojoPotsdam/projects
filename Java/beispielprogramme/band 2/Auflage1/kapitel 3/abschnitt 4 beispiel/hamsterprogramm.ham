@@ -1,0 +1,15 @@
+/*object-oriented program*/void main() {
+    // dem Standard-Hamster wird der Name willi zugeordnet
+    Hamster willi = Hamster.getStandardHamster();
+
+    // willi erledigt seine Arbeit
+    if (willi.kornDa()) {
+      willi.nimm();
+    }
+    while (willi.vornFrei()) {
+      willi.vor();
+      if (willi.kornDa()) {
+        willi.nimm();
+      }
+    }
+}

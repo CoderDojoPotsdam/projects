@@ -1,0 +1,133 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+ */
+import util.AllroundHamster;
+
+class InfoHamster extends AllroundHamster {
+
+    private int koernerAnzahl;
+
+    InfoHamster(Hamster existierenderHamster, int anzahl) {
+        super(existierenderHamster.getReihe(),
+                existierenderHamster.getSpalte(), Hamster.NORD,
+                0);
+        this.koernerAnzahl = anzahl;
+    }
+
+    public void run() {
+
+        // die Kachel, auf der der Hamster steht uebernimmt der
+        // Hamster zunaechst selber
+        int anzahl = this.nimmAlle();
+        this.gib(anzahl); // Beseitigung von Seiteneffekten
+        if (anzahl == this.koernerAnzahl) {
+            this.schreib("Auftrag erledigt! "
+                    + "Es gibt eine Kachel mit "
+                    + this.koernerAnzahl
+                    + " Koernern in meiner Reihe.");
+            return;
+        }
+
+        // zwei helfende Hamster werden auf die Suche geschickt;
+        // einer nach links, einer nach rechts
+        ErmittlungsHamster helferLinks = new ErmittlungsHamster(
+                this.getReihe(), this.getSpalte(), Hamster.WEST,
+                0, this.koernerAnzahl, this);
+        helferLinks.setDaemon(true); // Helfer ist Daemon!
+        helferLinks.start();
+
+        ErmittlungsHamster helferRechts = new ErmittlungsHamster(
+                this.getReihe(), this.getSpalte(), Hamster.OST,
+                0, this.koernerAnzahl, this);
+        helferRechts.setDaemon(true); // Helfer ist Daemon!
+        helferRechts.start();
+
+        // nun wartet der Hamster darauf, dass die beiden Helfer
+        // fertig werden, sei es durch ihr Ende oder sei es durch
+        // Aufruf von interrupt, wenn sie die gesuchte Kachel
+        // gefunden haben
+        try {
+            helferLinks.join();
+            helferRechts.join();
+        } catch (InterruptedException exc) {
+            // wenn ein Helfer die gesuchte Kachel gefunden hat,
+            // ruft er interrupt fuer den Info-Hamster auf, d.h.
+            // die join-Blockade wird abgebrochen!
+        }
+
+        // Verkuendung des Ergebnisses
+        if (helferLinks.hatKachelGefunden()
+                || helferRechts.hatKachelGefunden()) {
+
+            // einer der beiden Hamster hat eine entsprechende
+            // Kachel gefunden
+            this.schreib("Auftrag erledigt! "
+                    + "Es gibt eine Kachel mit "
+                    + this.koernerAnzahl
+                    + " Koernern in meiner Reihe.");
+        } else {
+
+            // beide Hamster haben ihre Arbeit ohne Erfolg
+            // beendet
+            this.schreib("Auftrag erledigt! "
+                    + "Es gibt leider keine Kachel mit "
+                    + this.koernerAnzahl
+                    + " Koernern in meiner Reihe.");
+        }
+    }
+}
+
+class ErmittlungsHamster extends AllroundHamster {
+
+    private int anzahlKoerner;
+
+    private InfoHamster chef;
+
+    private boolean gefunden;
+
+    ErmittlungsHamster(int r, int s, int b, int k, int anzahl,
+            InfoHamster chef) {
+        super(r, s, b, k);
+        this.anzahlKoerner = anzahl;
+        this.chef = chef;
+        this.gefunden = false;
+    }
+
+    public boolean hatKachelGefunden() {
+        return this.gefunden;
+    }
+
+    public void run() {
+        while (this.vornFrei()) {
+            this.vor();
+            int koerner = this.nimmAlle();
+            this.gib(koerner); // Beseitigung von Seiteneffekten
+            if (koerner == this.anzahlKoerner) {
+                // gefunden! Chef benachrichtigen und Arbeit
+                // beenden
+                this.gefunden = true;
+
+                // Info-Hamster über Sucherfolg informieren
+                this.chef.interrupt();
+                return;
+            }
+        }
+        // nichts gefunden; Arbeit beenden
+    }
+}
+
+void main() {
+    Hamster paul = Hamster.getStandardHamster();
+    int anzahl = paul.liesZahl("Geben Sie eine Zahl ein. "
+            + "Meine Helfer und ich teilen Ihnen mit,\n"
+            + "ob es in der Reihe, in der ich mich "
+            + "befinde, eine Kachel mit\n"
+            + "entsprechend vielen Körnern gibt!");
+    InfoHamster willi = new InfoHamster(paul, anzahl);
+     
+    // der Vertretungs-Hamster wird auf die Suche geschickt
+    willi.start();
+}

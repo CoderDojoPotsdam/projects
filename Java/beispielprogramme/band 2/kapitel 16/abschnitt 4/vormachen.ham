@@ -1,0 +1,6 @@
+/*object-oriented program*/void main() {
+    IOVormachHamster willi = new IOVormachHamster(Hamster
+            .getStandardHamster(), "weg.txt");
+    willi.macheVor();
+    willi.beendeArbeit();
+}

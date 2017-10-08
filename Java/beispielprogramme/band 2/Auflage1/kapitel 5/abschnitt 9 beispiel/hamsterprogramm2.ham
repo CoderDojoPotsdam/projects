@@ -1,0 +1,15 @@
+/*object-oriented program*/void main() {
+    int schritte = 0;
+    DrehHamster maria = new DrehHamster();
+    maria.init(3, 5, Hamster.OST, 0);
+
+    while (maria.vornFrei()) {
+      maria.vor();
+    }
+
+    maria.rechtsUm();
+
+    while (maria.vornFrei()) {
+      maria.vor();
+    }
+}

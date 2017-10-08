@@ -1,0 +1,3 @@
+/*class*/class Hamster2 extends Hamster1 {
+    // Definition eines Konstruktors ist nicht erforderlich
+}

@@ -1,0 +1,14 @@
+/*class*/package meinhamster;
+
+public class MeinHamster extends Hamster {
+
+    public MeinHamster(int r, int s, int b, int k) { 
+      super(r, s, b, k);
+    }
+
+    public void rechtsUm() {
+      this.linksUm();
+      this.linksUm();
+      this.linksUm();
+    }
+}

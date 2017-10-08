@@ -1,0 +1,5 @@
+/*object-oriented program*/void main() {
+    SortierHamster paul = new SortierHamster(Hamster
+            .getStandardHamster());
+    paul.sortiereKoernerhaufen();
+}

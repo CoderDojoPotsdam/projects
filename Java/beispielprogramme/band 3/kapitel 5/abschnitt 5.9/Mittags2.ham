@@ -1,0 +1,73 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+ */
+import util.AllroundHamster;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+
+class MittagEssen extends TimerTask {
+
+    final static int MITTAGSTISCH_REIHE = 0;
+
+    final static int MITTAGSTISCH_SPALTE = 0;
+
+    final static int TOLERANZ_ZEIT = 5000;
+
+    AllroundHamster fresser;
+
+    MittagEssen(AllroundHamster hamster) {
+        this.fresser = hamster;
+    }
+
+    public void run() {
+        Calendar aktuell = Calendar.getInstance();
+        if (aktuell.getTimeInMillis() - 
+                this.scheduledExecutionTime() 
+                    >= MittagEssen.TOLERANZ_ZEIT) {
+            this.fresser.schreib("Mist! Mittagessen verpennt!");
+            return;
+            // zu spät; diesen Mittag lohnt es sich nicht mehr
+            // zum Mittagstisch zu eilen
+        }
+
+        int aktReihe = this.fresser.getReihe();
+        int aktSpalte = this.fresser.getSpalte();
+        this.fresser.laufeZuKachel(
+                MittagEssen.MITTAGSTISCH_REIHE,
+                MittagEssen.MITTAGSTISCH_SPALTE);
+        if (this.fresser.kornDa()) {
+            this.fresser.nimm();
+        }
+        this.fresser.laufeZuKachel(aktReihe, aktSpalte);
+    }
+}
+
+void main() {
+    AllroundHamster paul = new AllroundHamster(Hamster
+           .getStandardHamster());
+
+    Calendar wecker = Calendar.getInstance();
+    int aktuelleStunde = wecker.get(Calendar.HOUR_OF_DAY);
+    if (aktuelleStunde >= 12) {
+
+        // heute ist Mittag schon vorbei
+        wecker.add(Calendar.DAY_OF_MONTH, 1);
+    }
+    wecker.set(Calendar.HOUR_OF_DAY, 12);
+    wecker.set(Calendar.MINUTE, 0);
+    wecker.set(Calendar.SECOND, 0);
+    wecker.set(Calendar.MILLISECOND, 0);
+
+    Timer zeitschaltuhr = new Timer();
+
+    // ein Tag in Millisekunden
+    int intervall = 24 * 60 * 60 * 1000;
+
+    zeitschaltuhr.scheduleAtFixedRate(new MittagEssen(paul),
+            wecker.getTime(), intervall);
+}

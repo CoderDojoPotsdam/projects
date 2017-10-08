@@ -1,0 +1,15 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+void main() {
+    Position eingang = new Position(1, 3);
+    HamsterBinaerSemaphor sem = new HamsterBinaerSemaphor5(
+            eingang);
+    HoehlenHamster paul = new HoehlenHamster(0, 0, 0, sem);
+    HoehlenHamster willi = new HoehlenHamster(2, 0, 1, sem);
+    paul.start();
+    willi.start();
+}

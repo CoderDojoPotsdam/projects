@@ -1,0 +1,40 @@
+/*class*/class HamsterBinaerSemaphor5 extends HamsterBinaerSemaphor4 {
+
+    public HamsterBinaerSemaphor5(Position eingang) {
+        super(eingang);
+    }
+
+    public void p(int dieserHamster, HoehlenHamster ham) {
+
+        // zunaechst die eigene Seite markieren
+        ham.gib();
+
+        // dann die andere Seite ueberpruefen
+        ham.laufeZuKachel(this.eingangsSeiten[this
+                .andererHamster(dieserHamster)]);
+        while (ham.kornDa()) {
+            // Hoehle besetzt: eigene Markierung rueckgaengig
+            // machen
+            ham
+                    .laufeZuKachel(this.eingangsSeiten[dieserHamster]);
+            ham.nimm();
+
+            // einen Moment warten
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException exc) {
+            }
+
+            // erneut versuchen
+            ham.gib();
+            ham.laufeZuKachel(this.eingangsSeiten[this
+                    .andererHamster(dieserHamster)]);
+        }
+
+        // nun zum Haupteingang
+        ham.laufeZuKachel(this.eingang);
+        ham.setzeBlickrichtung(Hamster.OST);
+
+        // dieserHamster ist nun in der Hoehle
+    }
+}

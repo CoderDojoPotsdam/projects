@@ -1,0 +1,58 @@
+/*class*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+class ErzeugerHamster extends AllroundHamster {
+
+    private Luecke luecke;
+
+    ErzeugerHamster(int r, int s, int b, int k, Luecke luecke) {
+        super(r, s, b, k);
+        this.luecke = luecke;
+        this.start();
+    }
+
+    public void run() {
+        while (true) {
+            this.umherlaufen();
+            if (!this.maulLeer()) {
+                this.zurLueckeLaufen();
+                this.kornAblegen();
+            }
+        }
+    }
+
+    void umherlaufen() {
+
+        // zufaellig im Territorium umherlaufen
+        int anzahlAktionen = (int) (Math.random() * 15);
+        for (int i = 0; i < anzahlAktionen; i++) {
+            int blickrichtung = (int) (Math.random() * 4);
+            this.setzeBlickrichtung(blickrichtung);
+            if (this.vornFrei() && !this.lueckeVorn()) {
+                this.vor();
+            }
+        }
+    }
+
+    void zurLueckeLaufen() {
+        this.laufeZuKachel(this.luecke.getReihe(), this.luecke
+                .getSpalte() - 1);
+        this.setzeBlickrichtung(Hamster.OST);
+    }
+
+    void kornAblegen() {
+        this.luecke.put(this);
+    }
+
+    boolean lueckeVorn() {
+        return this.getBlickrichtung() == Hamster.OST
+                && this.getReihe() == this.luecke.getReihe()
+                && this.getSpalte() == this.luecke.getSpalte() - 1;
+    }
+
+}

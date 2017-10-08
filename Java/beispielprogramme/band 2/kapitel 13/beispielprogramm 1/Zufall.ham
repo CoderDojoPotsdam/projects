@@ -1,0 +1,6 @@
+/*class*/class Zufall {
+    // erzeugt Zufallszahlen zwischen 0 und max
+    static int naechsteZahl(int max) {
+        return (int) (Math.random() * (max + 1));
+    }
+}

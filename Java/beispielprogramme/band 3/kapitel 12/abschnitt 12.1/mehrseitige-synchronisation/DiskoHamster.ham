@@ -1,0 +1,72 @@
+/*class*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+class DiskoHamster extends AllroundHamster {
+
+    private Waechter waechter;
+
+    DiskoHamster(int r, int s, int b, int k, Waechter w) {
+        super(r, s, b, k);
+        this.waechter = w;
+        this.start();
+    }
+
+    public void run() {
+        while (true) {
+            this.umherlaufen();
+            this.zurDiskoLaufen();
+            this.inDiskoEintreten();
+            this.kornAbschleppen();
+            this.diskoVerlassen();
+        }
+    }
+
+    private void umherlaufen() {
+        int anzahlAktionen = (int) (Math.random() * 10);
+        for (int i = 0; i < anzahlAktionen; i++) {
+            int blickrichtung = (int) (Math.random() * 4);
+            this.setzeBlickrichtung(blickrichtung);
+            if (this.vornFrei() && !this.waechterVorn()) {
+                this.vor();
+            }
+        }
+    }
+
+    private void zurDiskoLaufen() {
+        this.laufeZuKachel(this.waechter.getReihe(),
+                this.waechter.getSpalte() - 1);
+        this.setzeBlickrichtung(Hamster.OST);
+    }
+
+    private void inDiskoEintreten() {
+        this.waechter.reinlassen();
+        this.laufeZurWand();
+    }
+
+    private void kornAbschleppen() {
+        synchronized (this.getKachel()) {
+            if (this.kornDa()) {
+                this.nimm();
+            }
+        }
+    }
+
+    private void diskoVerlassen() {
+        this.kehrt();
+        this.laufeZuKachel(this.waechter.getReihe(),
+                this.waechter.getSpalte());
+        this.vor();
+        this.waechter.rauslassen();
+    }
+
+    private boolean waechterVorn() {
+        return this.getBlickrichtung() == Hamster.OST
+                && this.getReihe() == this.waechter.getReihe()
+                && this.getSpalte() == this.waechter.getSpalte() - 1;
+    }
+}

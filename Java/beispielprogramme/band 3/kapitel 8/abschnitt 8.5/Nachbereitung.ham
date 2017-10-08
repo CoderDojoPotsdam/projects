@@ -1,0 +1,184 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+class Mannschaft {
+
+    private StaffelHamster[] laeufer;
+
+    private Object staffelKorn;
+
+    private int anzahlRunden;
+
+    private int gelaufeneRunden;
+
+    private int anDerReihe;
+
+    private Schiedsrichter schieri;
+
+    Mannschaft(int anzahlLaeufer, int anzahlRunden, int reihe,
+            Schiedsrichter schieri) {
+        this.anzahlRunden = anzahlRunden;
+        this.gelaufeneRunden = 0;
+        this.staffelKorn = new Object();
+        this.schieri = schieri;
+        this.laeufer = new StaffelHamster[anzahlLaeufer];
+        for (int a = 0; a < this.laeufer.length; a++) {
+            this.laeufer[a] = new StaffelHamster(reihe, a, this);
+            this.laeufer[a].start();
+        }
+        this.anDerReihe = 0;
+    }
+
+    Object getStaffelKorn() {
+        return this.staffelKorn;
+    }
+
+    synchronized void weitereRundeGelaufen() {
+        this.gelaufeneRunden++;
+        this.anDerReihe = (this.anDerReihe + 1)
+                % this.laeufer.length;
+    }
+
+    synchronized boolean fertig() {
+        return this.gelaufeneRunden == this.anzahlRunden;
+    }
+
+    synchronized int anDerReihe() {
+        return this.anDerReihe;
+    }
+
+    Schiedsrichter getSchieri() {
+        return this.schieri;
+    }
+}
+
+class StaffelHamster extends AllroundHamster {
+
+    private int nummer;
+
+    private Mannschaft mannschaft;
+
+    private int ermuedung;
+
+    StaffelHamster(int reihe, int nummer, Mannschaft mannschaft) {
+        super(reihe, 0, Hamster.OST, 0);
+        this.nummer = nummer;
+        this.mannschaft = mannschaft;
+        this.ermuedung = 0;
+    }
+
+    public void run() {
+        this.aufStartschussWarten();
+        this.dasRennen();
+    }
+
+    void aufStartschussWarten() {
+        synchronized (this.mannschaft.getSchieri()
+                .getStartSchuss()) {
+            if (!this.mannschaft.getSchieri().rennenGestartet()) {
+                try {
+                    this.mannschaft.getSchieri()
+                            .getStartSchuss().wait();
+                } catch (InterruptedException exc) {
+                }
+            }
+        }
+    }
+
+    void dasRennen() {
+        while (true) {
+            this.aufStabWarten();
+            if (this.mannschaft.fertig()) { // geschafft
+                return;
+            }
+            this.laufen();
+            this.stabUebergeben();
+            if (this.mannschaft.fertig()) { // geschafft
+                return;
+            }
+            this.kehrt();
+        }
+    }
+
+    void aufStabWarten() {
+        synchronized (this.mannschaft.getStaffelKorn()) {
+            // auf Staffelstab bzw. Ende warten
+            while (this.mannschaft.anDerReihe() != this.nummer
+                    && !this.mannschaft.fertig()) {
+                try {
+                    this.mannschaft.getStaffelKorn().wait();
+                } catch (InterruptedException exc) {
+                }
+            }
+            if (this.mannschaft.fertig()) { // geschafft
+                return;
+            }
+
+            // der Hamster ist an der Reihe
+            this.nimm();
+        }
+    }
+
+    void laufen() {
+        this.laufeZurWand();
+        this.kehrt();
+        this.laufeZurWand();
+    }
+
+    void stabUebergeben() {
+        synchronized (this.mannschaft.getStaffelKorn()) {
+            this.gib();
+            this.mannschaft.weitereRundeGelaufen();
+            this.mannschaft.getStaffelKorn().notifyAll();
+        }
+        if (this.mannschaft.fertig()) {
+            this.schreib("Geschafft!");
+        }
+    }
+
+    public void vor() {
+        super.vor();
+        this.ermuedung += 5;
+        this.pausieren(this.ermuedung);
+    }
+
+    public boolean kornDa() {
+        this.ermuedung += 1;
+        return super.kornDa();
+    }
+
+    void pausieren(int millisekunden) {
+        try {
+            Thread.sleep(millisekunden);
+        } catch (InterruptedException exc) {
+        }
+    }
+}
+
+void main() {
+    // Rennen vorbereiten
+    int anzahlMannschaften = Hamster.getStandardHamster()
+            .liesZahl("Anzahl an Mannschaften: ");
+    int anzahlLaeuferProMannschaft = Hamster
+            .getStandardHamster().liesZahl(
+                    "Anzahl an Laeufern pro Mannschaft: ");
+    int anzahlRunden = Hamster.getStandardHamster()
+            .liesZahl("Anzahl an zu laufenden Runden: ");
+
+    // Schiedsrichter erzeugen
+    Schiedsrichter pfeife = new Schiedsrichter();
+
+    // Mannschaften vorbereiten
+    for (int a = 0; a < anzahlMannschaften; a++) {
+        new Mannschaft(anzahlLaeuferProMannschaft,
+                anzahlRunden, a, pfeife);
+    }
+
+    // Rennen starten
+    pfeife.gibStartSchuss();
+}

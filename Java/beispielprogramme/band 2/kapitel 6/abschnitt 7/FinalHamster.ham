@@ -1,0 +1,13 @@
+/*class*/class FinalHamster extends Hamster {
+
+    final int startReihe;
+
+    FinalHamster(int r, int s, int b, int k) {
+        this.init(r, s, b, k);
+        this.startReihe = r;
+    }
+
+    void tueWas() {
+        // this.startReihe = this.getReihe(); // Fehler
+    }
+}

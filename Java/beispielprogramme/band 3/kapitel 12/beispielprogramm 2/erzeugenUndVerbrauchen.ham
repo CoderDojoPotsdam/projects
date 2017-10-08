@@ -1,0 +1,37 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import java.util.concurrent.Semaphore;
+
+void main() {
+    int ANZAHL_ERZEUGER = 4;
+    int ANZAHL_VERBRAUCHER = 3;
+    int ANZAHL_ERLAUBTE_KOERNER = 2;
+
+    Luecke luecke = new Luecke(2, 4);
+
+    // exklusiver Zugang zur Luecke
+    Semaphore semMutex = new Semaphore(1);
+
+    // erlaubte Koerner in Luecke
+    Semaphore semErzeugen = new Semaphore(
+            ANZAHL_ERLAUBTE_KOERNER);
+
+    // aktuell liegt kein Korn in der Luecke
+    Semaphore semVerbrauchen = new Semaphore(0);
+
+    for (int i = 0; i < ANZAHL_ERZEUGER; i++) {
+        (new ErzeugerHamster(0, 0, Hamster.OST, 1000,
+                luecke, semMutex, semErzeugen,
+                semVerbrauchen)).start();
+    }
+
+    for (int i = 0; i < ANZAHL_VERBRAUCHER; i++) {
+        (new VerbraucherHamster(0, 6, Hamster.WEST, 0,
+                luecke, semMutex, semErzeugen,
+                semVerbrauchen)).start();
+    }
+}

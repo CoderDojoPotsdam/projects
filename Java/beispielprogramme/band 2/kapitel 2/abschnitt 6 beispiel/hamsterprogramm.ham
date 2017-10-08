@@ -1,0 +1,28 @@
+/*imperative program*/void rechtsUm() {
+    linksUm();
+    linksUm();
+    linksUm();
+}
+
+boolean rechtsFrei() { // Definition einer booleschen Funktion
+    rechtsUm();
+    if (vornFrei()) {
+        linksUm();
+        return true; // boolesche return-Anweisung
+    } else {
+        linksUm();
+        return false; // boolesche return-Anweisung
+    }
+}
+
+void main() {
+    while (vornFrei() && 
+           !rechtsFrei()) { // Aufruf einer booleschen Funktion
+        vor();
+    }
+    
+    if (rechtsFrei()) { // Aufruf einer booleschen Funktion
+        rechtsUm();
+        vor();
+    }
+}

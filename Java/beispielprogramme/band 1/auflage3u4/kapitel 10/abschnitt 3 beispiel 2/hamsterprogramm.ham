@@ -1,0 +1,29 @@
+/*imperative program*/void main() {
+    laufeInDieNaechsteEckeUndSammle();
+    linksUm();
+    laufeInDieNaechsteEckeUndSammle();
+    linksUm();
+    laufeInDieNaechsteEckeUndSammle();
+    linksUm();
+    laufeInDieNaechsteEckeUndSammle();
+    legAb();
+}
+
+void laufeInDieNaechsteEckeUndSammle() {
+    do {
+        vor();
+        sammle();
+    } while (vornFrei());
+}
+
+void sammle() {
+    do {
+        nimm();
+    } while (kornDa());
+}
+
+void legAb() {
+    do {
+        gib();
+    } while (!maulLeer());
+}

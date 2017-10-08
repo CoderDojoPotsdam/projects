@@ -1,0 +1,59 @@
+/*class*/import java.util.Vector;
+
+class DeadlockErkenner extends Thread {
+
+    private Vector<Hamster> hamster; // beruecksichtigte Hamster
+
+    private int anzahlWaits; // Anzahl wartender Hamster
+
+    DeadlockErkenner() {
+        this.hamster = new Vector<Hamster>();
+        this.anzahlWaits = 0;
+        
+        // Deadlockerkenner ist ein Daemon
+        this.setDaemon(true);
+    }
+
+    // Anmeldung von Hamstern
+    synchronized void neuerHamster(Hamster ham) {
+        this.hamster.add(ham);
+    }
+
+    public void run() {
+        while (true) {
+            try {
+                sleep(1000);
+            } catch (InterruptedException exc) {
+            }
+            this.ueberpruefen();
+        }
+    }
+
+    synchronized void ueberpruefen() {
+        if (this.hamster.size() > 0
+                && this.getAnzahlWaits() == this.hamster.size()) {
+            // Deadlock!
+
+            // einen zufaellig ermittelten Hamster unterbrechen
+            int nummer = (int) (Math.random() * this.hamster
+                    .size());
+            Hamster betroffenerHamster = this.hamster
+                    .get(nummer);
+            this.subWait();
+            betroffenerHamster.interrupt();
+        }
+    }
+
+    synchronized void addWait() {
+        this.anzahlWaits++;
+    }
+
+    synchronized void subWait() {
+        this.anzahlWaits--;
+    }
+
+    synchronized int getAnzahlWaits() {
+        return this.anzahlWaits;
+    }
+}
+

@@ -1,0 +1,25 @@
+/*class*/class VerliebterHamster extends Hamster {
+
+    private static Object sperre = new Object();
+
+    VerliebterHamster(int r, int s, int b) {
+        super(r, s, b, 0);
+    }
+
+    public void run() {
+        while (true) {
+            synchronized (VerliebterHamster.sperre) {
+                if (!this.andererHamsterDa()) {
+                    this.vor();
+                } else {
+                    return;
+                }
+            }
+        }
+    }
+
+    boolean andererHamsterDa() {
+        return Territorium.getAnzahlHamster(this.getReihe(),
+                this.getSpalte()) >= 2;
+    }
+}

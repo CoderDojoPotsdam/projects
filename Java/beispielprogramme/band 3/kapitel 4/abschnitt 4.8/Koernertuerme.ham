@@ -1,0 +1,83 @@
+/*object-oriented program*//*
+Windows:
+  CLASSPATH: .;Programme\beispielprogramme\band 3
+Linux, Solaris:
+  CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+class SchwindeligerHamster extends AllroundHamster {
+
+    int baustellenSpalte;
+
+    AllroundHamster helfer;
+
+    boolean deckeErreicht;
+
+    SchwindeligerHamster(int r, int s, int b) {
+        super(r, s, b, 0);
+        this.baustellenSpalte = 0;
+        this.helfer = null;
+        this.deckeErreicht = false;
+    }
+
+    public void run() {
+        this.baustellenSpalte = this.getSpalte();
+        this.helfer = new AllroundHamster(this.getReihe(), this
+                .getSpalte(), Hamster.NORD, 0);
+        this.laufeZumKoernerHaufen();
+
+        while (this.kornDa() && !this.deckeErreicht) {
+            this.nimm();
+            this.laufeZurBaustelle();
+            this.bauen();
+            if (!this.deckeErreicht) {
+                this.kehrt();
+                this.laufeZumKoernerHaufen();
+            }
+        }
+    }
+
+    private void laufeZumKoernerHaufen() {
+
+        // Hamster schaut bereits zur Ecke
+        this.laufeZurWand();
+    }
+
+    private void laufeZurBaustelle() {
+        this.laufeZuSpalte(this.baustellenSpalte);
+    }
+
+    private void bauen() {
+
+        // Uebergabe des Korns an den Helfer
+        this.gib();
+
+        // Helfer baut Turm ein Stockwerk hoeher
+        this.helfer.nimm();
+        while (this.helfer.kornDa() && this.helfer.vornFrei()) {
+            this.helfer.vor();
+        }
+        if (!this.helfer.kornDa()) {
+            this.helfer.gib();
+        }
+        if (!this.helfer.vornFrei()) {
+            this.deckeErreicht = true; // fertig
+        }
+        this.helfer.kehrt();
+        this.helfer.laufeZurWand();
+        this.helfer.kehrt();
+    }
+}
+
+void main() {
+    SchwindeligerHamster bauHamster1 = new SchwindeligerHamster(
+            Territorium.getAnzahlReihen() - 1, Territorium
+                    .getAnzahlSpalten() / 2 - 1,
+            Hamster.WEST);
+    SchwindeligerHamster bauHamster2 = new SchwindeligerHamster(
+            Territorium.getAnzahlReihen() - 1, Territorium
+                    .getAnzahlSpalten() / 2, Hamster.OST);
+    bauHamster1.start();
+    bauHamster2.start();
+}

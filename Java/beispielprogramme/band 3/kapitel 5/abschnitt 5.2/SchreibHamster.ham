@@ -1,0 +1,15 @@
+/*class*/class SchreibHamster extends Hamster {
+
+    SchreibHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    void schreibAktiveThreads() {
+        int no = Thread.activeCount();
+        Thread[] ts = new Thread[no];
+        int z = Thread.enumerate(ts);
+        for (int i = 0; i < z; i++) {
+            this.schreib("Thread " + i + ": " + ts[i].getName());
+        }
+    }
+}

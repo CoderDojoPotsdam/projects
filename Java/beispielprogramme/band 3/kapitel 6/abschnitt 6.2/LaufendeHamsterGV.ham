@@ -1,0 +1,31 @@
+/*class*/class LaufendeHamsterGV extends Hamster {
+
+    static int aktiveNummer = 0;
+
+    static int anzahlLaufendeHamster = 0;
+
+    int meineNummer;
+
+    LaufendeHamsterGV(int r, int s, int b, int k) {
+        super(r, s, b, k);
+        this.meineNummer = LaufendeHamsterGV.anzahlLaufendeHamster;
+        LaufendeHamsterGV.anzahlLaufendeHamster++;
+    }
+
+    public void run() {
+        while (this.vornFrei()) {
+            while (LaufendeHamsterGV.aktiveNummer != this.meineNummer) {
+                // aktives Warten
+            }
+
+            // jetzt bin ich dran
+            this.vor();
+
+            // der Naechste bitte!
+            LaufendeHamsterGV.aktiveNummer = 
+                (LaufendeHamsterGV.aktiveNummer + 1)
+                    % LaufendeHamsterGV.anzahlLaufendeHamster;
+        }
+    }
+}
+

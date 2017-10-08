@@ -1,0 +1,40 @@
+/*object-oriented program*/import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+class VorAction implements ActionListener {
+
+    public void actionPerformed(ActionEvent e) {
+        Hamster.getStandardHamster().vor();
+    }
+
+}
+
+class LinksUmAction implements ActionListener {
+
+    public void actionPerformed(ActionEvent e) {
+        Hamster.getStandardHamster().linksUm();
+    }
+}
+
+void main() {
+    JFrame fenster = new JFrame("Hamster-Steuerung");
+    fenster
+            .setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    fenster.setLayout(new FlowLayout());
+
+    JButton vorButton = new JButton("vor");
+    vorButton.addActionListener(new VorAction());
+    fenster.add(vorButton);
+
+    JButton linksUmButton = new JButton("linksUm");
+    linksUmButton.addActionListener(new LinksUmAction());
+    fenster.add(linksUmButton);
+
+    fenster.setLocation(100, 200);
+    fenster.pack();
+    fenster.setVisible(true);
+}

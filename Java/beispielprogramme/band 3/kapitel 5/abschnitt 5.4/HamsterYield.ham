@@ -1,0 +1,22 @@
+/*object-oriented program*/import util.*;
+
+class LaufHamster extends Hamster {
+
+    LaufHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    public void run() {
+        while (this.vornFrei()) {
+            this.vor();
+            Thread.yield();
+        }
+    }
+}
+
+void main() {
+    LaufHamster paul = new LaufHamster(0, 0, Hamster.OST, 0);
+    LaufHamster heidi = new LaufHamster(1, 0, Hamster.OST, 0);
+    paul.start();
+    heidi.start();
+}

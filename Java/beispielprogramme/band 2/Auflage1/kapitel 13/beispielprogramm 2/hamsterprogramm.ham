@@ -1,0 +1,9 @@
+/*object-oriented program*/void main() {
+  AbgrasExceptionHamster paul = 
+    new AbgrasExceptionHamster(0, 0, Hamster.OST, 0);
+  paul.ernteEineReihe();
+  while (paul.weitereReiheExistiert()) {
+    paul.begibDichInNaechsteReihe();
+    paul.ernteEineReihe();
+  }
+}

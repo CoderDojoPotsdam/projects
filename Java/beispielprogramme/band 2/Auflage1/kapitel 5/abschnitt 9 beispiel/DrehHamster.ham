@@ -1,0 +1,11 @@
+/*class*/class DrehHamster extends Hamster {
+    void kehrt() {
+      this.linksUm();
+      this.linksUm();
+    }
+
+    void rechtsUm() {
+      this.kehrt();
+      this.linksUm();
+    }
+}

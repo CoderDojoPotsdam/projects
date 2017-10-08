@@ -1,0 +1,11 @@
+/*imperative program*/void main() {
+    laufeBisZurNaechstenWand();
+    linksUm();
+    laufeBisZurNaechstenWand();
+}
+
+void laufeBisZurNaechstenWand() {
+    while (vornFrei()) {
+        vor();
+    }
+}

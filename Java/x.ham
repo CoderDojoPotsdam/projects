@@ -1,9 +1,3 @@
 /*imperative program*/void main() {
-	while (vornFrei()) {
-		if (kornDa()) {
-			linksUm();
-		else
-			vor();
-		}
-	}
+    while (vornFrei()) vor();
 }

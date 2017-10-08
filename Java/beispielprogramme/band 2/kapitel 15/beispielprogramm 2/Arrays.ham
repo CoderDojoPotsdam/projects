@@ -1,0 +1,17 @@
+/*class*/public class Arrays {
+
+    // ersetzt alle Elemente des Arrays durch obj
+    public static <T> void replace(Array<? super T> array, T obj) {
+        for (int i = 0; i < array.size(); i++) {
+            array.set(i, obj);
+        }
+    }
+
+    // fuegt alle angegebenen Elemente dem Array hinzu
+    public static <T> void addAll(Array<? super T> array,
+            T... elements) {
+        for (T element : elements) {
+            array.add(element);
+        }
+    }
+}

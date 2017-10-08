@@ -1,0 +1,15 @@
+/*object-oriented program*/import reversi.*;
+import static reversi.Regeln.*;
+
+void main() {
+    ReversiHamster paul = new ReversiHamster();
+    Spielbrett brett = new Spielbrett();
+    Spielzug zug = paul.liefereSpielzug();
+    if (spielzugOk(zug)) { // statische Methode der Klasse reversi.Regeln
+        // ...
+    }
+    if (spielEnde()) {  // statische Methode der Klasse reversi.Regeln
+       // ...
+    }
+    // ...
+}

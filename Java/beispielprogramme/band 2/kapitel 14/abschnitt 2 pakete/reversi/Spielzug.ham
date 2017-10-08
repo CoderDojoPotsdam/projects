@@ -1,0 +1,7 @@
+/*class*/package reversi;
+
+public class Spielzug {
+    public int getZeile() { return 1; }
+    public int getSpalte() { return 1; }
+    // ...
+}

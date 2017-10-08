@@ -1,0 +1,5 @@
+/*object-oriented program*/void main() {
+    Hamster2 paul = new Hamster2();
+    // Aufruf des parameterlosen Konstruktors der Klasse
+    // Hamster1
+}

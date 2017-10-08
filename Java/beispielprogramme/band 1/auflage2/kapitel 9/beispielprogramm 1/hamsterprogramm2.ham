@@ -1,0 +1,16 @@
+/*imperative program*/void main()
+{
+    if (kornDa()) // der Hamster steht bereits auf einem Kornfeld
+    {
+      // nehme erstes Korn
+      nimm();
+    } 
+    else 
+    {
+      // suche und nehme erstes Korn
+      vor(); vor(); nimm();
+      linksUm();
+    }
+    // suche und nehme zweites Korn
+    vor(); vor(); nimm();
+}

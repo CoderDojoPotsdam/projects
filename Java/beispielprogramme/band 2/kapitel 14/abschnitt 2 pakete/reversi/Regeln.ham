@@ -1,0 +1,7 @@
+/*class*/package reversi;
+
+public class Regeln {
+    public static boolean spielzugOk(Spielzug zug) { return true; }
+    public static boolean spielEnde() {return true; }
+    // ...
+}

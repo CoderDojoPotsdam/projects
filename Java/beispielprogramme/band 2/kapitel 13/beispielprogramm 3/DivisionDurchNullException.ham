@@ -1,0 +1,3 @@
+/*class*/// Fehlertyp: es wurde versucht, durch 0 zu dividieren
+class DivisionDurchNullException extends Exception {
+}

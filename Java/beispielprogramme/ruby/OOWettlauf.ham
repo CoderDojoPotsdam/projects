@@ -1,0 +1,9 @@
+/*ruby program*/paul = Hamster.getStandardHamster
+willi = Hamster.new(paul)
+maria = Hamster.new(paul.getReihe + 1, paul.getSpalte, paul.getBlickrichtung, 0)
+while paul.vornFrei and willi.vornFrei and maria.vornFrei
+    paul.vor
+    willi.vor
+    maria.vor
+end
+paul.schreib("Fertig!")

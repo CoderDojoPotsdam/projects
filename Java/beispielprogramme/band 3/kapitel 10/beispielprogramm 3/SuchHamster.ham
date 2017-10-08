@@ -1,0 +1,93 @@
+/*class*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+ */
+import util.AllroundHamster;
+
+class SuchHamster extends AllroundHamster {
+
+    final static int LINKS = 1;
+
+    final static int VORNE = 2;
+
+    final static int RECHTS = 3;
+
+    SuchHamster(int r, int s, int b) {
+        super(r, s, b, 0);
+    }
+
+    public void run() {
+        do {
+            this.vor();
+            this.ueberpruefung();
+        } while (!(Ende.endeWunschErfolgt() || this
+                .kreuzungErreicht()));
+
+        if (Ende.endeWunschErfolgt()) {
+            return; // Abbruch
+        }
+
+        if (this.linksFrei()) {
+            SuchHamster linksHelfer = new SuchHamster(this
+                    .getReihe(), this.getSpalte(), this
+                    .berechneBlickrichtung(SuchHamster.LINKS));
+            linksHelfer.start();
+        }
+        if (this.rechtsFrei()) {
+            SuchHamster rechtsHelfer = new SuchHamster(this
+                    .getReihe(), this.getSpalte(), this
+                    .berechneBlickrichtung(SuchHamster.RECHTS));
+            rechtsHelfer.start();
+        }
+        if (this.vornFrei()) {
+            SuchHamster vorneHelfer = new SuchHamster(this
+                    .getReihe(), this.getSpalte(), this
+                    .berechneBlickrichtung(SuchHamster.VORNE));
+            vorneHelfer.start();
+        }
+    }
+
+    private void ueberpruefung() {
+        if (this.kornDa()) {
+            this.nimm();
+            this.schreib("Korn gefunden");
+            Ende.beenden();
+        }
+    }
+
+    private boolean kreuzungErreicht() {
+        return this.linksFrei() || this.rechtsFrei()
+                || !this.vornFrei();
+    }
+
+    private int berechneBlickrichtung(int richtung) {
+        switch (richtung) {
+        case LINKS:
+            switch (this.getBlickrichtung()) {
+            case Hamster.NORD:
+                return Hamster.WEST;
+            case Hamster.WEST:
+                return Hamster.SUED;
+            case Hamster.SUED:
+                return Hamster.OST;
+            default: // Hamster.OST:
+                return Hamster.NORD;
+            }
+        case RECHTS:
+            switch (this.getBlickrichtung()) {
+            case Hamster.NORD:
+                return Hamster.OST;
+            case Hamster.WEST:
+                return Hamster.NORD;
+            case Hamster.SUED:
+                return Hamster.WEST;
+            default: // Hamster.OST:
+                return Hamster.SUED;
+            }
+        default: // VORNE
+            return this.getBlickrichtung();
+        }
+    }
+}

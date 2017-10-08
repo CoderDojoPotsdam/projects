@@ -1,0 +1,29 @@
+/*class*/class Gabel extends Mailbox {
+
+    private Position pos;
+
+    Gabel(int reihe, int spalte) {
+        this.pos = new Position(reihe, spalte);
+        this.asynchronesSenden(new Object());
+    }
+
+    void aufnehmen() {
+        this.synchronesEmpfangen();
+    }
+
+    void ablegen() {
+        this.asynchronesSenden(new Object());
+    }
+
+    Position getPosition() {
+        return this.pos;
+    }
+
+    int getReihe() {
+        return this.pos.getReihe();
+    }
+
+    int getSpalte() {
+        return this.pos.getSpalte();
+    }
+}

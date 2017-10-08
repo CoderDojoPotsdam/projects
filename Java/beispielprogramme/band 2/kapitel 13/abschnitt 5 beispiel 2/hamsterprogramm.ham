@@ -1,0 +1,63 @@
+/*object-oriented program*/class KachelIstLeerException extends Exception {
+}
+
+class MaulIstLeerException extends Exception {
+}
+
+class MeinHamster extends Hamster {
+
+    MeinHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    MeinHamster(Hamster hamster) {
+        super(hamster);
+    }
+
+    void kehrt() {
+        this.linksUm();
+        this.linksUm();
+    }
+
+    void vorsichtigesNimm() throws KachelIstLeerException {
+        if (!this.kornDa()) {
+            throw new KachelIstLeerException();
+        }
+        this.nimm();
+    }
+
+    void vorsichtigesGib() throws MaulIstLeerException {
+        if (this.maulLeer()) {
+            throw new MaulIstLeerException();
+        }
+        this.gib();
+    }
+}
+
+void main() {
+    MeinHamster paul = null, willi = null;
+
+    try {
+        paul = new MeinHamster(7, 6, Hamster.NORD, 0);
+        paul.vorsichtigesNimm();
+        while (paul.vornFrei()) {
+            paul.vor();
+            paul.vorsichtigesNimm();
+        }
+        paul.kehrt();
+        willi = new MeinHamster(paul);
+        if (!willi.kornDa()) {
+            willi.vorsichtigesGib();
+        }
+        while (willi.vornFrei()) {
+            willi.vor();
+            if (!willi.kornDa()) {
+                willi.vorsichtigesGib();
+            }
+        }
+    } catch (KachelIstLeerException exc) {
+        paul.schreib("Fehler auf dem Hinweg!");
+    } catch (MaulIstLeerException exc) {
+        willi.schreib("Fehler auf dem Rueckweg!");
+    }
+}

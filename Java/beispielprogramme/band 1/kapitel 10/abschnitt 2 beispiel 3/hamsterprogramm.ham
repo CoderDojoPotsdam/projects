@@ -1,0 +1,19 @@
+/*imperative program*/void main() {
+    sammle();
+    laufeBisZurNaechstenWandUndSammle();
+    linksUm();
+    laufeBisZurNaechstenWandUndSammle();
+}
+
+void sammle() {
+    while (kornDa()) {
+        nimm();
+    }
+}
+
+void laufeBisZurNaechstenWandUndSammle() {
+    while (vornFrei()) {
+        vor();
+        sammle();
+    }
+}

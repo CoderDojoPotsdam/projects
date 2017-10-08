@@ -1,0 +1,84 @@
+/*class*/import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.Condition;
+
+class Bruecke { // Loesung mit Locks
+
+    private static Bruecke bruecke = new Bruecke();
+
+    private ReentrantLock sperre;
+
+    private Condition zugangsErlaubnis;
+
+    static Bruecke getBruecke() {
+        return Bruecke.bruecke;
+    }
+
+    private int anzahlSchwergewichte;
+
+    private int anzahlLeichtgewichte;
+
+    private Bruecke() {
+        this.anzahlSchwergewichte = 0;
+        this.anzahlLeichtgewichte = 0;
+        this.sperre = new ReentrantLock();
+        this.zugangsErlaubnis = this.sperre.newCondition();
+    }
+
+    // Ein schwergewichtiger Hamster darf nur dann die Brücke
+    // betreten, wenn die Anzahl der Schwergewichte
+    // und die Anzahl der Leichtgewichte, die sich gerade
+    // auf der Brücke befinden, gleich Null ist.
+    void betretenSchwergewicht() {
+        this.sperre.lock();
+        try {
+            while (!(this.anzahlSchwergewichte == 0 && 
+                    this.anzahlLeichtgewichte == 0)) {
+                try {
+                    this.zugangsErlaubnis.await();
+                } catch (InterruptedException exc) {
+                }
+            }
+            this.anzahlSchwergewichte++;
+        } finally {
+            this.sperre.unlock();
+        }
+    }
+
+    void verlassenSchwergewicht() {
+        this.sperre.lock();
+        try {
+            this.anzahlSchwergewichte--;
+            this.zugangsErlaubnis.signalAll();
+        } finally {
+            this.sperre.unlock();
+        }
+    }
+
+    // Ein leichtgewichtiger Hamster darf die Brücke nicht
+    // betreten, wenn die Anzahl der Schwergewichte, die sich
+    // gerade auf der Brücke befinden, größer als Null ist.
+    void betretenLeichtgewicht() {
+        this.sperre.lock();
+        try {
+            while (this.anzahlSchwergewichte > 0) {
+                try {
+                    this.zugangsErlaubnis.await();
+                } catch (InterruptedException exc) {
+                }
+            }
+            this.anzahlLeichtgewichte++;
+        } finally {
+            this.sperre.unlock();
+        }
+    }
+
+    void verlassenLeichtgewicht() {
+        this.sperre.lock();
+        try {
+            this.anzahlLeichtgewichte--;
+            this.zugangsErlaubnis.signalAll();
+        } finally {
+            this.sperre.unlock();
+        }
+    }
+}

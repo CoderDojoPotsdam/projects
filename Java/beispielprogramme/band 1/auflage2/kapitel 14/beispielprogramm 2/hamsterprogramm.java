@@ -1,0 +1,96 @@
+import de.hamster.debugger.model.Territorium;import de.hamster.model.HamsterException;import de.hamster.model.HamsterInitialisierungsException;import de.hamster.model.HamsterNichtInitialisiertException;import de.hamster.model.KachelLeerException;import de.hamster.model.MauerDaException;import de.hamster.model.MaulLeerException;public class hamsterprogramm extends de.hamster.debugger.model.IHamster implements de.hamster.model.HamsterProgram {int richtung = 0;         
+           // repraesentiert eine der vier moeglichen
+           // Richtungen durch die Werte 0, 1, 2 oder 3
+int eine_dimension = 0;   
+           // repraesentiert die Position des Hamsters
+           // in einer Richtung (horizontal / vertikal)
+int andere_dimension = 0; 
+           // repraesentiert die Position des Hamsters
+           // in der anderen Richtung
+
+public void main()  
+{
+    neuesVor();
+    while (!ausgangspunktErreicht()) 
+    {
+      while (vornFrei() && !rechtsFrei() && 
+             !ausgangspunktErreicht()
+            )
+      {
+        neuesVor();
+      }
+      if (!ausgangspunktErreicht())
+      {
+        if (rechtsFrei())
+        {
+          neuesRechtsUm();
+          neuesVor();
+        }
+        else // vorne und rechts stehen Mauern
+        {
+          neuesLinksUm();
+        }
+      }
+    }
+}   
+    
+boolean ausgangspunktErreicht()
+{
+    // der Ausgangspunkt ist erreicht, wenn beide
+    // Richtungsvariablen wieder ihren Initialwert 
+    //enthalten
+    return (andere_dimension == 0) && (eine_dimension == 0);
+}
+
+void neuesLinksUm()
+{
+    linksUm();
+    richtung = (richtung + 1) % 4;
+    // einmal  linksUm: richtung == 1
+    // zweimal linksUm: richtung == 2
+    // dreimal linksUm: richtung == 3
+    // viermal linksUm: richtung == 0
+}
+
+void neuesVor()
+{
+    vor();
+    if (richtung == 0)
+    {
+      eine_dimension = eine_dimension + 1;
+    }
+    else if (richtung == 1)
+    {
+      andere_dimension = andere_dimension + 1;
+    }
+    else if (richtung == 2)
+    {
+      eine_dimension = eine_dimension - 1;
+    }
+    else // (richtung == 3)
+    {
+      andere_dimension = andere_dimension - 1;
+    }
+}
+
+void rechtsUm()
+{
+    linksUm(); 
+    linksUm(); 
+    linksUm();
+}
+
+void neuesRechtsUm()
+{
+    neuesLinksUm(); 
+    neuesLinksUm(); 
+    neuesLinksUm();
+}
+
+boolean rechtsFrei()
+{
+    rechtsUm();
+    boolean frei = vornFrei();
+    linksUm();
+    return frei;
+} }

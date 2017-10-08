@@ -1,0 +1,11 @@
+/*class*/class GangsterHamster extends SammelHamster {
+
+    GangsterHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    public void nimm() {
+        super.nimm();
+        SammelHamster.gemeinsamGesammelteKoerner = 0; // Sabotage
+    }
+}

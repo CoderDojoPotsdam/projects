@@ -1,0 +1,71 @@
+/*ruby program*/# Aufgabe:
+# der Hamster steht irgendwo in einem beliebigen Territorium
+# ohne innere Mauern; er soll alle Körner fressen
+
+def kehrt
+    linksUm
+    linksUm
+end
+    
+def rechtsUm
+    kehrt
+    linksUm
+end
+
+def laufeZurueck
+    while vornFrei
+        vor
+    end
+end
+
+def sammle
+    while kornDa
+        nimm
+    end
+end
+
+def laufeZurWand
+    while vornFrei
+        vor
+    end
+end
+        
+def laufeInEcke
+    laufeZurWand
+    linksUm
+    laufeZurWand
+    linksUm
+end
+
+def ernteEineReihe
+    sammle
+    while vornFrei
+        vor
+        sammle
+    end
+end
+
+def ernteEineReiheUndLaufeZurueck
+    ernteEineReihe
+    kehrt
+    laufeZurueck
+end
+
+# Hauptprogramm
+laufeInEcke
+ernteEineReiheUndLaufeZurueck
+rechtsUm
+while vornFrei
+    vor
+    rechtsUm
+    ernteEineReiheUndLaufeZurueck
+    rechtsUm
+end
+
+
+
+
+
+
+
+

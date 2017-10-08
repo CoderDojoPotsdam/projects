@@ -1,0 +1,142 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+ */
+import util.AllroundHamster;
+
+class QuicksortHamster extends AllroundHamster {
+
+    // sortiert werden die Koernerhaufen zwischen den beiden
+    // Spalten
+    int linkeSpalte, rechteSpalte;
+
+    QuicksortHamster(int reihe, int linkeSpalte, int rechteSpalte) {
+        super(reihe, linkeSpalte, Hamster.OST, 0);
+        this.linkeSpalte = linkeSpalte;
+        this.rechteSpalte = rechteSpalte;
+    }
+
+    public void run() {
+        this.sortiereKoernerHaufen();
+    }
+
+    void sortiereKoernerHaufen() {
+        this.quickSort(this.linkeSpalte, this.rechteSpalte);
+        this.beendeSortierung();
+    }
+
+    // verlaesst die Reihe mit den Koernerhaufen
+    void beendeSortierung() {
+        this.setzeBlickrichtung(Hamster.SUED);
+        if (this.vornFrei()) {
+            this.vor();
+        }
+    }
+
+    // der Quicksort-Algorithmus wird zwischen den
+    // angegebenen Spalten ausgefuehrt
+    void quickSort(int linkeSpalte, int rechteSpalte) {
+        if (linkeSpalte < rechteSpalte) {
+            int pivotSpalte = this.zerlege(linkeSpalte,
+                    rechteSpalte);
+
+            // der rechte Bereich wird (gleichzeitig) von einem
+            // anderen Hamster sortiert
+            if (pivotSpalte + 1 < rechteSpalte) {
+                QuicksortHamster helfer = new QuicksortHamster(
+                        this.getReihe(), pivotSpalte + 1,
+                        rechteSpalte);
+                helfer.start();
+            }
+
+            this.quickSort(linkeSpalte, pivotSpalte - 1);
+        }
+    }
+
+    // liefert die Spalte mit dem Pivot-Element und ordnet die
+    // Koernerhaufen innerhalb der angegebenen Spalten so um,
+    // dass alle Zahlen links von der Pivot-Spalte kleiner oder
+    // gleich und alle Zahlen rechts von der Pivot-Spalte
+    // groesser oder gleich dem Wert der Pivot-Spalte sind
+    int zerlege(int linkeSpalte, int rechteSpalte) {
+        int pivotWert = Territorium.getAnzahlKoerner(this
+                .getReihe(), rechteSpalte);
+        int l = linkeSpalte - 1;
+        int r = rechteSpalte;
+
+        // ordne die Koernerhaufen so um, dass jeweils alle
+        // Elemente links vom Zeiger l kleiner gleich und alle
+        // Elemente rechts vom Zeiger r groesser gleich dem
+        // Pivot-Element sind
+        do {
+            l++;
+            while (l <= rechteSpalte
+                    && Territorium.getAnzahlKoerner(this
+                            .getReihe(), l) <= pivotWert) {
+                l++;
+            }
+            r--;
+            while (r >= linkeSpalte
+                    && Territorium.getAnzahlKoerner(this
+                            .getReihe(), r) >= pivotWert) {
+                r--;
+            }
+            if (l < r) {
+                this.tauschen(l, r);
+            }
+        } while (l < r);
+
+        // platziere das Pivot-Element an seine korrekte Position
+        if (l < rechteSpalte) {
+            this.tauschen(l, rechteSpalte);
+            return l;
+        } else {
+            return rechteSpalte;
+        }
+    }
+
+    // tauscht die Elemente des Arrays an den angegebenen Indizes
+    void tauschen(int spalte1, int spalte2) {
+        if (spalte1 != spalte2) {
+            this.laufeZuSpalte(spalte1);
+            int koerner1 = this.nimmAlle();
+            this.laufeZuSpalte(spalte2);
+            int koerner2 = nimmAlle();
+            this.gib(koerner1);
+            this.laufeZuSpalte(spalte1);
+            this.gib(koerner2);
+        }
+    }
+}
+
+void main() {
+    Hamster paul = Hamster.getStandardHamster();
+
+    // ermittelt die Anzahl der zu sortierenden
+    // Koernerhaufen bis zur Mauer
+    int anzahlKoernerHaufen = 0;
+    while (paul.vornFrei()) {
+        paul.vor();
+        anzahlKoernerHaufen++;
+    }
+
+    // und zurueck (Seiteneffekte beseitigen)
+    paul.linksUm();
+    paul.linksUm();
+    int speicher = anzahlKoernerHaufen;
+    while (speicher > 0) {
+        paul.vor();
+        speicher = speicher - 1;
+    }
+    paul.linksUm();
+    paul.linksUm();
+
+    // erzeugt Sortierhamster und schickt ihn auf die Reise
+    QuicksortHamster vertreter = new QuicksortHamster(paul
+            .getReihe(), paul.getSpalte() + 1, paul
+            .getSpalte()
+            + anzahlKoernerHaufen);
+    vertreter.start();
+}

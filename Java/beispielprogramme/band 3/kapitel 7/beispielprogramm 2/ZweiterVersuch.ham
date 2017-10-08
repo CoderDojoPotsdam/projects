@@ -1,0 +1,8 @@
+/*object-oriented program*/void main() {
+    VerliebterHamster paul = new VerliebterHamster(0, 0,
+            Hamster.OST);
+    VerliebterHamster maria = new VerliebterHamster(0,
+            Territorium.getAnzahlSpalten() - 1, Hamster.WEST);
+    paul.start();
+    maria.start();
+}

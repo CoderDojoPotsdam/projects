@@ -1,0 +1,13 @@
+/*class*/class MeinHamster extends Hamster {
+    void vor(int schritte) { // Ueberladen
+        while (schritte > 0 && this.vornFrei()) {
+            this.vor();
+            schritte = schritte - 1;
+        }
+    }
+
+    void kehrt() {
+        this.linksUm();
+        this.linksUm();
+    }
+}

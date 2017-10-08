@@ -1,0 +1,72 @@
+/*prolog program*/main :- 
+	write('Sammle Koerner:'),nl,
+	sammle([],KornListe),
+	write(KornListe),nl,
+	write('Sortiere Koerner:'),nl,
+	sortiere(KornListe,ErgListe),
+	write(ErgListe),nl,
+	write('Lege Koerner ab.'),nl,
+	legeAb(ErgListe),
+	!.
+	
+sammle(L1,L2) :-
+	vornFrei, vor,
+	nehmeAuf(0,Koerner),
+	Koerner > 0,
+	append(L1,[Koerner],L3),
+	sammle(L3,L2).
+sammle(L0,L0).
+	
+nehmeAuf(AnzahlAlt,AnzahlNeu) :-
+	kornDa, nimm,
+	Tmp is AnzahlAlt + 1,
+	nehmeAuf(Tmp,AnzahlNeu).
+nehmeAuf(AnzahlAlt,AnzahlAlt).
+		
+sortiere(L1,L2) :-
+	bubbleSort(L1,L2).
+	%insertSort(L1,[],L2).
+	%quickSort(L1,L2).	
+	
+bubbleSort(L1,L2) :-
+	append(X,[A,B|Rest],L1),
+	B < A, !,
+	append(X,[B,A|Rest],L3),
+	bubbleSort(L3,L2).
+bubbleSort(L,L).
+
+insertSort([],L3,L3).
+insertSort([H1|T1],L2,L3) :-
+	insert(H1,L2,L4),
+	insertSort(T1,L4,L3).
+insert(Elem,[H|T],[H|R]) :-
+	Elem > H,!,
+	insert(Elem,T,R).
+insert(Elem,L,[Elem|L]).
+
+quickSort([],[]).
+quickSort([K|R],LSortiert) :-
+	teile(K,R,L1,L2),
+	quickSort(L1,L1Sortiert),
+	quickSort(L2,L2Sortiert),
+	append(L1Sortiert,[K|L2Sortiert],LSortiert).
+teile(Elem,[],[],[]).
+teile(Elem,[H|T],[H|L1],L2) :-
+	H < Elem, !,
+	teile(Elem,T,L1,L2).	
+teile(Elem,[H|T],L1,[H|L2]) :-	
+	Elem =< H, !,
+	teile(Elem,T,L1,L2).		
+				
+legeAb([]).
+legeAb([K|R]) :-
+	legeKorn(K),
+	vor,
+	legeAb(R).
+
+legeKorn(0).	
+legeKorn(K) :-
+	gib,
+	KNeu is K - 1,
+	legeKorn(KNeu).
+	

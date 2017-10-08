@@ -1,0 +1,16 @@
+/*class*/class JubelnderHamster extends Hamster {
+    int koernerAnzahl;
+
+    JubelnderHamster(int r, int s, int b, int k, int anzahl) {
+      super(r, s, b, k);
+      this.koernerAnzahl = anzahl;
+    }
+
+    void laufeEhrenrunde() {
+      this.linksUm();
+      this.linksUm();
+      while (this.vornFrei()) {
+        this.vor();
+      }
+    }
+}

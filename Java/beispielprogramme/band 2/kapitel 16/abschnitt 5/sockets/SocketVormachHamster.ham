@@ -1,0 +1,19 @@
+/*class*/import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class SocketVormachHamster extends VormachHamster {
+
+    public SocketVormachHamster(Hamster hamster, int port) {
+        super(hamster);
+        try {
+            ServerSocket serverSock = new ServerSocket(port);
+            Socket socket = serverSock.accept();
+            this.senke = new PrintWriter(new OutputStreamWriter(
+                    socket.getOutputStream()), true);
+        } catch (Exception exc) {
+            this.senke = null;
+        }
+    }
+}

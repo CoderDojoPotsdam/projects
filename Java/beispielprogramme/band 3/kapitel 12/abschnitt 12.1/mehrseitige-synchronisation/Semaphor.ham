@@ -1,0 +1,27 @@
+/*class*/public class Semaphor {
+
+    private int freiePlaetze;
+
+    public Semaphor(int maximalFreiePlaetze) {
+        if (maximalFreiePlaetze < 0) {
+            this.freiePlaetze = 0;
+        } else {
+            this.freiePlaetze = maximalFreiePlaetze;
+        }
+    }
+
+    public synchronized void p() {
+        while (this.freiePlaetze == 0) {
+        
+            try {
+                this.wait();
+            } catch (InterruptedException exc) {}
+        }
+        freiePlaetze--;
+    }
+
+    public synchronized void v() {
+        this.freiePlaetze++;
+        this.notify();
+    }
+}

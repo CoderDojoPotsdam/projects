@@ -1,0 +1,17 @@
+/*class*/class LinksLaufHamster extends HinlaufHamster {
+
+    boolean nachLinks;
+
+    LinksLaufHamster(Hamster ham, int anzahlSchritteHin,
+            boolean nachLinks) {
+        super(ham, anzahlSchritteHin);
+        this.nachLinks = nachLinks;
+    }
+
+    public void run() {
+        if (this.nachLinks) {
+            this.linksUm();
+        }
+        super.run();
+    }
+}

@@ -1,0 +1,55 @@
+/*class*/class AktionsSpeicher extends java.util.Vector<Aktion> {
+
+    // es koennen maximal entsprechend viele Aktionen
+    // gespeichert werden
+    int maxAktionen;
+
+    Thread speichernderThread;
+
+    AktionsSpeicher(int maxAktionen, Thread speichernderThread) {
+        this.maxAktionen = maxAktionen;
+        this.speichernderThread = speichernderThread;
+    }
+
+    synchronized void speichern(Aktion aktion) {
+
+        // falls zuviele Aktionen gespeichert sind,
+        // wird auf das Entfernen von Aktionen
+        // gewartet
+        while (this.size() >= this.maxAktionen) {
+            try {
+                this.wait();
+            } catch (InterruptedException exc) {
+            }
+        }
+
+        // fuegt Aktion hinzu und informiert darueber
+        this.add(aktion);
+        this.notifyAll();
+    }
+
+    synchronized Aktion getNaechsteAktion() {
+
+        // falls keine Aktion gespeichert ist, wird gewartet
+        while (this.size() == 0) {
+            try {
+
+                // hier muss der Fall berücksichtigt werden,
+                // dass keine weiteren Aktionen gespeichert
+                // werden
+                this.wait(1000);
+                if (this.size() == 0
+                        && !this.speichernderThread.isAlive()) {
+                    return null;
+                }
+            } catch (InterruptedException exc) {
+            }
+        }
+
+        // liefert und entfernt aelteste Aktion und
+        // informiert darueber
+        this.notifyAll();
+        return this.remove(0);
+    }
+
+}

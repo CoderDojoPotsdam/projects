@@ -1,0 +1,39 @@
+/*imperative program*/void main()
+{
+    uebersteigeBerg();
+}
+
+void uebersteigeBerg()
+{
+    if (!gipfelErreicht())
+    {
+      klettereStufeHoch();
+      uebersteigeBerg();  // rekursiver Aufruf
+      klettereStufeHinunter();
+    }
+}
+
+boolean gipfelErreicht()
+{
+    return vornFrei();
+}
+
+void klettereStufeHoch()
+{
+    linksUm();
+    vor();
+    rechtsUm();
+    vor();
+}
+
+void klettereStufeHinunter()
+{
+    vor();
+    rechtsUm();
+    vor();
+    linksUm();
+}
+
+void rechtsUm() { kehrt(); linksUm(); }
+
+void kehrt() { linksUm(); linksUm(); }

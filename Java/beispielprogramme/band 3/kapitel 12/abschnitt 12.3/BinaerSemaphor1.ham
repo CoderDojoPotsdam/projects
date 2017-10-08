@@ -1,0 +1,22 @@
+/*class*/public class BinaerSemaphor1 {
+
+    // anfangs ist der kritische Abschnitt frei
+    private boolean frei = true;
+
+    public void p() {
+        while (!this.frei) {
+            // aktives Warten
+        }
+        this.frei = false;
+
+        // kritischer Abschnitt kann nun betreten werden und ist
+        // damit belegt
+    }
+
+    public void v() {
+        this.frei = true;
+
+        // kritischer Abschnitt ist wieder verlassen worden und
+        // ist damit frei
+    }
+}

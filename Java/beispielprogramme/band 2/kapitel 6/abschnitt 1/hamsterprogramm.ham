@@ -1,0 +1,28 @@
+/*object-oriented program*/class MeinHamster extends Hamster {
+
+    void vor(int anzahl) {
+        while (this.vornFrei() && anzahl > 0) {
+            this.vor();
+            anzahl = anzahl - 1;
+        }
+    }
+
+    void vor(boolean kehrtWende) {
+        if (kehrtWende)
+            this.kehrt();
+        this.vor();
+    }
+
+    void kehrt() {
+        this.linksUm();
+        this.linksUm();
+    }
+}
+
+void main() {
+    MeinHamster paul = new MeinHamster();
+    paul.init(0, 0, Hamster.OST, 0);
+    paul.vor();
+    paul.vor(10);
+    paul.vor(!paul.vornFrei());
+}

@@ -1,0 +1,9 @@
+/*object-oriented program*/void main() {
+  Hamster willi = Hamster.getStandardHamster();
+  DualHamster heidi = 
+    new DualHamster(0, 0, Hamster.OST, 100000);
+  OktalHamster paul = 
+    new OktalHamster(10, 0, Hamster.OST, 100000);
+  heidi.zeichne(willi.getAnzahlKoerner());
+  paul.zeichne(willi.getAnzahlKoerner());
+}

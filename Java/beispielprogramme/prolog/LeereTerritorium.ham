@@ -1,0 +1,91 @@
+/*prolog program*/%% Eintrittspunkt des Programms. 
+main :- leereTerritorium.
+
+%% zusätzliche nützliche Befehle
+kehrt :-
+    linksUm,
+    linksUm.
+
+rechtsUm :-
+    kehrt,
+    linksUm.
+
+laufeZurWand :-
+    vornFrei, 
+    vor,
+    laufeZurWand, 
+    !.
+    
+laufeZurWand.
+
+laufeInEcke :-
+    laufeZurWand,
+    linksUm,
+    laufeZurWand,
+    linksUm.   
+
+%% zusätzliche Testbefehle (ohne Seiteneffekte)
+linksFrei :-
+    linksUm,
+    vornFrei,
+    rechtsUm,
+    !.
+
+linksFrei :-
+    rechtsUm,
+    fail.
+
+rechtsFrei :-
+    rechtsUm,
+    vornFrei,
+    linksUm,
+    !.
+
+rechtsFrei :-
+    linksUm,
+    fail.
+
+%% Körner sammeln
+nimmAlle :-
+    kornDa, 
+    nimm, 
+    nimmAlle, 
+    !.
+    
+nimmAlle.
+
+%% laufen und sammeln
+graseReiheAb :-
+    nimmAlle,
+    vornFrei,
+    vor,
+    graseReiheAb,
+    !.
+
+graseReiheAb.
+
+leereTerritorium :-
+    laufeInEcke,
+    graseAlleReihenAb.
+    
+leereTerritorium.
+    
+graseAlleReihenAb :-
+    graseReiheAb,
+    kehrt,
+    laufeZurWand,
+    kehrt,
+    linksFrei,
+    begibDichInNaechsteReihe,
+    !,
+    graseAlleReihenAb.
+
+begibDichInNaechsteReihe :-
+    linksUm,
+    vor,
+    rechtsUm.
+    
+
+
+
+	

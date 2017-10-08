@@ -1,0 +1,18 @@
+/*class*/class FrissHamster extends Hamster {
+
+    FrissHamster(int r, int s) {
+        super(r, s, Hamster.OST, 0);
+    }
+
+    public void run() {
+        while (!Ende.endeWunschErfolgt()) {
+            if (this.kornDa()) {
+                Ende.beenden(); // Aufgabe erledigt
+            } else if (this.vornFrei()) {
+                this.vor();
+            } else {
+                return; // Mauer erreicht
+            }
+        }
+    }
+}

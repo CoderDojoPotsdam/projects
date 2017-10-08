@@ -1,0 +1,28 @@
+/*object-oriented program*/class FaulerHamster extends Hamster {
+
+    Hamster knecht; // Hamster-Subobjekt
+
+    FaulerHamster(int r, int s, int b, int k) {
+        this.init(r, s, b, k);
+        this.knecht = new Hamster(r, s, b, k);
+    }
+
+    void laufeBisZurWand() {
+        while (this.knecht.vornFrei()) {
+            this.knecht.vor();
+        }
+
+        /* oder:
+        while (knecht.vornFrei()) {
+            knecht.vor();
+        }
+        */
+
+    }
+}
+
+void main() {
+    FaulerHamster herrscher = new FaulerHamster(2, 0,
+            Hamster.OST, 0);
+    herrscher.laufeBisZurWand();
+}

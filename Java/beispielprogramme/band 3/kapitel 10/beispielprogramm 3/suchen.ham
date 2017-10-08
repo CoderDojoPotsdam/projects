@@ -1,0 +1,10 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+ */
+void main() {
+    SuchHamster starter = new SuchHamster(0, 0, Hamster.OST);
+    starter.start();
+}

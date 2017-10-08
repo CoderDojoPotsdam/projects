@@ -1,0 +1,27 @@
+/*imperative program*/void main()
+{
+    begibDichInEineEcke();
+
+    // der Hamster kann leider (noch) nicht zaehlen; er 
+    // fuehrt deshalb viermal dieselbe Anweisungssequenz aus
+    gib(); laufeInDieNaechsteEcke(); linksUm();
+    gib(); laufeInDieNaechsteEcke(); linksUm();
+    gib(); laufeInDieNaechsteEcke(); linksUm();
+    gib();
+}
+
+void begibDichInEineEcke()
+{
+    laufeZurNaechstenWand(); linksUm();
+    laufeZurNaechstenWand(); linksUm();
+}
+
+void laufeZurNaechstenWand()
+{
+    while (vornFrei())
+    {
+      vor();
+    }
+}
+ 
+void laufeInDieNaechsteEcke() { laufeZurNaechstenWand(); }

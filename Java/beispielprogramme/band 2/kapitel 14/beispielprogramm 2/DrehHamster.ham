@@ -1,0 +1,23 @@
+/*class*/public class DrehHamster extends Hamster {
+
+    private static DrehHamster drehHamster = new DrehHamster();
+    // erzeugt wird der Hamster genau dann, wenn in einem
+    // Programm die Klasse DrehHamster geladen wird
+
+    private DrehHamster() {
+        super(0, 0, Hamster.OST, 0);
+    }
+
+    public static DrehHamster getDrehHamster() {
+        return DrehHamster.drehHamster;
+    }
+
+    // public Methoden
+
+    public void drehDich(int anzahl) {
+        while (anzahl > 0) {
+            this.linksUm();
+            anzahl = anzahl - 1;
+        }
+    }
+}

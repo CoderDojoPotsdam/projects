@@ -1,0 +1,16 @@
+/*class*/class Summe implements Callable<Integer> {
+
+    int summeBis;
+
+    Summe(int bis) {
+        this.summeBis = bis;
+    }
+
+    public Integer call() {
+        int summe = 0;
+        for (int zahl = 1; zahl <= this.summeBis; zahl++) {
+            summe = summe + zahl;
+        }
+        return summe;
+    }
+}

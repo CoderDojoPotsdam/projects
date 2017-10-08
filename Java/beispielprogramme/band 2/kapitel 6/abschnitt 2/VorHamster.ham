@@ -1,0 +1,10 @@
+/*class*/class VorHamster extends Hamster {
+
+    void vor(int schritte) {
+        if (this.vornFrei() && schritte > 0) {
+            this.vor();
+            this.vor(schritte - 1); // rekursiver Aufruf der
+                                    // Methode
+        }
+    }
+}

@@ -1,0 +1,42 @@
+/*class*/// Implementiert Deadlockvermeidungsstrategie
+class Verwalter {
+
+    // Hamster, der aktuell Koerner nehmen und geben darf
+    private Hamster aktHamster;
+
+    // Anzahl an angeforderten aber noch nicht zurueckgegebenen
+    // Koernern
+    private int angefordert;
+
+    Verwalter() {
+        this.aktHamster = null;
+        this.angefordert = 0;
+    }
+
+    synchronized void kornAnfordern(Hamster ham) {
+        if (this.aktHamster != ham) { // nur der aktuelle
+            // Hamster darf weitere
+            // Koerner anfordern
+            while (this.aktHamster != null) {
+                try {
+                    wait();
+                } catch (InterruptedException exc) {
+                }
+            }
+            this.aktHamster = ham;
+        }
+        this.angefordert++;
+    }
+
+    synchronized void kornZurueckgeben(Hamster ham) {
+        if (this.aktHamster == ham) {
+            this.angefordert--;
+            if (this.angefordert == 0) {
+                // nun kann prinzipiell ein anderer Hamster
+                // uebernehmen
+                this.aktHamster = null;
+                notifyAll();
+            }
+        }
+    }
+}

@@ -1,0 +1,15 @@
+/*object-oriented program*/void main() {
+    Hamster paul = new NochUnglaublichererHamster(1);
+    Hamster karl = new NochUnglaublichererHamster(-1);
+    paul.start();
+    karl.start();
+    try {
+        paul.join();
+        karl.join();
+    } catch (InterruptedException exc) {
+    }
+    Hamster.getStandardHamster().schreib(
+            "Wert von globalVar = "
+                    + NochUnglaublichererHamster
+                            .getGlobalVar());
+}

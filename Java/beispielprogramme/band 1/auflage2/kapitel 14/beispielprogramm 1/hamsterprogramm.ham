@@ -1,0 +1,23 @@
+/*imperative program*/void main()
+{
+    int schritte = 0;  // zum Abspeichern der gelaufenen Schritte
+
+    // laufe bis zur Wand
+    while (vornFrei())
+    {
+      vor();
+      schritte = schritte + 1;  // die Schritte werden vermerkt
+    }
+
+    // kehre um
+    linksUm(); linksUm();
+
+    // laufe zurueck:
+    // die Schleife wird so oft durchlaufen, wie der
+    // Hamster Schritte bis zur Wand benoetigt hat
+    while (schritte > 0)  
+    {                     
+      vor();
+      schritte = schritte - 1;
+    }
+}

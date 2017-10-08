@@ -1,0 +1,31 @@
+/*class*/class TanzLehrerHamster extends Hamster {
+
+    final static int ANZAHL_AKTIONEN = 30;
+
+    AktionsSpeicher aktionen;
+
+    TanzLehrerHamster(int r, int s, int b, int k,
+            int maxVorsprung) {
+        super(r, s, b, k);
+        this.aktionen = new AktionsSpeicher(maxVorsprung, this);
+    }
+
+    public void run() {
+        for (int a = 0; a < TanzLehrerHamster.ANZAHL_AKTIONEN; a++) {
+            this.fuehreNaechstenTanzschrittAus();
+        }
+    }
+
+    void fuehreNaechstenTanzschrittAus() {
+        Aktion aktion = AktionsGenerator.naechsteAktion();
+        synchronized (this.aktionen) {
+            this.aktionen.speichern(aktion);
+            aktion.ausfuehren(this);
+        }
+    }
+
+    Aktion getNaechsteAktion() {
+        return this.aktionen.getNaechsteAktion();
+    }
+
+}

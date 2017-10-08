@@ -1,0 +1,69 @@
+/*imperative program*/void main() {
+    int stufenAnzahl = zaehleStufen();
+
+    // nimm genuegend Koerner ins Maul
+    while ((stufenAnzahl > 0) && kornDa()) {
+        nimm();
+        stufenAnzahl--;
+    }
+
+    erklimmeBerg();
+}
+
+// ermittle die Hoehe des Berges (ohne Seiteneffekte)
+int zaehleStufen() {
+
+    // erklimme die einzelnen Stufen und vermerke die Anzahl
+    int anzahl = 0;
+    while (!gipfelErreicht()) {
+        erklimmeStufe();
+        anzahl++;
+    }
+
+    // und wieder hinunter (Vermeidung von Seiteneffekten)
+    kehrt();
+    int schritte = anzahl;
+    while (schritte > 0) {
+        klettereStufeHinunter();
+        schritte--;
+    }
+    kehrt();
+    return anzahl;
+}
+
+boolean gipfelErreicht() {
+    return vornFrei();
+}
+
+void erklimmeStufe() {
+    linksUm(); 
+    vor(); 
+    rechtsUm(); 
+    vor();
+}
+
+void klettereStufeHinunter() {
+    vor(); 
+    linksUm(); 
+    vor(); 
+    rechtsUm();
+}
+
+void erklimmeBerg() {
+    while (!gipfelErreicht()) {
+        erklimmeStufe();
+        if (!maulLeer()) {
+            gib();
+        }
+    }
+}
+
+void rechtsUm() { 
+    kehrt(); 
+    linksUm(); 
+}
+
+void kehrt() { 
+    linksUm(); 
+    linksUm(); 
+}

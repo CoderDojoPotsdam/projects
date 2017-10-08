@@ -1,0 +1,59 @@
+/*class*/class Luecke {
+
+    private int reihe; // Reihe der Luecke
+
+    private int spalte; // Spalte der Luecke
+
+    Luecke(int r, int s) {
+        this.reihe = r;
+        this.spalte = s;
+    }
+
+    synchronized void put(ErzeugerHamster ham) {
+
+        // wenn Korn in Luecke liegt: warten
+        while (Territorium.getAnzahlKoerner(this.reihe,
+                this.spalte) > 0) {
+            try {
+                this.wait();
+            } catch (Exception e) {
+            }
+        }
+
+        // Korn ablegen
+        ham.vor();
+        ham.gib();
+        ham.linksUm();
+        ham.linksUm();
+        ham.vor();
+        this.notifyAll();
+    }
+
+    synchronized void get(VerbraucherHamster ham) {
+
+        // wenn Luecke leer: warten
+        while (Territorium.getAnzahlKoerner(this.reihe,
+                this.spalte) == 0) {
+            try {
+                this.wait();
+            } catch (Exception e) {
+            }
+        }
+
+        // Korn nehmen
+        ham.vor();
+        ham.nimm();
+        ham.linksUm();
+        ham.linksUm();
+        ham.vor();
+        this.notifyAll();
+    }
+
+    int getReihe() {
+        return this.reihe;
+    }
+
+    int getSpalte() {
+        return this.spalte;
+    }
+}

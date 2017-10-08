@@ -1,0 +1,17 @@
+/*object-oriented program*/void main() {
+    SammelUndLegHamster paul = new SammelUndLegHamster();
+    paul.init(2, 3, Hamster.NORD, 9);
+    SammelUndLegAlleHamster willi = new SammelUndLegAlleHamster();
+    willi.init(2, 5, Hamster.NORD, 4);
+
+    while (paul.vornFrei() && willi.vornFrei()) {
+        paul.sammle();
+        paul.vor();
+        willi.sammle();
+        willi.vor();
+    }
+    paul.legAb();  // Ausfuehrung der Methode in der
+                   // Klasse SammelUndLegHamster
+    willi.legAb(); // Ausfuehrung der Methode in der
+                   // Klasse SammelUndLegAlleHamster
+}
