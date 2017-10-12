@@ -1,0 +1,45 @@
+/*object-oriented program*/void main() {
+  Hamster paul = Hamster.getStandardHamster();
+
+  // Erzeugung eines Vertretungshamsters
+  KletterHamster reinhold = new KletterHamster();
+  reinhold.init(paul.getReihe(),
+                paul.getSpalte(),
+                paul.getBlickrichtung(),
+                paul.getAnzahlKoerner());
+  
+  reinhold.laufeZumBerg();
+  do {
+      reinhold.erklimmeEineStufe();
+  } while (!reinhold.gipfelErreicht());
+}
+
+class KletterHamster extends Hamster {
+
+  void laufeZumBerg() {
+    while (this.vornFrei()) {
+      this.vor();
+    }
+  }
+
+  void erklimmeEineStufe() {
+    this.linksUm();
+    this.vor();
+    this.rechtsUm();
+    this.vor();
+  }
+  
+  boolean gipfelErreicht() {
+      return this.vornFrei();
+  }
+
+  void rechtsUm() {
+    this.kehrt();
+    this.linksUm();
+  }
+
+  void kehrt() {
+    this.linksUm();
+    this.linksUm();
+  }
+}

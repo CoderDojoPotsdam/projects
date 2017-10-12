@@ -1,0 +1,7 @@
+/*imperative program*/void main()
+{
+    do
+    {
+      gib();
+    } while (!maulLeer());
+}

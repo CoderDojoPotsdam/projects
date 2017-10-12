@@ -1,0 +1,19 @@
+/*imperative program*/void rechtsUm() { // Prozedurdefinition
+    linksUm();
+    linksUm();
+    linksUm();
+}
+
+void main() {     // main-Prozedur
+    // friss erstes Korn
+    rechtsUm();     // Prozeduraufruf
+    vor();
+    vor();
+    nimm();
+
+    // friss zweites Korn
+    rechtsUm();     // Prozeduraufruf
+    vor();
+    vor();
+    nimm();
+}

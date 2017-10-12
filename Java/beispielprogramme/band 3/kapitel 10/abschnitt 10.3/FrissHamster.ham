@@ -1,0 +1,42 @@
+/*class*/class FrissHamster extends Hamster {
+
+    private FrissHamster partner;
+
+    FrissHamster(int r, int s) {
+        super(r, s, Hamster.OST, 0);
+    }
+
+    public void setPartner(FrissHamster partner) {
+        this.partner = partner;
+    }
+
+    public void run() {
+        while (!this.isInterrupted()) {
+            // alternativ: Thread.interrupted()
+
+            if (this.kornDa()) { // Aufgabe erledigt
+
+                // Beendigungswunsch an sich selbst
+                this.interrupt();
+                // alternativ: return;
+
+                // Beendigungswunsch an Partner
+                this.partner.interrupt();
+            } else if (this.vornFrei()) {
+                this.vor();
+
+                // Hamster muss sich ausruhen
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException exc) {
+
+                    // damit der Unterbrechungsflag wieder
+                    // gesetzt wird
+                    this.interrupt();
+                }
+            } else {
+                return; // Mauer erreicht
+            }
+        }
+    }
+}

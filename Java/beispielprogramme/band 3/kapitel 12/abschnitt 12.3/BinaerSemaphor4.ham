@@ -1,0 +1,25 @@
+/*class*/public class BinaerSemaphor4 {
+
+    private boolean[] kritisch = { false, false };
+
+    public void p(int dieserThread) {
+
+        // zunaechst die eigene Variable setzen
+        this.kritisch[dieserThread] = true;
+
+        // dann die andere Variable ueberpruefen
+        while (this.kritisch[this.andererThread(dieserThread)]) {
+            // aktives Warten
+        }
+    }
+
+    public void v(int dieserThread) {
+
+        // der kritische Abschnitt ist nun wieder frei
+        this.kritisch[dieserThread] = false;
+    }
+
+    private int andererThread(int dieserThread) {
+        return (dieserThread + 1) % 2;
+    }
+}

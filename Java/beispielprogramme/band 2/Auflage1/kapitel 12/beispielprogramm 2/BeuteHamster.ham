@@ -1,0 +1,39 @@
+/*class*/class BeuteHamster
+  extends AllroundHamster
+  implements Spieler
+{
+  int spielrunde;
+  
+  BeuteHamster(Hamster hamster, int runden) {
+    super(hamster);
+    this.spielrunde = runden;
+  }
+  
+  public boolean spielzug() {
+    if (this.spielrunde <= 0) {
+      // hat gewonnen, wenn die letzte Spielrunde vorbei ist
+      return true;
+    }
+    this.fluechten();
+    this.spielrunde = this.spielrunde - 1;
+    return false;
+  }
+  
+  void fluechten() {
+    String antwort = 
+      this.liesZeichenkette("Wohin (links, rechts, " +
+                            "vorne, hinten)?");
+    if (antwort.equals("links")) {
+      this.linksUm();
+      this.vor();
+    } else if (antwort.equals("rechts")) {
+      this.rechtsUm();
+      this.vor();
+    } else if (antwort.equals("vorne")) {
+      this.vor();
+    } else if (antwort.equals("hinten")) {
+      this.kehrt();
+      this.vor();
+    }
+  }
+}

@@ -1,0 +1,37 @@
+/*class*/import java.io.BufferedReader;
+
+public class NachmachHamster extends AllroundHamster {
+
+    protected BufferedReader quelle;
+
+    protected NachmachHamster(Hamster hamster) {
+        super(hamster);
+        this.quelle = null;
+    }
+
+    public void macheNach() {
+        try {
+            String befehl = this.quelle.readLine();
+            while (befehl != null) {
+                if (befehl.equals("vor")) {
+                    this.vor();
+                } else if (befehl.equals("linksUm")) {
+                    this.linksUm();
+                } else if (befehl.equals("gib")) {
+                    this.gib();
+                }
+                befehl = this.quelle.readLine();
+            }
+            this.quelle.close();
+        } catch (Exception exc) {
+            this.schreib("Fehler beim Lesen!");
+        } finally {
+            if (this.quelle != null) {
+                try {
+                    this.quelle.close();
+                } catch (Exception exc) {
+                }
+            }
+        }
+    }
+}

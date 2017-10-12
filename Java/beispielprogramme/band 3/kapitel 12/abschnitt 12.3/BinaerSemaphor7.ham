@@ -1,0 +1,36 @@
+/*class*/public class BinaerSemaphor7 {
+
+    private boolean[] kritisch = { false, false };
+
+    // "Schiedsrichtervariable"
+    private int anDerReihe = 0;
+
+    public void p(int dieserThread) {
+
+        // Wunsch zum Betreten des kritischen Abschnittes
+        // signalisieren
+        this.kritisch[dieserThread] = true;
+
+        this.anDerReihe = this.andererThread(dieserThread);
+
+        // unter Umstaenden warten, bis der andere Thread den
+        // kritischen Abschnitt verlaesst
+        while ((this.anDerReihe == this
+                .andererThread(dieserThread))
+                && this.kritisch[this
+                        .andererThread(dieserThread)]) {
+            // aktives Warten
+        }
+
+    }
+
+    public void v(int dieserThread) {
+
+        // der kritische Abschnitt ist nun wieder frei
+        this.kritisch[dieserThread] = false;
+    }
+
+    private int andererThread(int dieserThread) {
+        return (dieserThread + 1) % 2;
+    }
+}

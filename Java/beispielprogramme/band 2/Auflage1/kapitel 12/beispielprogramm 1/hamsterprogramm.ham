@@ -1,0 +1,22 @@
+/*object-oriented program*/class QuadratFunktion implements Funktion {
+  public int f(int x) {
+    return x * x;
+  }
+}
+
+class Polynom implements Funktion {
+  public int f(int x) {
+    return -1*x*x*x + 10*x*x - 27*x + 18;
+  }
+}
+
+void main() {
+  FunktionenHamster paul = 
+    new FunktionenHamster(Hamster.getStandardHamster());
+  Funktion funk = new QuadratFunktion();
+  paul.loeschen();
+  paul.zeichneGraph(funk);
+  paul.loeschen();
+  funk = new Polynom();
+  paul.zeichneGraph(funk);
+}

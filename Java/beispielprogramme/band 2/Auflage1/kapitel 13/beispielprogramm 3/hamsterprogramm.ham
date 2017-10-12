@@ -1,0 +1,5 @@
+/*object-oriented program*/void main() {
+  RechnenHamster paul = 
+    new RechnenHamster(Hamster.getStandardHamster());
+  paul.bearbeiteRechenaufgaben();
+}

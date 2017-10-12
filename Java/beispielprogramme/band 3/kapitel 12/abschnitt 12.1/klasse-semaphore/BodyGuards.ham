@@ -1,0 +1,96 @@
+/*object-oriented program*/import java.util.concurrent.Semaphore;
+
+class BodyGuardVorne extends Hamster {
+
+    private Semaphore[] schalter;
+
+    BodyGuardVorne(int r, int s, int b, int k,
+            Semaphore[] schalter) {
+        super(r, s, b, k);
+        this.schalter = schalter;
+    }
+
+    public void run() {
+        while (this.vornFrei()) {
+
+            // warten auf Start bzw. hinteren BodyGuard
+            this.schalter[0].acquireUninterruptibly();
+            this.vor();
+            this.schalter[1].release(); // VIH 1 informieren
+            this.schalter[2].release(); // VIH 2 informieren
+            this.schalter[3].release(); // VIH 3 informieren
+
+        }
+    }
+}
+
+class VIH extends Hamster {
+
+    private Semaphore[] schalter;
+
+    private int nummer;
+
+    VIH(int r, int s, int b, int k, Semaphore[] schalter,
+            int nummer) {
+        super(r, s, b, k);
+        this.schalter = schalter;
+        this.nummer = nummer;
+    }
+
+    public void run() {
+        while (true) {
+
+            // warten auf vorderen Bodyguard
+            this.schalter[this.nummer].acquireUninterruptibly();
+            this.vor();
+
+            // hinteren Bodyguard informieren
+            this.schalter[this.nummer + 3].release();
+        }
+    }
+}
+
+class BodyGuardHinten extends Hamster {
+
+    private Semaphore[] schalter;
+
+    BodyGuardHinten(int r, int s, int b, int k,
+            Semaphore[] schalter) {
+        super(r, s, b, k);
+        this.schalter = schalter;
+    }
+
+    public void run() {
+        while (true) {
+
+            // warten auf VIP 1
+            this.schalter[4].acquireUninterruptibly();
+
+            // warten auf VIP 2
+            this.schalter[5].acquireUninterruptibly();
+
+            // warten auf VIP 3
+            this.schalter[6].acquireUninterruptibly();
+            this.vor();
+
+            // vorderen Bodyguard informieren
+            this.schalter[0].release();
+        }
+    }
+}
+
+void main() {
+    Semaphore[] schalter = new Semaphore[7];
+    for (int i = 0; i < 7; i++) {
+        schalter[i] = new Semaphore(0);
+    }
+
+    (new BodyGuardVorne(1, 2, Hamster.OST, 0, schalter))
+            .start();
+    (new VIH(0, 1, Hamster.OST, 0, schalter, 1)).start();
+    (new VIH(1, 1, Hamster.OST, 0, schalter, 2)).start();
+    (new VIH(2, 1, Hamster.OST, 0, schalter, 3)).start();
+    (new BodyGuardHinten(1, 0, Hamster.OST, 0, schalter))
+            .start();
+     schalter[0].release(); // starten
+}

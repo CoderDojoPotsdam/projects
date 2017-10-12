@@ -1,0 +1,69 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+class GibHamster extends AllroundHamster {
+
+    int kornReihe;
+
+    int kornSpalte;
+
+    NimmHamster nehmer;
+
+    GibHamster(int r, int s, int b, int kr, int ks,
+            NimmHamster nehmer) {
+        super(r, s, b, 1);
+        this.kornReihe = kr;
+        this.kornSpalte = ks;
+        this.nehmer = nehmer;
+    }
+
+    public void run() {
+        this.laufeZuKachel(this.kornReihe, this.kornSpalte);
+        this.gib();
+        nehmer.interrupt(); // wecken
+    }
+}
+
+class NimmHamster extends AllroundHamster {
+
+    int kornReihe;
+
+    int kornSpalte;
+
+    final static int SCHLAFENSZEIT = 5000; // 5 Sekunden
+
+    NimmHamster(int r, int s, int b, int kr, int ks) {
+        super(r, s, b, 0);
+        this.kornReihe = kr;
+        this.kornSpalte = ks;
+    }
+
+    public void run() {
+        this.laufeZuKachel(this.kornReihe, this.kornSpalte);
+        while (!this.kornDa()) {
+            try {
+                Thread.sleep(SCHLAFENSZEIT);
+                // passives Warten
+            } catch (InterruptedException exc) {
+            }
+        }
+        this.nimm();
+    }
+}
+
+void main() {
+    int r = Hamster.getStandardHamster().getReihe();
+    int s = Hamster.getStandardHamster().getSpalte();
+    NimmHamster willi = new NimmHamster(Territorium
+            .getAnzahlReihen() - 1, Territorium
+            .getAnzahlSpalten() - 1, Hamster.WEST, r, s);
+    GibHamster paul = new GibHamster(0, 0, Hamster.OST, r,
+            s, willi);
+    willi.start();
+    paul.start();
+}

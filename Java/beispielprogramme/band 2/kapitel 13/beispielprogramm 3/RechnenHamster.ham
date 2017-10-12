@@ -1,0 +1,154 @@
+/*class*/// erweiterte Hamster-Klasse: repraesentiert rechnende Hamster
+class RechnenHamster extends AllroundHamster {
+
+    RechnenHamster(Hamster hamster) {
+        super(hamster);
+    }
+
+    void bearbeiteRechenaufgaben() {
+        String antwort;
+        do {
+            this.bearbeiteRechenaufgabe();
+            antwort = this
+                    .liesZeichenkette("Weitere Aufgabe (ja/nein)?");
+        } while (antwort.equals("ja"));
+    }
+
+    void bearbeiteRechenaufgabe() {
+        try { // Standardsituation
+            String aufgabe = this
+                    .liesZeichenkette("Bitte Rechenaufgabe eingeben!");
+
+            String operator = this.ermittleOperator(aufgabe);
+            int zahl1 = this
+                    .ermittleErsteZahl(aufgabe, operator);
+            int zahl2 = this.ermittleZweiteZahl(aufgabe,
+                    operator);
+            int ergebnis = this.berechne(zahl1, zahl2, operator);
+
+            // Ausgabe des Ergebnisses erfolgt nur, wenn keine
+            // Fehler aufgetreten sind
+            this.schreib(aufgabe + " = " + ergebnis);
+        } catch (KeineZahlException exc) {
+            String str = exc.getEingabe();
+            if (str == null) {
+                this
+                        .schreib("Sie haben keine zwei Zahlen eingegeben!");
+            } else {
+                this.schreib(exc.getEingabe()
+                        + " ist keine Zahl!");
+            }
+        } catch (OperatorFehltException exc) {
+            this.schreib("Ein gueltiger Operator fehlt!");
+        } catch (DivisionDurchNullException exc) {
+            this
+                    .schreib("Eine Division durch 0 ist nicht moeglich!");
+        }
+    }
+
+    int berechne(int zahl1, int zahl2, String operator)
+            throws DivisionDurchNullException {
+        int ergebnis = 0;
+        if (operator.equals("+")) {
+            ergebnis = zahl1 + zahl2;
+        } else if (operator.equals("-")) {
+            ergebnis = zahl1 - zahl2;
+        } else if (operator.equals("*")) {
+            ergebnis = zahl1 * zahl2;
+        } else if (operator.equals("/")) {
+            if (zahl2 == 0) {
+                throw new DivisionDurchNullException();
+            }
+            ergebnis = zahl1 / zahl2;
+        }
+        return ergebnis;
+    }
+
+    String ermittleOperator(String aufgabe)
+            throws OperatorFehltException {
+        int index = aufgabe.indexOf("+");
+        if (index >= 0) { // + ist enthalten
+            return aufgabe.substring(index, index + 1);
+        }
+        index = aufgabe.indexOf("-");
+        if (index >= 0) { // - ist enthalten
+            return aufgabe.substring(index, index + 1);
+        }
+        index = aufgabe.indexOf("*");
+        if (index >= 0) { // * ist enthalten
+            return aufgabe.substring(index, index + 1);
+        }
+        index = aufgabe.indexOf("/");
+        if (index >= 0) { // / ist enthalten
+            return aufgabe.substring(index, index + 1);
+        }
+        // kein gueltiger Operator
+        throw new OperatorFehltException();
+    }
+
+    int ermittleErsteZahl(String aufgabe, String operator)
+            throws KeineZahlException {
+        int opIndex = aufgabe.indexOf(operator);
+        String zahlString = aufgabe.substring(0, opIndex);
+        return this.stringToInt(zahlString);
+        // ein evtl. geworfenes Exception-Objekt wird
+        // weitergeleitet
+    }
+
+    int ermittleZweiteZahl(String aufgabe, String operator)
+            throws KeineZahlException {
+        int opIndex = aufgabe.indexOf(operator);
+        String zahlString = aufgabe.substring(opIndex + 1,
+                aufgabe.length());
+        return this.stringToInt(zahlString);
+        // ein evtl. geworfenes Exception-Objekt wird
+        // weitergeleitet
+    }
+
+    int stringToInt(String zahlString) throws KeineZahlException {
+        try {
+            if (zahlString == null || zahlString.length() == 0) {
+                // leerer oder nicht vorhandener String
+                throw new KeineZahlException();
+            }
+            int zahl = 0;
+            for (int i = 0; i < zahlString.length(); i++) {
+                String ziffernString = zahlString.substring(i,
+                        i + 1);
+                int ziffer = this.stringToZiffer(ziffernString);
+                zahl = zahl * 10 + ziffer;
+            }
+            return zahl;
+        } catch (KeineZifferException exc) {
+            // die KeineZifferException wird in eine
+            // KeineZahlException "umgewandelt"
+            throw new KeineZahlException(zahlString);
+        }
+    }
+
+    int stringToZiffer(String ziffernString)
+            throws KeineZifferException {
+        if (ziffernString.equals("0"))
+            return 0;
+        if (ziffernString.equals("1"))
+            return 1;
+        if (ziffernString.equals("2"))
+            return 2;
+        if (ziffernString.equals("3"))
+            return 3;
+        if (ziffernString.equals("4"))
+            return 4;
+        if (ziffernString.equals("5"))
+            return 5;
+        if (ziffernString.equals("6"))
+            return 6;
+        if (ziffernString.equals("7"))
+            return 7;
+        if (ziffernString.equals("8"))
+            return 8;
+        if (ziffernString.equals("9"))
+            return 9;
+        // der String repraesentiert keine Ziffer
+        throw new KeineZifferException(ziffernString);
+    }
+}

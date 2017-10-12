@@ -1,0 +1,19 @@
+/*class*/class Luecke {
+
+    private int reihe;
+
+    private int spalte;
+
+    Luecke(int r, int s) {
+        this.reihe = r;
+        this.spalte = s;
+    }
+
+    int getReihe() {
+        return this.reihe;
+    }
+
+    int getSpalte() {
+        return this.spalte;
+    }
+}

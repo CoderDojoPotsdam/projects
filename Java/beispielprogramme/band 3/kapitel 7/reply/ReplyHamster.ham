@@ -1,0 +1,62 @@
+/*class*/import util.AllroundHamster;
+
+class ReplyHamster extends Hamster {
+
+    ReplyHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+    
+    synchronized boolean linksFrei() {
+        this.linksUm();
+        boolean frei = this.vornFrei();
+        (new BehebeLinksFreiSeiteneffekt(this)).start();
+        return frei;
+    }
+    
+    synchronized int getAnzahlKoernerAufKachel() {
+        int anzahl = 0;
+        while (this.kornDa()) {
+            this.nimm();
+            anzahl++;
+        }
+       (new BehebeGetAnzahlKoernerAufKachelSeiteneffekt(this, anzahl)).start();
+        return anzahl;
+    }
+}
+
+class BehebeLinksFreiSeiteneffekt extends Thread {
+
+    private Hamster hamster;
+    
+    BehebeLinksFreiSeiteneffekt(Hamster ham) {
+        this.hamster = ham;
+    }
+    
+    public void run() {
+        synchronized (this.hamster) {
+            this.hamster.linksUm();
+            this.hamster.linksUm();
+            this.hamster.linksUm();
+        }
+    }
+}
+
+class BehebeGetAnzahlKoernerAufKachelSeiteneffekt extends Thread {
+
+    private Hamster hamster;
+    private int anzahl;
+    
+    BehebeGetAnzahlKoernerAufKachelSeiteneffekt(Hamster ham, int anzahl) {
+        this.hamster = ham;
+        this.anzahl = anzahl;
+    }
+    
+    public void run() {
+        synchronized (this.hamster) {
+            while (this.anzahl > 0) {
+                this.hamster.gib();
+                this.anzahl--;
+            }
+        }
+    }
+}

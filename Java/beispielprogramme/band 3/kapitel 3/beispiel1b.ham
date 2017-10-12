@@ -1,0 +1,14 @@
+/*object-oriented program*/void main() {
+    Hamster paul = new Hamster(1, 0, Hamster.OST, 0);
+    Hamster willi = new Hamster(2, 0, Hamster.OST, 0);
+
+    // zunaechst laeuft Paul bis zur naechsten Mauer
+    while (paul.vornFrei()) {
+        paul.vor();
+    }
+
+    // danach ist Willi an der Reihe
+    while (willi.vornFrei()) {
+        willi.vor();
+    }
+}

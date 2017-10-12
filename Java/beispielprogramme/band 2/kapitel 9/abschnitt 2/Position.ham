@@ -1,0 +1,22 @@
+/*class*/class Position {
+
+    // Attribute
+    int reihe;
+
+    int spalte;
+
+    // Konstruktor
+    Position(int rWert, int sWert) {
+        this.reihe = rWert;
+        this.spalte = sWert;
+    }
+
+    // Methoden
+    int getReihe() {
+        return this.reihe;
+    }
+
+    int getSpalte() {
+        return this.spalte;
+    }
+}

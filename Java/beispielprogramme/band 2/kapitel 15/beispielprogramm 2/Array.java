@@ -1,0 +1,112 @@
+import de.hamster.debugger.model.Territorium;import de.hamster.debugger.model.Territory;import de.hamster.model.HamsterException;import de.hamster.model.HamsterInitialisierungsException;import de.hamster.model.HamsterNichtInitialisiertException;import de.hamster.model.KachelLeerException;import de.hamster.model.MauerDaException;import de.hamster.model.MaulLeerException;import de.hamster.model.MouthEmptyException;import de.hamster.model.WallInFrontException;import de.hamster.model.TileEmptyException;import de.hamster.debugger.model.Hamster;public class Array<T> {
+
+    private final static int START_CAPACITY = 2;
+
+    private Object[] elements; // Elemente
+
+    private int next; // naechster freier Index
+
+    // initialisiert ein Array mit einer bestimmten
+    // Startkapazitaet von Elementen
+    public Array() {
+        this.elements = new Object[Array.START_CAPACITY];
+        this.next = 0;
+    }
+
+    // fuegt obj an das Array hinzu
+    public void add(T obj) {
+        if (this.next >= this.elements.length) {
+
+            // elements wird gegen ein doppelt so grosses Array
+            // ausgetauscht
+            Object[] newElements = new Object[this.elements.length * 2];
+            for (int i = 0; i < this.elements.length; i++) {
+                newElements[i] = this.elements[i];
+            }
+            this.elements = newElements;
+        }
+        this.elements[this.next] = obj;
+        this.next = this.next + 1;
+    }
+
+    // loescht alle Vorkommen von obj im Arrays
+    public void remove(T obj) {
+        for (int i = 0; i < this.next; i++) {
+            if (this.elements[i].equals(obj)) {
+
+                // von hinten nach vorne verschieben
+                for (int j = i; j < this.next - 1; j++) {
+                    this.elements[j] = this.elements[j + 1];
+                }
+                this.next = this.next - 1;
+
+                // rekursiv andere Vorkommen löschen
+                this.remove(obj);
+            }
+        }
+    }
+
+    // ueberprueft, ob obj im Array enthalten ist
+    public boolean contains(T obj) {
+        for (int i = 0; i < this.next; i++) {
+            if (this.elements[i].equals(obj)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // liefert das im Array gespeicherte Objekt am angegebenen
+    // Index
+    public T get(int index) {
+        if (index >= this.next) {
+            throw new ArrayIndexOutOfBoundsException(index);
+        }
+        return (T) this.elements[index];
+    }
+
+    // ersetzt das im Array am angegebenen Index gespeicherte
+    // Objekt durch das als Parameter uebergebene Objekt; liefert
+    // das vorher am angegebenen Index gespeicherte Objekt
+    public T set(int index, T obj) {
+        if (index >= this.next) {
+            throw new ArrayIndexOutOfBoundsException(index);
+        }
+        T res = this.get(index);
+        this.elements[index] = obj;
+        return res;
+    }
+
+    // liefert die aktuelle Anzahl von Objekten im Array
+    public int size() {
+        return this.next;
+    }
+
+    // ueberprueft, ob das Array leer ist
+    public boolean isEmpty() {
+        return this.size() == 0;
+    }
+
+    // loescht das Array
+    public void clear() {
+        this.next = 0;
+    }
+
+    // liefert ein komplett gefülltes Java-Array mit den Objekten
+    // des Arrays
+    public Object[] toArray() {
+        Object[] res = new Object[this.next];
+        for (int i = 0; i < this.next; i++) {
+            res[i] = this.elements[i];
+        }
+        return res;
+    }
+
+    // fuellt das Parameter-Array so weit wie möglich mit den
+    // Objekten des Arrays
+    public void toArray(T[] a) {
+        for (int i = 0; i < a.length && i < this.next; i++) {
+            a[i] = (T) this.elements[i];
+        }
+    }
+}

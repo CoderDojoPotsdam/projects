@@ -1,0 +1,57 @@
+/*python program*/# Aufgabe:
+# der Hamster steht irgendwo in einem beliebigen Territorium
+# ohne innere Mauern; er soll alle Körner fressen
+
+def kehrt():
+    linksUm()
+    linksUm()
+    
+def rechtsUm():
+    kehrt() 
+    linksUm()
+
+def laufeZurueck():
+    while vornFrei():
+        vor()
+
+def sammle():
+    while kornDa():
+      nimm()
+
+def laufeZurWand():
+    while vornFrei():
+        vor()
+        
+def laufeInEcke():
+    laufeZurWand()
+    linksUm()
+    laufeZurWand()
+    linksUm()
+
+def ernteEineReihe():
+    sammle()
+    while vornFrei():
+        vor()
+        sammle()
+
+def ernteEineReiheUndLaufeZurueck():
+    ernteEineReihe()
+    kehrt()
+    laufeZurueck()
+
+laufeInEcke()
+ernteEineReiheUndLaufeZurueck()
+rechtsUm()
+while vornFrei():
+    vor()
+    rechtsUm()
+    ernteEineReiheUndLaufeZurueck()
+    rechtsUm()
+
+
+
+
+
+
+
+

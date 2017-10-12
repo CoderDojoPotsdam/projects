@@ -1,0 +1,12 @@
+/*object-oriented program*/import java.util.Random;
+
+void main() {
+    AllroundHamster paul = new AllroundHamster(Hamster
+            .getStandardHamster());
+    Random zufall = new Random(1000);
+    int reihe = zufall
+            .nextInt(Territorium.getAnzahlReihen());
+    int spalte = zufall.nextInt(Territorium
+            .getAnzahlSpalten());
+    paul.laufeZuKachel(reihe, spalte);
+}

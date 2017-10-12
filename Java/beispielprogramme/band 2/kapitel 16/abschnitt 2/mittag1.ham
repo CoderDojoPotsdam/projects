@@ -1,0 +1,13 @@
+/*object-oriented program*/import java.util.Calendar;
+
+void main() {
+    Calendar uhr = Calendar.getInstance();
+    int aktuelleStunde = uhr.get(Calendar.HOUR_OF_DAY);
+    if (aktuelleStunde < 12) {
+        Hamster.getStandardHamster().schreib(
+                "Es ist noch kein Mittag!");
+    } else {
+        Hamster.getStandardHamster().schreib(
+                "Mittag ist bereits vorbei!");
+    }
+}

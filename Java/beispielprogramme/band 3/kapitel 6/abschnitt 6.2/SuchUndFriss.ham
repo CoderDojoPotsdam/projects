@@ -1,0 +1,115 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+class SuchHamster extends AllroundHamster {
+
+    // gemeinsame Variablen
+
+    public int kornReihe, kornSpalte;
+
+    public boolean kornGefunden;
+
+    public boolean fertig;
+
+    private boolean vonLinksNachRechts;
+
+    SuchHamster() {
+        super(0, 0, Hamster.OST, 0);
+        this.vonLinksNachRechts = true;
+        this.kornReihe = 0;
+        this.kornSpalte = 0;
+        this.kornGefunden = false;
+        this.fertig = false;
+    }
+
+    public void run() {
+        this.laufeZurWandUndSuche();
+        while (this.weitereReiheExistiert()) {
+            this.begibDichInNaechsteReihe();
+            this.laufeZurWandUndSuche();
+        }
+        this.fertig = true;
+    }
+
+    void laufeZurWandUndSuche() {
+        this.suche();
+        while (this.vornFrei()) {
+            this.vor();
+            this.suche();
+        }
+    }
+
+    void suche() {
+        if (this.kornDa()) {
+            this.kornReihe = this.getReihe();
+            this.kornSpalte = this.getSpalte();
+            this.kornGefunden = true;
+        }
+
+        // warten, bis FressHamster das Korn gefressen hat
+        while (this.kornGefunden) {
+            // akives Warten
+        }
+    }
+
+    boolean weitereReiheExistiert() {
+        if (this.vonLinksNachRechts) {
+            return this.rechtsFrei();
+        } else {
+            return this.linksFrei();
+        }
+    }
+
+    void begibDichInNaechsteReihe() {
+        if (this.vonLinksNachRechts) {
+            this.rechtsUm();
+            this.vor();
+            this.rechtsUm();
+        } else {
+            this.linksUm();
+            this.vor();
+            this.linksUm();
+        }
+        this.vonLinksNachRechts = !this.vonLinksNachRechts;
+    }
+}
+
+class FressHamster extends AllroundHamster {
+
+    private SuchHamster helfer;
+
+    FressHamster(SuchHamster hamster) {
+        super(0, 0, Hamster.OST, 0);
+        this.helfer = hamster;
+    }
+
+    public void run() {
+        while (!this.helfer.fertig) {
+
+            // warten, bis SuchHamster ein Korn gefunden hat
+            while (!(this.helfer.kornGefunden || this.helfer.fertig)) {
+                // aktives Warten
+            }
+
+            // gefundenes Korn fressen
+            if (this.helfer.kornGefunden) {
+                this.laufeZuKachel(this.helfer.kornReihe,
+                        this.helfer.kornSpalte);
+                this.nimmAlle();
+                this.helfer.kornGefunden = false;
+            }
+        }
+    }
+}
+
+void main() {
+    SuchHamster paul = new SuchHamster();
+    FressHamster heidi = new FressHamster(paul);
+    paul.start();
+    heidi.start();
+}

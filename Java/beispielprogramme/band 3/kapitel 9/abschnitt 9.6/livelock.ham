@@ -1,0 +1,107 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+// Repraesentation von Kachelpositionen
+class Position {
+    private int reihe;
+
+    private int spalte;
+
+    Position(int r, int s) {
+        this.reihe = r;
+        this.spalte = s;
+    }
+
+    int getReihe() {
+        return this.reihe;
+    }
+
+    int getSpalte() {
+        return this.spalte;
+    }
+}
+
+// Hamster, die zwei Koerner gleichzeitig probieren wollen
+class ProbierHamster extends AllroundHamster {
+
+    private Position pos1; // Position des ersten Korns
+
+    private Position pos2; // Position des zweiten Korns
+
+    ProbierHamster(int r, int s, int b, Position pos1,
+            Position pos2) {
+        super(r, s, b, 0);
+        this.pos1 = pos1;
+        this.pos2 = pos2;
+    }
+
+    public void run() {
+        this.zweiKoernerFressen(this.pos1, this.pos2);
+    }
+
+    private void zweiKoernerFressen(Position p1, Position p2) {
+        boolean probiert = false;
+
+        // erstes Korn versuchen zu nehmen
+        this.laufeZuKachel(p1.getReihe(), p1.getSpalte());
+        synchronized (Territorium.getKachel(this.getReihe(),
+                this.getSpalte())) {
+            if (this.kornDa()) {
+                this.nimm();
+            }
+        }
+        if (this.getAnzahlKoerner() == 1) { // ein Korn im Maul
+            // zweites Korn versuchen zu nehmen
+            this.laufeZuKachel(p2.getReihe(), p2.getSpalte());
+            synchronized (Territorium.getKachel(this.getReihe(),
+                    this.getSpalte())) {
+                if (this.kornDa()) {
+                    this.nimm();
+                }
+            }
+            if (this.getAnzahlKoerner() == 2) { 
+                // zwei Koerner im Maul
+                
+                // probieren
+                this.schreib("Hmmmm, das schmeckt");
+                probiert = true;
+                synchronized (Territorium.getKachel(this
+                        .getReihe(), this.getSpalte())) {
+                    this.gib(); // zweites Korn wieder ablegen
+                }
+            }
+            this.laufeZuKachel(p1.getReihe(), p1.getSpalte());
+            synchronized (Territorium.getKachel(this.getReihe(),
+                    this.getSpalte())) {
+                this.gib(); // erstes Korn wieder ablegen
+            }
+        }
+        if (!probiert) {
+
+            // mit Start auf der anderen Kachel erneut versuchen
+            zweiKoernerFressen(p2, p1);
+        }
+    }
+}
+
+void main() {
+    Position kachel1 = new Position(0, 1);
+    Position kachel2 = new Position(2, 1);
+
+    // Paul nimmt erst das obere und dann das untere Korn
+    ProbierHamster paul = new ProbierHamster(1, 0,
+            Hamster.OST, kachel1, kachel2);
+
+    // Willi nimmt erst das untere und dann das obere Korn
+    ProbierHamster willi = new ProbierHamster(1, 2,
+            Hamster.WEST, kachel2, kachel1);
+
+    paul.start();
+    willi.start();
+}
+

@@ -1,0 +1,58 @@
+/*class*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+class HoehlenHamster extends AllroundHamster {
+
+    private static Object hoehle = new Object();
+
+    private static boolean hoehleFrei = true;
+
+    private int hoehlenEingangReihe;
+
+    private int hoehlenEingangSpalte;
+
+    HoehlenHamster(int hoehlenEingangReihe,
+            int hoehlenEingangSpalte) {
+        super(0, 0, Hamster.OST, 0);
+        this.hoehlenEingangReihe = hoehlenEingangReihe;
+        this.hoehlenEingangSpalte = hoehlenEingangSpalte;
+    }
+
+    public void run() {
+        this.laufeZuKachel(this.hoehlenEingangReihe,
+                this.hoehlenEingangSpalte);
+
+        // auf Einlass warten
+        synchronized (HoehlenHamster.hoehle) {
+            while (!HoehlenHamster.hoehleFrei) {
+                try {
+                    HoehlenHamster.hoehle.wait();
+                } catch (InterruptedException exc) {
+                }
+            }
+            HoehlenHamster.hoehleFrei = false;
+        }
+
+        // Hoehle durchlaufen
+        do {
+            this.vor();
+        } while (!this.hoehlenEndeErreicht());
+
+        // teile den anderen das Erreichen des Hoehlenendes mit
+        synchronized (HoehlenHamster.hoehle) {
+            HoehlenHamster.hoehleFrei = true;
+            HoehlenHamster.hoehle.notify();
+        }
+
+        this.kehrt();
+    }
+
+    private boolean hoehlenEndeErreicht() {
+        return this.linksFrei() && this.rechtsFrei();
+    }
+}

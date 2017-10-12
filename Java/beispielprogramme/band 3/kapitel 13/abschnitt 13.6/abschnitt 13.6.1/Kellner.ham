@@ -1,0 +1,50 @@
+/*class*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+class Kellner extends AllroundHamster {
+
+    private KellnerPool pool;
+
+    Kellner(KellnerPool p) {
+        super(0, 0, Hamster.OST, 0);
+        this.pool = p;
+    }
+
+    public void run() {
+        while (true) {
+            try {
+
+                // Bestellung uebernehmen
+                Bestellung bestellung = this.pool
+                        .getBestellungen().take();
+
+                // Gast bedienen
+                this.bedienen(bestellung.getSpalte());
+            } catch (InterruptedException exc) {
+            }
+        }
+    }
+
+    private void bedienen(int spalte) {
+        if (!this.kornDa()) {
+            return; // Kueche leer
+        }
+        this.nimm();
+        this.laufeZumGast(spalte);
+        this.gib();
+        this.laufeZurueckZurKueche();
+    }
+
+    private void laufeZumGast(int spalte) {
+        this.laufeZuSpalte(spalte);
+    }
+
+    private void laufeZurueckZurKueche() {
+        this.laufeZuKachel(0, 0);
+    }
+}

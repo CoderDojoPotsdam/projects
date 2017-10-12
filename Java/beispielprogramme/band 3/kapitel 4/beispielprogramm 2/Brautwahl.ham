@@ -1,0 +1,26 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+ */
+void main() {
+    // Junggesellen-Hamster Paul wird erzeugt
+    BraeutigamHamster paul = new BraeutigamHamster(Hamster
+            .getStandardHamster());
+
+    // Braut-Hamster werden erzeugt; sie "bewerben" sich bei
+    // Paul als moegliche Hochzeitskandidatinnen
+    for (int g = 0; g < 5; g++) {
+        BrautHamster girl = new BrautHamster(Zufall
+                .erzeugeZufallsZahl(Territorium
+                        .getAnzahlReihen() - 1), Zufall
+                .erzeugeZufallsZahl(Territorium
+                        .getAnzahlSpalten() - 1), Zufall
+                .erzeugeZufallsZahl(3), 0);
+        paul.hinzufuegen(girl); // "Bewerbung"
+    }
+
+    // Paul beginnt mit der Koernerstrauss und Brautsuche
+    paul.start();
+}

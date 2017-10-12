@@ -1,0 +1,24 @@
+/*class*/class NochUnglaublichererHamster extends Hamster {
+
+    private int wert;
+
+    // gemeinsame Variable
+    private static long globalVar = 0;
+
+    NochUnglaublichererHamster(int wert) {
+        super(0, 0, Hamster.OST, 0);
+        this.wert = wert;
+    }
+
+    public void run() {
+        if (this.wert > 0) {
+            globalVar = 0L; // 0x0000000000000000L
+        } else {
+            globalVar = -1L; // 0xFFFFFFFFFFFFFFFFL;
+        }
+    }
+
+    static long getGlobalVar() {
+        return NochUnglaublichererHamster.globalVar;
+    }
+}

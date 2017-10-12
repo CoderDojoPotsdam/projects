@@ -1,0 +1,61 @@
+/*imperative program*/void main() {
+
+    // untere Reihe
+    ueberpruefeEineReihe();
+    linksUm(); 
+    vor(); 
+    linksUm();
+
+    // zweite Reihe von unten
+    ueberpruefeEineReihe();
+    rechtsUm(); 
+    vor(); 
+    rechtsUm();
+
+    // dritte Reihe von unten
+    ueberpruefeEineReihe();
+    linksUm(); 
+    vor(); 
+    linksUm();
+
+    // vierte Reihe von unten
+    ueberpruefeEineReihe();
+    rechtsUm(); 
+    vor(); 
+    rechtsUm();
+
+    // obere Reihe
+    ueberpruefeEineReihe();
+}
+
+void ueberpruefeEineReihe() {
+    evtlFressen(); 
+    vor();
+    evtlFressen(); 
+    vor();
+    evtlFressen(); 
+    vor();
+    evtlFressen(); 
+    vor();
+    evtlFressen(); 
+}
+
+void evtlFressen() {
+
+    // erstmal ein Korn fressen
+    nimm();
+
+    /*
+     * falls es das einzige Korn auf dem Feld war, 
+     * muss es wieder abgelegt werden
+     */
+    if (!kornDa()) {
+        gib();
+    }
+}
+
+void rechtsUm() { 
+    linksUm(); 
+    linksUm(); 
+    linksUm(); 
+}

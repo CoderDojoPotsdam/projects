@@ -1,0 +1,76 @@
+/*class*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+class HoehlenHamster extends AllroundHamster {
+
+    private int nummer;
+
+    private HamsterBinaerSemaphor sem;
+
+    HoehlenHamster(int r, int s, int nummer,
+            HamsterBinaerSemaphor sem) {
+        this(r, s, 1, nummer, sem);
+    }
+
+    HoehlenHamster(int r, int s, int k, int nummer,
+            HamsterBinaerSemaphor sem) {
+        super(r, s, Hamster.OST, k);
+        this.nummer = nummer;
+        this.sem = sem;
+    }
+
+    public void run() {
+        while (true) {
+            this.laufeZumHoehlenEingang();
+            this.begibDichInHoehle();
+            this.sucheLeckeresKorn();
+            this.verlasseHoehle();
+            this.macheIrgendwas();
+        }
+    }
+
+    private void laufeZumHoehlenEingang() {
+        this.laufeZurWand();
+    }
+
+    private void begibDichInHoehle() {
+        this.sem.p(this.nummer, this);
+    }
+
+    private void sucheLeckeresKorn() {
+        int schritte = 0;
+        while (this.vornFrei()) {
+            this.vor();
+            schritte++;
+            if (this.kornDa()) {
+                this.nimm(); // hmmmmm, das schmeckt
+                this.gib();
+                break;
+            }
+        }
+        this.kehrt();
+        while (schritte > 0) {
+            this.vor();
+            schritte--;
+        }
+    }
+
+    private void verlasseHoehle() {
+        this.sem.v(this.nummer, this);
+    }
+
+    private void macheIrgendwas() {
+        this.setzeBlickrichtung(Hamster.WEST);
+        this.laufeZurWand();
+        this.kehrt();
+    }
+
+    void laufeZuKachel(Position pos) {
+        this.laufeZuKachel(pos.getReihe(), pos.getSpalte());
+    }
+}

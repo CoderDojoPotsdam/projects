@@ -1,0 +1,26 @@
+/*class*/public class Task<V> extends Thread {
+
+    private Callable<V> callable;
+
+    private V result;
+
+    public Task(Callable<V> callable) {
+        this.callable = callable;
+        this.result = null;
+    }
+
+    public void run() {
+        this.result = this.callable.call();
+
+    }
+
+    public V get() {
+        try {
+            this.join();
+        } catch (InterruptedException exc) {
+            return this.get();
+        }
+        return this.result;
+
+    }
+}

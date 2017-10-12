@@ -1,0 +1,20 @@
+/*object-oriented program*/void main() {
+    Hamster willi = Hamster.getStandardHamster();
+    BergHamster paul = new BergHamster(willi);
+
+    // zunaechst erklimmt paul den Berg
+    do {
+        paul.erklimmeStufe();
+    } while (!paul.gipfelErreicht() && !paul.hoeheErfahren());
+
+    paul.kehrt();
+
+    // nun klettert er wieder herunter
+    while (!paul.talErreicht()) {
+        paul.klettereStufeHinab();
+    }
+
+    // nun teilt er stolz die Hoehe des Berges mit
+    paul.schreib("Der Berg ist " + paul.getBergHoehe()
+            + " Stufen hoch!");
+}

@@ -1,0 +1,17 @@
+/*imperative program*/void main()
+{
+    // laufe bis zur naechsten Wand
+    while (vornFrei())
+    {
+      vor();
+    }
+
+    // drehe dich um 90 Grad nach links
+    linksUm();
+
+    // laufe erneut bis zur naechsten Wand
+    while (vornFrei())
+    {
+      vor();
+    }
+}

@@ -1,0 +1,100 @@
+/*class*/import java.util.Vector;
+
+class KeineNachrichtDaException extends Exception {
+}
+
+class Nachricht {
+
+    Object nachricht;
+
+    Nachricht(Object nachricht) {
+        this.nachricht = nachricht;
+    }
+
+    Object getNachricht() {
+        return this.nachricht;
+    }
+}
+
+class Mailbox {
+
+    private Vector<Nachricht> nachrichten;
+
+    public Mailbox() {
+        this.nachrichten = new Vector<Nachricht>();
+    }
+
+    public synchronized void asynchronesSenden(Object nachricht) {
+
+        // Nachricht kapseln
+        Nachricht nachrichtObj = new Nachricht(nachricht);
+
+        // Nachricht speichern
+        this.nachrichten.add(nachrichtObj);
+
+        // wartende Empfaenger benachrichten
+        this.notifyAll();
+    }
+
+    public void synchronesSenden(Object nachricht) {
+
+        // Nachricht kapseln
+        Nachricht nachrichtObj = new Nachricht(nachricht);
+        synchronized (nachrichtObj) {
+            synchronized (this) {
+
+                // Nachricht speichern
+                this.nachrichten.add(nachrichtObj);
+
+                // wartende Empfaenger benachrichten
+                this.notifyAll();
+            }
+
+            // auf Empfangen der Nachricht warten
+            try {
+                nachrichtObj.wait();
+            } catch (InterruptedException exc) {
+            }
+        }
+    }
+
+    public synchronized Object asynchronesEmpfangen()
+            throws KeineNachrichtDaException {
+        if (this.nachrichten.isEmpty()) {
+            throw new KeineNachrichtDaException();
+        }
+
+        // aelteste Nachricht ermitteln und entfernen
+        Nachricht nachrichtObj = this.nachrichten.remove(0);
+
+        // evtl. wartenden Sender benachrichtigen
+        synchronized (nachrichtObj) {
+            nachrichtObj.notify();
+        }
+
+        // Nachricht entkapseln und liefern
+        return nachrichtObj.getNachricht();
+    }
+
+    public synchronized Object synchronesEmpfangen() {
+
+        // auf Nachricht warten
+        while (this.nachrichten.isEmpty()) {
+            try {
+                this.wait();
+            } catch (InterruptedException exc) {
+            }
+        }
+
+        // aelteste Nachricht ermitteln und entfernen
+        Nachricht nachrichtObj = this.nachrichten.remove(0);
+
+        // evtl. wartenden Sender benachrichtigen
+        synchronized (nachrichtObj) {
+            nachrichtObj.notify();
+        }
+
+        // Nachricht entkapseln und liefern
+        return nachrichtObj.getNachricht();
+    }
+}

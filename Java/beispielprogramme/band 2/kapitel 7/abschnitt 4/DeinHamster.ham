@@ -1,0 +1,16 @@
+/*class*/class DeinHamster extends MeinHamster {
+    void kehrt(boolean wirklich) { // Ueberladen
+        if (wirklich) {
+            super.kehrt();
+        }
+    }
+
+    void kehrt() { // Ueberschreiben
+        this.linksUm();
+        this.linksUm();
+        this.linksUm();
+        this.linksUm();
+        this.linksUm();
+        this.linksUm();
+    }
+}

@@ -1,0 +1,15 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+void main() {
+    Semaphor gefunden = new Semaphor(0);
+    Semaphor gefressen = new Semaphor(0);
+    SuchHamster paul = new SuchHamster(gefunden, gefressen);
+    FrissHamster maria = new FrissHamster(gefunden,
+            gefressen, paul);
+    paul.start();
+    maria.start();
+}

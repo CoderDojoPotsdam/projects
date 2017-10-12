@@ -1,0 +1,14 @@
+/*class*/class Hamster2 extends Hamster1 {
+    int maxSchritte;
+
+    Hamster2(int r, int s, int b, int k, int m) {
+        super(r, s, b, k);
+        this.maxSchritte = m;
+    }
+
+    Hamster2(int m) {
+        // automatischer Aufruf des parameterlosen Konstruktors
+        // der Klasse Hamster1
+        this.maxSchritte = m;
+    }
+}

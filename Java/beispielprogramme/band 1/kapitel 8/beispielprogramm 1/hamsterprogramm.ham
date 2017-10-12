@@ -1,0 +1,29 @@
+/*imperative program*/void main() {
+    ernteReihe(); 
+    rechtsUm();
+    zweiVor(); 
+    rechtsUm();
+    ernteReihe();
+}
+
+void ernteReihe() {
+    zweiVorUndNimm(); 
+    zweiVorUndNimm(); 
+    zweiVorUndNimm();
+}
+
+void zweiVorUndNimm() {
+    zweiVor(); 
+    nimm();
+}
+
+void zweiVor() {
+    vor(); 
+    vor();
+}
+
+void rechtsUm() {
+    linksUm(); 
+    linksUm(); 
+    linksUm();
+}

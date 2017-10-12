@@ -1,0 +1,31 @@
+/*object-oriented program*/import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Random;
+import java.util.Set;
+
+void main() {
+    AllroundHamster paul = new AllroundHamster(Hamster
+            .getStandardHamster());
+
+    Set<Kachel> kachelSpeicher = new HashSet<Kachel>();
+
+    Random zufall = new Random();
+    while (!paul.maulLeer()) {
+        int reihe = zufall.nextInt(Territorium
+                .getAnzahlReihen());
+        int spalte = zufall.nextInt(Territorium
+                .getAnzahlSpalten());
+        paul.laufeZuKachel(reihe, spalte);
+        paul.gib();
+        kachelSpeicher.add(new Kachel(reihe, spalte));
+    }
+
+    AllroundHamster willi = new AllroundHamster(Hamster
+            .getStandardHamster());
+
+    for (Kachel kachel : kachelSpeicher) {
+        willi.laufeZuKachel(kachel.getReihe(), kachel
+                .getSpalte());
+        willi.nimm();
+    }
+}

@@ -1,0 +1,10 @@
+/*object-oriented program*/void main() {
+    VorsichtigerHamster paul = // ok; Polymorphie
+    new MeinHamster(0, 0, Hamster.NORD, 0);
+    if (paul.hintenFrei() && paul.vornFrei()) { // ok;
+                                                // dynamisches
+                                                // Binden
+        // paul.vor(); // Fehler
+        ((MeinHamster) paul).vor(); // ok
+    }
+}

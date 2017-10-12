@@ -1,0 +1,25 @@
+/*class*/class HamsterBinaerSemaphor4 extends HamsterBinaerSemaphor3 {
+
+    public HamsterBinaerSemaphor4(Position eingang) {
+        super(eingang);
+    }
+
+    public void p(int dieserHamster, HoehlenHamster ham) {
+
+        // zunaechst die eigene Seite markieren
+        ham.gib();
+
+        // dann die andere Seite ueberpruefen
+        ham.laufeZuKachel(this.eingangsSeiten[this
+                .andererHamster(dieserHamster)]);
+        while (ham.kornDa()) {
+            // aktives Warten
+        }
+
+        // nun zum Haupteingang
+        ham.laufeZuKachel(this.eingang);
+        ham.setzeBlickrichtung(Hamster.OST);
+
+        // dieserHamster ist nun in der Hoehle
+    }
+}

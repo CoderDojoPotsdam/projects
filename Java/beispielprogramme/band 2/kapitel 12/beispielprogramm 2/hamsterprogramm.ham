@@ -1,0 +1,16 @@
+/*object-oriented program*/void main() {
+    Hamster paul = Hamster.getStandardHamster();
+    int spielrunden = paul
+            .liesZahl("Wie viele Spielrunden?");
+    BeuteHamster hase = new BeuteHamster(Hamster
+            .getStandardHamster(), spielrunden);
+    RaeuberHamster fuchs = new RaeuberHamster(0, 0,
+            Hamster.OST, 0);
+    Spiel spiel = new Spiel(hase, fuchs);
+    Spieler sieger = spiel.spielen();
+    if (sieger == hase) {
+        hase.schreib("Beute hat gewonnen!");
+    } else {
+        fuchs.schreib("Raeuber hat gewonnen!");
+    }
+}

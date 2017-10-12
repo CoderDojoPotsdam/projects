@@ -1,0 +1,74 @@
+/*class*/import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.Semaphore;
+
+class Luecke {
+
+    private int reihe;
+
+    private int spalte;
+
+    private ArrayBlockingQueue<Object> speicher;
+
+    private Semaphore mutex;
+
+    Luecke(int r, int s, int maxKoerner) {
+        this.reihe = r;
+        this.spalte = s;
+        this.speicher = new ArrayBlockingQueue<Object>(
+                maxKoerner);
+        this.mutex = new Semaphore(1);
+    }
+
+    void put(Hamster ham) {
+        if (ham.maulLeer()) {
+            return;
+        }
+        try {
+
+            // abspeichern bzw. warten, falls voll
+            this.speicher.put(new Object());
+        } catch (InterruptedException exc) {
+        }
+
+        // exklusiver Zutritt zur Luecke
+        this.mutex.acquireUninterruptibly();
+        try {
+            ham.vor();
+            ham.gib();
+            ham.linksUm();
+            ham.linksUm();
+            ham.vor();
+        } finally {
+            this.mutex.release();
+        }
+    }
+
+    void get(Hamster ham) {
+        try {
+
+            // warten, falls leer, bzw. entfernen
+            this.speicher.take();
+        } catch (InterruptedException exc) {
+        }
+
+        // exklusiver Zutritt zur Luecke
+        this.mutex.acquireUninterruptibly();
+        try {
+            ham.vor();
+            ham.nimm();
+            ham.linksUm();
+            ham.linksUm();
+            ham.vor();
+        } finally {
+            this.mutex.release();
+        }
+    }
+
+    int getReihe() {
+        return this.reihe;
+    }
+
+    int getSpalte() {
+        return this.spalte;
+    }
+}

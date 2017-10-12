@@ -1,0 +1,39 @@
+/*object-oriented program*/class Zahl {
+    int zahl = 4711;
+}
+
+class AusgabeHamster extends Hamster {
+
+    Zahl zahlObjekt;
+
+    AusgabeHamster(Zahl zahl) {
+        super(0, 0, Hamster.OST, 0);
+        this.zahlObjekt = zahl;
+    }
+
+    public void run() {
+        this.schreib("" + this.zahlObjekt.zahl);
+    }
+}
+
+class EingabeHamster extends Hamster {
+
+    Zahl zahlObjekt;
+
+    EingabeHamster(Zahl zahl) {
+        super(0, 0, Hamster.OST, 0);
+        this.zahlObjekt = zahl;
+    }
+
+    public void run() {
+        this.zahlObjekt.zahl = this.liesZahl("Zahl eingeben: ");
+    }
+}
+
+void main() {
+    Zahl gemeinsameZahl = new Zahl();
+    Hamster heidi = new AusgabeHamster(gemeinsameZahl);
+    Hamster maria = new EingabeHamster(gemeinsameZahl);
+    heidi.start();
+    maria.start();
+}

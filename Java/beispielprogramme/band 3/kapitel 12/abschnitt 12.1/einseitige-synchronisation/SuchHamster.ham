@@ -1,0 +1,38 @@
+/*class*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+class SuchHamster extends AllroundHamster {
+
+    private Semaphor gefunden;
+
+    private Semaphor gefressen;
+
+    SuchHamster(Semaphor gefunden, Semaphor gefressen) {
+        super(0, 0, Hamster.OST, 0);
+        this.gefunden = gefunden;
+        this.gefressen = gefressen;
+    }
+
+    public void run() {
+        while (true) {
+            if (this.vornFrei()) {
+                this.vor();
+                if (this.kornDa()) {
+
+                    // Korn gefunden signalisieren
+                    this.gefunden.v();
+
+                    // auf Gefressen-Signal warten
+                    this.gefressen.p();
+                }
+            } else {
+                this.kehrt();
+            }
+        }
+    }
+}

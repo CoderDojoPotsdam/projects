@@ -1,0 +1,27 @@
+/*imperative program*/void main()
+{
+    if (!maulLeer()) 
+    {
+      gib();
+      if (!maulLeer()) 
+      {
+        laufeBisInDieNaechsteEcke();
+        gib();
+        if (!maulLeer()) 
+        {
+          laufeBisInDieNaechsteEcke();
+          gib();
+          if (!maulLeer()) 
+          {
+            laufeBisInDieNaechsteEcke();
+            gib();
+          }
+        }
+      }
+    }
+}
+
+void laufeBisInDieNaechsteEcke()
+{
+    vor(); vor(); vor(); vor(); linksUm();
+}

@@ -1,0 +1,21 @@
+/*object-oriented program*/class Herrscher extends Hamster {
+
+    private Hamster sklave;
+
+    Herrscher(Hamster sklave) {
+        super(0, 0, Hamster.OST, 0);
+        this.sklave = sklave;
+    }
+
+    public void run() {
+        this.sklave.vor();
+    }
+}
+
+void main() {
+    Hamster otto = new Hamster(1, 1, Hamster.OST, 0);
+    Hamster paul = new Herrscher(otto);
+    Hamster karl = new Herrscher(otto);
+    paul.start();
+    karl.start();
+}

@@ -1,0 +1,26 @@
+/*class*/class LaufendeHamsterGO extends Hamster {
+
+    Koordinator koordinationsObjekt;
+
+    LaufendeHamsterGO(int r, int s, int b, int k,
+            Koordinator koord) {
+        super(r, s, b, k);
+        this.koordinationsObjekt = koord;
+        this.koordinationsObjekt.neuerHamster(this);
+    }
+
+    public void run() {
+        while (this.vornFrei()) {
+            while (this.koordinationsObjekt.getAktiverHamster() != 
+                this) {
+                    // aktives Warten
+            }
+
+            // jetzt bin ich dran
+            this.vor();
+
+            // der Naechste bitte!
+            this.koordinationsObjekt.naechsterHamster();
+        }
+    }
+}

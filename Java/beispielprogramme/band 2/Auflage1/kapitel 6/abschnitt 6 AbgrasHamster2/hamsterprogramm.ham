@@ -1,0 +1,31 @@
+/*object-oriented program*/class AbgrasHamster2 extends Hamster {
+    AbgrasHamster2(int r, int s, int b, int k) {
+      this.init(r, s, b, k);
+    }
+
+    void sammle() {
+      while (this.kornDa()) {
+        this.nimm();
+      }
+    }
+
+    void laufeUndSammle() {
+      this.sammle();
+      int spalte = 0;
+      while (spalte < Territorium.getAnzahlSpalten()-1) {
+        this.vor();
+        this.sammle();
+        spalte = spalte + 1;
+      }
+    }
+}
+
+void main() {
+    int zeile = 0;
+    while (zeile < Territorium.getAnzahlReihen()) {
+      AbgrasHamster2 paul = 
+        new AbgrasHamster2(zeile, 0, Hamster.OST, 0);
+      paul.laufeUndSammle();
+      zeile = zeile + 1;
+    }
+}

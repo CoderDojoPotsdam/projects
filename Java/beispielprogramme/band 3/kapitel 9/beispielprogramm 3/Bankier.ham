@@ -1,0 +1,27 @@
+/*class*/class Bankier extends Hamster {
+
+    private Belegungszustand zustand;
+
+    Bankier(Belegung[] belegungen) {
+        super(1, 1, Hamster.OST, 0);
+        this.zustand = new Belegungszustand(Territorium
+                .getAnzahlKoerner(1, 0), belegungen);
+    }
+
+    synchronized void anfordern(Hamster ham, int anzahl) {
+        while (this.zustand.getFreieInstanzen() < anzahl
+                || !this.zustand.istSicher(ham, anzahl)) {
+            try {
+                this.wait();
+            } catch (InterruptedException exc) {
+            }
+        }
+        this.zustand.belegen(ham, anzahl);
+    }
+
+    synchronized void zurueckgeben(Hamster ham, int anzahl) {
+        this.zustand.freigeben(ham, anzahl);
+        this.notifyAll();
+    }
+
+}

@@ -1,0 +1,11 @@
+/*class*/class DrehHamster extends Hamster {
+    void kehrt() {
+        super.linksUm(); // anstelle von this.linksUm();
+        super.linksUm();
+    }
+
+    void rechtsUm() {
+        this.kehrt(); // super.kehrt() ist nicht erlaubt!
+        super.linksUm();
+    }
+}

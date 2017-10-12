@@ -1,0 +1,13 @@
+/*object-oriented program*/class MHamster extends Hamster {
+    MHamster(int r, int s, int b, int k) {
+        this.init(r, s, b, k);
+    }
+}
+
+void main() {
+    MHamster paul = new MHamster(3, 1, Hamster.SUED, 89);
+    // paul wird im Konstruktor initialisiert!
+    if (paul.vornFrei()) {
+        paul.vor();
+    }
+}

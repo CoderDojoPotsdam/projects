@@ -1,0 +1,17 @@
+/*object-oriented program*/void main() {
+    SammelHamster2 paul = new SammelHamster2(0, 0,
+            Hamster.OST, 0);
+    paul.laufeUndSammle();
+
+    SammelHamster2 willi = new SammelHamster2(1, 0,
+            Hamster.OST, 0);
+    willi.laufeUndSammle();
+
+    // Aufruf der Klassenmethode
+    if (SammelHamster2.getGemeinsamGesammelteKoerner() < 10) {
+        SammelHamster2 heidi = new SammelHamster2(2, 0,
+                Hamster.OST, 0);
+        heidi.laufeUndSammle();
+        // ...
+    }
+}

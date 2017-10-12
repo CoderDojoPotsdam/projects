@@ -1,0 +1,15 @@
+/*class*/import java.io.FileWriter;
+import java.io.PrintWriter;
+
+public class IOVormachHamster extends VormachHamster {
+
+    public IOVormachHamster(Hamster hamster, String dateiName) {
+        super(hamster);
+        try {
+            this.senke = new PrintWriter(new FileWriter(
+                    dateiName));
+        } catch (Exception exc) {
+            this.senke = null;
+        }
+    }
+}

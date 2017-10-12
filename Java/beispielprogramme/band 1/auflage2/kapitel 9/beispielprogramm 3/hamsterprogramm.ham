@@ -1,0 +1,34 @@
+/*imperative program*/  void main()
+  {
+    ueberpruefeEineReihe();
+    linksUm(); vor(); linksUm();
+    ueberpruefeEineReihe();
+    rechtsUm(); vor(); rechtsUm();
+    ueberpruefeEineReihe();
+    linksUm(); vor(); linksUm();
+    ueberpruefeEineReihe();
+    rechtsUm(); vor(); rechtsUm();
+    ueberpruefeEineReihe();
+  }
+
+  void ueberpruefeEineReihe()
+  {
+    evtlFressen(); vor();
+    evtlFressen(); vor();
+    evtlFressen(); vor();
+    evtlFressen(); vor();
+    evtlFressen(); 
+  }
+
+  void evtlFressen()
+  {
+    // erstmal ein Korn fressen
+    nimm();
+    // falls es das einzige Korn war, muss es wieder abgelegt werden
+    if (!kornDa())
+    {
+      gib();
+    }
+  }
+
+  void rechtsUm() { linksUm(); linksUm(); linksUm(); }

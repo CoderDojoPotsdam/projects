@@ -1,0 +1,58 @@
+/*class*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+// Hamster, die zwei Koerner gleichzeitig probieren wollen
+class ProbierHamster extends AllroundHamster {
+
+    private Verwalter verwalter; // Deadlockvermeidungsinstanz
+
+    private Position pos1; // Position des ersten Korns
+
+    private Position pos2; // Position des zweiten Korns
+
+    ProbierHamster(int r, int s, int b, int k, Position pos1,
+            Position pos2, Verwalter verwalter) {
+        super(r, s, b, k);
+        this.pos1 = pos1;
+        this.pos2 = pos2;
+        this.verwalter = verwalter;
+    }
+
+    public void run() {
+        // erstes Korn nehmen
+        this.laufeZuKachel(this.pos1.getReihe(), this.pos1
+                .getSpalte());
+        this.nimm();
+
+        // zweites Korn nehmen
+        this.laufeZuKachel(this.pos2.getReihe(), this.pos2
+                .getSpalte());
+        this.nimm();
+
+        // probieren
+        this.schreib("Hmmmm, das schmeckt");
+
+        // erstes Korn ablegen
+        this.gib();
+
+        // zweites Korn ablegen
+        this.laufeZuKachel(this.pos1.getReihe(), this.pos1
+                .getSpalte());
+        this.gib();
+    }
+
+    public synchronized void nimm() {
+        this.verwalter.kornAnfordern(this);
+        super.nimm();
+    }
+
+    public synchronized void gib() {
+        this.verwalter.kornZurueckgeben(this);
+        super.gib();
+    }
+}

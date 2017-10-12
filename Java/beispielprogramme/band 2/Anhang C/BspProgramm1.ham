@@ -1,0 +1,16 @@
+/*object-oriented program*/void main() {
+    // neuer normaler DrehHamster
+    DrehHamster willi = new DrehHamster(1, 2, Hamster.OST, 3);
+    while (willi.vornFrei()) {
+        willi.vor();
+    }
+    willi.rechtsUm();
+
+    // Standard-Hamster als DrehHamster
+    DrehHamster paul = DrehHamster
+            .getStandardHamsterAlsDrehHamster();
+    while (paul.vornFrei()) {
+        paul.vor();
+    }
+    paul.rechtsUm();
+}

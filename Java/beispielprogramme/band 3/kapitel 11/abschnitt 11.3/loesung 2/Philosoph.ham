@@ -1,0 +1,84 @@
+/*class*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+class Philosoph extends AllroundHamster {
+
+    private Tisch tisch;
+
+    Philosoph(int r, int s, int b, Tisch t) {
+        super(r, s, b, 0);
+        this.tisch = t;
+    }
+
+    public void lebe() {
+        this.start();
+    }
+
+    public void run() {
+        while (true) {
+            this.denken();
+            this.nimmGabeln();
+            this.essen();
+            this.gibGabeln();
+        }
+    }
+
+    private void nimmGabeln() {
+        // Gabeln reservieren: der gesamte Tisch wird blockiert
+        this.tisch.reserviereGabeln();
+
+        // nimm linke Gabel
+        this.linksUm();
+        this.vor();
+        this.nimm();
+        this.kehrt();
+        this.vor();
+
+        // nimm rechte Gabel
+        this.vor();
+        this.nimm();
+
+        // zurueck zum Platz
+        this.kehrt();
+        this.vor();
+        this.rechtsUm();
+    }
+
+    private void gibGabeln() {
+
+        // gib linke Gabel
+        this.linksUm();
+        this.vor();
+        this.gib();
+        this.kehrt();
+        this.vor();
+
+        // gib rechte Gabel
+        this.vor();
+        this.gib();
+
+        // zurueck zum Platz
+        this.kehrt();
+        this.vor();
+        this.rechtsUm();
+
+        // Gabeln freigeben: der Tisch wird deblockiert
+        this.tisch.gibGabelnFrei();
+    }
+
+    private void denken() {
+        int bedenkZeit = (int) (Math.random() * 5000);
+        this.schlafen(bedenkZeit);
+    }
+
+    private void essen() {
+        this.schreib("Hmmmm, das schmeckt!");
+        int kauZeit = (int) (Math.random() * 3000);
+        this.schlafen(kauZeit);
+    }
+}

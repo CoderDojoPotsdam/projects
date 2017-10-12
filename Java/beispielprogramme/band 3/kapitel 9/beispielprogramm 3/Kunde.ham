@@ -1,0 +1,82 @@
+/*class*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+class Kunde extends AllroundHamster {
+
+    private Bankier bankier;
+
+    private int maxDarlehen;
+
+    private int aktDarlehen;
+
+    Kunde(int r, int s, int b, Bankier bankier) {
+        super(r, s, b, 0);
+        this.bankier = bankier;
+        this.maxDarlehen = 0;
+        this.aktDarlehen = 0;
+    }
+
+    void setMaxDarlehen(int maxDarlehen) {
+        this.maxDarlehen = maxDarlehen;
+    }
+
+    public void run() {
+        while (true) {
+            this.umherlaufen();
+            this.zurBankLaufen();
+            this.darlehenAbholen();
+            this.umherlaufen();
+            this.zurBankLaufen();
+            this.darlehenZurueckgeben();
+        }
+    }
+
+    void umherlaufen() {
+        this.laufeZuKachel(5, 5);
+        int anzahlAktionen = (int) (Math.random() * 20);
+        for (int i = 0; i < anzahlAktionen; i++) {
+            int blickrichtung = (int) (Math.random() * 4);
+            this.setzeBlickrichtung(blickrichtung);
+            if (this.vornFrei() && !this.nachVornVerboten()) {
+                this.vor();
+            }
+        }
+    }
+
+    boolean nachVornVerboten() {
+        return (this.getBlickrichtung() == Hamster.WEST)
+                && this.getReihe() == 1 && this.getSpalte() == 2;
+    }
+
+    void zurBankLaufen() {
+        this.laufeZuKachel(1, 2);
+        this.setzeBlickrichtung(Hamster.WEST);
+    }
+
+    void darlehenAbholen() {
+        int frei = this.maxDarlehen - this.aktDarlehen;
+        int neuDarlehen = (int) (Math.random() * frei) + 1;
+        this.schreib("Gefordertes Darlehen = " + neuDarlehen);
+        this.bankier.anfordern(this, neuDarlehen);
+        this.vor(2);
+        this.nimm(neuDarlehen);
+        this.aktDarlehen += neuDarlehen;
+        this.kehrt();
+        this.vor(2);
+    }
+
+    void darlehenZurueckgeben() {
+        int zurueck = (int) (Math.random() * this.aktDarlehen) + 1;
+        this.vor(2);
+        this.gib(zurueck);
+        this.bankier.zurueckgeben(this, zurueck);
+        this.aktDarlehen -= zurueck;
+        this.kehrt();
+        this.vor(2);
+    }
+}

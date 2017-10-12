@@ -1,0 +1,54 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+class GibHamster extends AllroundHamster {
+
+    Speicher<Integer> speicher;
+
+    GibHamster(Speicher<Integer> speicher) {
+        super(0, 0, Hamster.OST, 100);
+        this.speicher = speicher;
+    }
+
+    public void run() {
+        while (!this.maulLeer()) {
+            int koernerAnzahl = (int) (Math.random() * 10) + 1;
+            this.gib(koernerAnzahl);
+            this.speicher.put(koernerAnzahl);
+        }
+        this.speicher.put(0);
+    }
+}
+
+class NimmHamster extends AllroundHamster {
+
+    Speicher<Integer> speicher;
+
+    NimmHamster(Speicher<Integer> speicher) {
+        super(0, 0, Hamster.OST, 0);
+        this.speicher = speicher;
+    }
+
+    public void run() {
+        int koernerAnzahl = this.speicher.get();
+        while (koernerAnzahl > 0) {
+            this.nimm(koernerAnzahl);
+            koernerAnzahl = this.speicher.get();
+        }
+    }
+}
+
+void main() {
+    Speicher speicher = new Speicher();
+    GibHamster paul = new GibHamster(speicher);
+    NimmHamster heidi = new NimmHamster(speicher);
+    paul.start();
+    heidi.start();
+}
+
+

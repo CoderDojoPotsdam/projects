@@ -1,0 +1,41 @@
+/*class*/public class XHamster extends Hamster {
+
+    public XHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    public synchronized void hamsterVoraus(Hamster ham) {
+    
+        // alle Hamster auf entsprechender Kachel ermitteln
+        int r = this.getReihe();
+        int s = this.getSpalte();
+        switch (this.getBlickrichtung()) {
+        case Hamster.NORD:
+            r--;
+            break;
+        case Hamster.WEST:
+            s--;
+            break;
+        case Hamster.SUED:
+            r++;
+            break;
+        case Hamster.OST:
+            s++;
+            break;
+        }
+        Hamster[] hamster = Territorium.getHamster(r, s);
+
+        // nach ham durchsuchen
+        for (int i = 0; i < hamster.length; i++) {
+            if (hamster[i] == ham) {
+            
+                // gefunden
+                this.schreib("Hamster steht vor mir!");
+                return;
+            }
+        }
+        
+        // nicht da
+        this.schreib("Hamster steht nicht vor mir!");
+    }
+}

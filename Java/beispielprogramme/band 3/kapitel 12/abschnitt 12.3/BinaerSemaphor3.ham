@@ -1,0 +1,27 @@
+/*class*/public class BinaerSemaphor3 {
+
+    private boolean[] kritisch = { false, false };
+
+    public void p(int dieserThread) {
+
+        // solange der kritische Abschnitt durch den anderen
+        // Thread belegt ist: warten
+        while (this.kritisch[this.andererThread(dieserThread)]) {
+            // aktives Warten
+        }
+        // nun ist der kritischer Abschnitt frei
+
+        // dieserThread belegt nun den kritischen Abschnitt
+        this.kritisch[dieserThread] = true;
+    }
+
+    public void v(int dieserThread) {
+
+        // der kritische Abschnitt ist nun wieder frei
+        this.kritisch[dieserThread] = false;
+    }
+
+    private int andererThread(int dieserThread) {
+        return (dieserThread + 1) % 2;
+    }
+}

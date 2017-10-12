@@ -1,0 +1,16 @@
+/*object-oriented program*/void main() {
+    CheckUndSammelHamster paul = new CheckUndSammelHamster(
+            0, 0, Hamster.OST, 9);
+    if (paul.hintenFrei()) {
+        paul.kehrt();
+        paul.vor();
+        paul.sammle();
+    }
+    CheckHamster willi = paul;
+    if (willi.hintenFrei()) {
+        // willi.kehrt(); // Fehler
+    }
+    SammelHamster karin = paul;
+    karin.sammle();
+    // karin.vor(); // Fehler
+}

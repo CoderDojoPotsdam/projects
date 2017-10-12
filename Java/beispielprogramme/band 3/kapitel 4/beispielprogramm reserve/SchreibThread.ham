@@ -1,0 +1,16 @@
+/*class*/class SchreibThread extends Thread {
+
+  Hamster hamster;
+  String ausgabe;
+
+  SchreibThread(Hamster hamster, String zeichenkette) {
+    this.hamster = hamster;
+    this.ausgabe = zeichenkette;
+    this.start();
+  }
+
+  public void run() {
+    this.hamster.schreib(ausgabe);
+  } 
+	
+}

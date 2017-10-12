@@ -1,0 +1,28 @@
+/*class*/class Kachel {
+    private int reihe;
+
+    private int spalte;
+
+    Kachel(int r, int s) {
+        this.reihe = r;
+        this.spalte = s;
+    }
+
+    int getReihe() {
+        return this.reihe;
+    }
+
+    int getSpalte() {
+        return this.spalte;
+    }
+    
+    public int hashCode() {
+        return this.reihe + this.spalte;
+    }
+
+    public boolean equals(Object obj) {
+        Kachel kachel = (Kachel) obj;
+        return this.reihe == kachel.reihe
+                && this.spalte == kachel.spalte;
+    }
+}

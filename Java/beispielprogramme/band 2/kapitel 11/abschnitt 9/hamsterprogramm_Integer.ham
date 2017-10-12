@@ -1,0 +1,35 @@
+/*object-oriented program*/void main() {
+    Hamster paul = Hamster.getStandardHamster();
+    Stapel haufen = new Stapel(Mathematik.max(Territorium
+            .getAnzahlReihen(), Territorium
+            .getAnzahlSpalten()));
+    // damit ist der Stapel gross genug, egal in welche
+    // Blickrichtung der Hamster schaut
+
+    // Paul rennt bis zur naechsten Mauer
+    while (paul.vornFrei()) {
+        paul.vor();
+        int anzahl = 0;
+        while (paul.kornDa()) {
+            paul.nimm();
+            anzahl = anzahl + 1;
+        }
+        haufen.drauflegen(new Integer(anzahl)); // wrapping
+    }
+
+    // Paul dreht sich um
+    paul.linksUm();
+    paul.linksUm();
+
+    // Paul rennt zurueck
+    while (!haufen.istLeer()) {
+        Integer intObjekt = (Integer) haufen
+                .herunternehmen();
+        int anzahl = intObjekt.intValue(); // unwrapping
+        while (anzahl > 0) {
+            paul.gib();
+            anzahl = anzahl - 1;
+        }
+        paul.vor();
+    }
+}

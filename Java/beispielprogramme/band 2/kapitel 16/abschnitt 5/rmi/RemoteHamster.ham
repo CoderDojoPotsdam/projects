@@ -1,0 +1,17 @@
+/*class*/import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+public interface RemoteHamster extends Remote {
+    public void vor() throws RemoteException;
+    public void linksUm() throws RemoteException;
+    public void nimm() throws RemoteException;
+    public void gib() throws RemoteException;
+    
+    public boolean vornFrei() throws RemoteException;
+    public boolean maulLeer() throws RemoteException;
+    public boolean kornDa() throws RemoteException;
+    
+    public void schreib(String zeichenkette) throws RemoteException;
+    public String liesZeichenkette(String aufforderung) throws RemoteException;
+    public int liesZahl(String aufforderung) throws RemoteException;
+}

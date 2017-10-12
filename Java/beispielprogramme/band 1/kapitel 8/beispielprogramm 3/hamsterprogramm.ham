@@ -1,0 +1,40 @@
+/*imperative program*/void main() {
+    laufeZumBerg();
+    erklimmeErsteStufe();
+    erklimmeZweiteStufe();
+    erklimmeDritteStufe();
+    erklimmeGipfel();
+}
+
+void laufeZumBerg() {
+    vor();
+}
+
+void erklimmeErsteStufe() { 
+    erklimmeStufe(); 
+}
+
+void erklimmeZweiteStufe() { 
+    erklimmeStufe(); 
+}
+
+void erklimmeDritteStufe() { 
+    erklimmeStufe(); 
+}
+
+void erklimmeGipfel() { 
+    erklimmeStufe(); 
+}
+
+void erklimmeStufe() {
+    linksUm(); 
+    vor();
+    rechtsUm(); 
+    vor();
+}
+
+void rechtsUm() {
+    linksUm(); 
+    linksUm(); 
+    linksUm(); 
+}

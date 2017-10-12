@@ -1,0 +1,9 @@
+/*object-oriented program*/void main() {
+    int maxVorsprung = 3;
+    TanzLehrerHamster willi = new TanzLehrerHamster(3, 3,
+            Hamster.OST, 0, maxVorsprung);
+    TanzSchuelerHamster paul = new TanzSchuelerHamster(3, 3,
+            Hamster.OST, 0, willi);
+    willi.start();
+    paul.start();
+}

@@ -1,0 +1,5 @@
+/*object-oriented program*/void main() {
+    IONachmachHamster paul = new IONachmachHamster(Hamster
+            .getStandardHamster(), "weg.txt");
+    paul.macheNach();
+}

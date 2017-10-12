@@ -1,0 +1,9 @@
+/*class*/interface CheckHamster {
+    public abstract boolean vornFrei();
+
+    public abstract boolean hintenFrei();
+
+    public abstract boolean linksFrei();
+
+    public abstract boolean rechtsFrei();
+}

@@ -1,0 +1,27 @@
+/*class*/interface HamsterAktion {
+    public void ausfuehren(Hamster hamster);
+}
+
+class VorAktion implements HamsterAktion {
+    public void ausfuehren(Hamster hamster) {
+        hamster.vor();
+    }
+}
+
+class LinksUmAktion implements HamsterAktion {
+    public void ausfuehren(Hamster hamster) {
+        hamster.linksUm();
+    }
+}
+
+class NimmAktion implements HamsterAktion {
+    public void ausfuehren(Hamster hamster) {
+        hamster.nimm();
+    }
+}
+
+class GibAktion implements HamsterAktion {
+    public void ausfuehren(Hamster hamster) {
+        hamster.gib();
+    }
+}

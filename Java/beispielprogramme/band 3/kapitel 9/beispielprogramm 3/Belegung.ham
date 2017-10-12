@@ -1,0 +1,61 @@
+/*class*/class Belegung {
+
+    private Thread thread;
+
+    private int aktuelleBelegung;
+
+    private int maximaleBelegung;
+
+    private boolean beendet;
+
+    Belegung(Thread thread, int maximaleBelegung) {
+        this.thread = thread;
+        this.maximaleBelegung = maximaleBelegung;
+        this.aktuelleBelegung = 0;
+        this.beendet = false;
+    }
+
+    Belegung(Belegung belegung) {
+        this.thread = belegung.thread;
+        this.maximaleBelegung = belegung.maximaleBelegung;
+        this.aktuelleBelegung = belegung.aktuelleBelegung;
+        this.beendet = belegung.beendet;
+    }
+
+    protected Belegung clone() {
+        return new Belegung(this);
+    }
+
+    void belegen(int anzahlInstanzen) {
+        this.aktuelleBelegung += anzahlInstanzen;
+    }
+
+    void freigeben(int anzahlInstanzen) {
+        this.aktuelleBelegung -= anzahlInstanzen;
+    }
+
+    int getAktuelleBelegung() {
+        return this.aktuelleBelegung;
+    }
+
+    int getMaximaleBelegung() {
+        return this.maximaleBelegung;
+    }
+
+    int getNochMoeglicheBelegung() {
+        return this.getMaximaleBelegung()
+                - this.getAktuelleBelegung();
+    }
+
+    Thread getThread() {
+        return this.thread;
+    }
+
+    void beenden() {
+        this.beendet = true;
+    }
+
+    boolean istBeendet() {
+        return this.beendet;
+    }
+}

@@ -1,0 +1,22 @@
+/*class*/class SoldatenHamster extends Hamster {
+
+    SoldatenHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    public void vor() {
+        if (this.vornFrei()) {
+            super.vor();
+        }
+    }
+
+    void kehrt() {
+        this.linksUm();
+        this.linksUm();
+    }
+
+    void rechtsUm() {
+        this.kehrt();
+        this.linksUm();
+    }
+}

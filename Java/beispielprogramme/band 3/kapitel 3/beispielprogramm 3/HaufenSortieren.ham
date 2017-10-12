@@ -1,0 +1,42 @@
+/*object-oriented program*//*
+Windows:
+  CLASSPATH: .;Programme\beispielprogramme\band 3
+Linux, Solaris:
+  CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+class ReiheSortierHamster extends AllroundHamster {
+
+    ReiheSortierHamster(int r) {
+        super(r, 0, Hamster.OST, 0);
+    }
+
+    public void run() {
+        
+        // bis zur Mauer laufen und evtl. vorhandene
+        // Koerner aufnehmen
+        this.nimm(1);
+        while (this.vornFrei()) {
+            this.vor();
+            this.nimm(1);
+        }
+
+        // zuruecklaufen und dabei die aufgenommenen Koerner
+        // so frueh wie moeglich wieder einzeln ablegen
+        this.kehrt();
+        this.gib(1);
+        while (this.vornFrei()) {
+            this.vor();
+            this.gib(1);
+        }
+    }
+}
+
+void main() {
+    ReiheSortierHamster[] hamster = 
+        new ReiheSortierHamster[Territorium.getAnzahlReihen()];
+    for (int r = 0; r < hamster.length; r++) {
+        hamster[r] = new ReiheSortierHamster(r);
+        hamster[r].start();
+    }
+}

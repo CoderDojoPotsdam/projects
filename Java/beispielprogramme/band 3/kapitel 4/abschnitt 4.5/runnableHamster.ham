@@ -1,0 +1,22 @@
+/*object-oriented program*/class LaufHamster extends Hamster implements Runnable {
+
+    LaufHamster(Hamster hamster) {
+        super(hamster);
+    }
+
+    public void run() {
+        while (this.vornFrei()) {
+            this.vor();
+        }
+    }
+}
+
+void main() {
+    LaufHamster paul = new LaufHamster(Hamster
+            .getStandardHamster());
+
+    // Erzeugung und Start eines neuen Threads, der die
+    // run-Methode von Hamster Paul ausfuehrt
+    Thread hamsterThread = new Thread(paul);
+    hamsterThread.start();
+}

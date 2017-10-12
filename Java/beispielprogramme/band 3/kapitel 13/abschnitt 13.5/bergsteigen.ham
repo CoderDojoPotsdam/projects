@@ -1,0 +1,59 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+import java.util.concurrent.CyclicBarrier;
+
+class Bergsteiger extends AllroundHamster {
+
+    private CyclicBarrier sammelpunkt;
+
+    Bergsteiger(int r, int s, int b, CyclicBarrier sammelpunkt) {
+        super(r, s, b, 0);
+        this.sammelpunkt = sammelpunkt;
+    }
+
+    public void run() {
+        int stufen = 0;
+        while (!this.gipfelErreicht()) {
+            this.erklimmeStufe();
+            stufen++;
+            if (stufen % 2 == 0) {
+                this.warten();
+            }
+        }
+    }
+
+    private boolean gipfelErreicht() {
+        return this.vornFrei();
+    }
+
+    private void erklimmeStufe() {
+        this.linksUm();
+        this.vor();
+        this.rechtsUm();
+        this.vor();
+    }
+
+    private void warten() {
+        try {
+            this.sammelpunkt.await();
+        } catch (Exception exc) {
+        }
+    }
+}
+
+void main() {
+    int ANZAHL_BERGSTEIGER = 3;
+
+    CyclicBarrier sammelpunkt = new CyclicBarrier(
+            ANZAHL_BERGSTEIGER);
+
+    for (int i = 0; i < ANZAHL_BERGSTEIGER; i++) {
+        (new Bergsteiger(14, 0, Hamster.OST, sammelpunkt))
+                .start();
+    }
+}

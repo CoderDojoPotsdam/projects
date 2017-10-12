@@ -1,0 +1,10 @@
+/*class*/abstract class HamsterBinaerSemaphor {
+
+    abstract void p(int dieserHamster, HoehlenHamster ham);
+
+    abstract void v(int dieserHamster, HoehlenHamster ham);
+
+    protected int andererHamster(int dieserHamster) {
+        return (dieserHamster + 1) % 2;
+    }
+}

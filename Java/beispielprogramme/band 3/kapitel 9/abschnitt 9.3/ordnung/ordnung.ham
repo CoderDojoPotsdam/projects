@@ -1,0 +1,88 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+// Repraesentation von Kachelpositionen
+class Position {
+    private int reihe;
+
+    private int spalte;
+
+    Position(int r, int s) {
+        this.reihe = r;
+        this.spalte = s;
+    }
+
+    int getReihe() {
+        return this.reihe;
+    }
+
+    int getSpalte() {
+        return this.spalte;
+    }
+}
+
+// Hamster, die zwei Koerner gleichzeitig probieren wollen
+class ProbierHamster extends AllroundHamster {
+
+    private Position pos1; // Position des ersten Korns
+
+    private Position pos2; // Position des zweiten Korns
+
+    ProbierHamster(int r, int s, int b, int k, Position pos1,
+            Position pos2) {
+        super(r, s, b, k);
+        this.pos1 = pos1;
+        this.pos2 = pos2;
+    }
+
+    public void run() {
+        // erstes Korn nehmen
+        this.laufeZuKachel(this.pos1.getReihe(), this.pos1
+                .getSpalte());
+        synchronized (Territorium.getKachel(
+                this.pos1.getReihe(), this.pos1.getSpalte())) {
+            this.nimm();
+
+            // zweites Korn nehmen
+            this.laufeZuKachel(this.pos2.getReihe(), this.pos2
+                    .getSpalte());
+            synchronized (Territorium.getKachel(this.pos2
+                    .getReihe(), this.pos2.getSpalte())) {
+                this.nimm();
+
+                // probieren
+                this.schreib("Hmmmm, das schmeckt");
+
+                // zweites Korn wieder ablegen
+                this.gib();
+            }
+
+            // erstes Korn wieder ablegen
+            this.laufeZuKachel(this.pos1.getReihe(), this.pos1
+                    .getSpalte());
+            this.gib();
+        }
+    }
+}
+
+void main() {
+    Position kachel1 = new Position(0, 1);
+    Position kachel2 = new Position(2, 1);
+
+    // sowohl Paul als auch Willi muessen entsprechend der
+    // Ordnung zuerst das obere und dann das untere Korn
+    // nehmn
+    ProbierHamster paul = new ProbierHamster(1, 0,
+            Hamster.OST, 0, kachel1, kachel2);
+    ProbierHamster willi = new ProbierHamster(1, 2,
+            Hamster.WEST, 0, kachel1, kachel2);
+
+    paul.start();
+    willi.start();
+}
+

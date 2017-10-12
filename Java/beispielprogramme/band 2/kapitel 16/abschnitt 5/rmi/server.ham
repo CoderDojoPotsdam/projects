@@ -1,0 +1,22 @@
+/*object-oriented program*/import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
+
+void main() {
+    try {
+        // Server-Objekt sowie Stub erzeugen
+        RemoteHamster hamster = new RemoteHamsterImpl(0, 0,
+                Hamster.OST, 0);
+        RemoteHamster hamsterStub = (RemoteHamster) UnicastRemoteObject
+                .exportObject(hamster, 0);
+
+        // rmiregistry starten (Port 2345)
+        Registry registry = LocateRegistry.createRegistry(2345);
+
+        // Objekt registrieren
+        registry.rebind("Hamster paul", hamsterStub);
+    } catch (Exception exc) {
+        Hamster.getStandardHamster().schreib(
+                exc.getMessage());
+    }
+}

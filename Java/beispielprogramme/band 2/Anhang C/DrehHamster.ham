@@ -1,0 +1,36 @@
+/*class*/public class DrehHamster extends SHamster {
+
+    // Singleton-Muster
+
+    private static DrehHamster standardHamster = new DrehHamster(
+            true);
+
+    protected DrehHamster(boolean dummy) {
+        super(dummy);
+    }
+
+    public static DrehHamster getStandardHamsterAlsDrehHamster() {
+        return standardHamster;
+    }
+
+    // normale Konstruktoren und Methoden
+
+    public DrehHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    public DrehHamster(Hamster ham) {
+        super(ham);
+    }
+
+    public void kehrt() {
+        this.linksUm();
+        this.linksUm();
+    }
+
+    public void rechtsUm() {
+        this.kehrt();
+        this.linksUm();
+    }
+
+}

@@ -1,0 +1,187 @@
+<?xml version="1.0" ?>
+<FLOWCHART>
+	<method name="main" startId="762292512">
+		<element id="762292512" string="Start" perform="" type="startstop" x="175" y="25">
+			<nextId return="true" value="762312793"/>
+		</element>
+		<element id="762312793" string="laufeInEcke" perform="laufeInEcke" type="procedure" x="175" y="125">
+			<nextId return="true" value="763420858"/>
+		</element>
+		<element id="762336044" string="vornFrei?" perform="vornFrei" type="decision" x="175" y="325">
+			<nextId return="true" value="763515246"/>
+			<nextId return="false" value="762400157"/>
+		</element>
+		<element id="762353281" string="ernteEineReiheUndZurueck" perform="ernteEineReiheUndZurueck" type="procedure" x="175" y="525">
+			<nextId return="true" value="762336044"/>
+		</element>
+		<element id="762400157" string="Stop" perform="" type="startstop" x="325" y="525" terminate="true">
+			
+		</element>
+		<element id="763420858" string="ernteEineReiheUndZurueck" perform="ernteEineReiheUndZurueck" type="procedure" x="175" y="225">
+			<nextId return="true" value="762336044"/>
+		</element>
+		<element id="763515246" string="vor" perform="vor" type="command" x="175" y="425">
+			<nextId return="true" value="762353281"/>
+		</element>
+	</method>
+	<method name="laufeInEcke" startId="762469771">
+		<element id="762469771" string="Start" perform="" type="startstop" x="175" y="25">
+			<nextId return="true" value="762489022"/>
+		</element>
+		<element id="762489022" string="laufeZurWand" perform="laufeZurWand" type="procedure" x="175" y="125">
+			<nextId return="true" value="762497555"/>
+		</element>
+		<element id="762497555" string="linksUm" perform="linksUm" type="command" x="175" y="225">
+			<nextId return="true" value="762503802"/>
+		</element>
+		<element id="762503802" string="laufeZurWand" perform="laufeZurWand" type="procedure" x="175" y="325">
+			<nextId return="true" value="762786589"/>
+		</element>
+		<element id="762509018" string="Stop" perform="" type="startstop" x="175" y="525">
+			
+		</element>
+		<element id="762786589" string="kehrt" perform="kehrt" type="procedure" x="175" y="425">
+			<nextId return="true" value="762509018"/>
+		</element>
+	</method>
+	<method name="ernteEineReiheUndZurueck" startId="762619012">
+		<element id="762619012" string="Start" perform="" type="startstop" x="175" y="25">
+			<nextId return="true" value="762823941"/>
+		</element>
+		<element id="762635826" string="ernteReihe" perform="ernteReihe" type="procedure" x="175" y="225">
+			<nextId return="true" value="762652461"/>
+		</element>
+		<element id="762652461" string="kehrt" perform="kehrt" type="procedure" x="175" y="325">
+			<nextId return="true" value="762662830"/>
+		</element>
+		<element id="762662830" string="laufeZurWand" perform="laufeZurWand" type="procedure" x="175" y="425">
+			<nextId return="true" value="762681339"/>
+		</element>
+		<element id="762681339" string="rechtsUm" perform="rechtsUm" type="procedure" x="175" y="525">
+			<nextId return="true" value="762687252"/>
+		</element>
+		<element id="762687252" string="Stop" perform="" type="startstop" x="175" y="625">
+			
+		</element>
+		<element id="762823941" string="rechtsUm" perform="rechtsUm" type="procedure" x="175" y="125">
+			<nextId return="true" value="762635826"/>
+		</element>
+	</method>
+	<method name="laufeZurWand" startId="762532676">
+		<element id="762532676" string="Start" perform="" type="startstop" x="175" y="25">
+			<nextId return="true" value="762537603"/>
+		</element>
+		<element id="762537603" string="vornFrei?" perform="vornFrei" type="decision" x="175" y="125">
+			<nextId return="true" value="762540958"/>
+			<nextId return="false" value="762547100"/>
+		</element>
+		<element id="762540958" string="vor" perform="vor" type="command" x="175" y="225">
+			<nextId return="true" value="762537603"/>
+		</element>
+		<element id="762547100" string="Stop" perform="" type="startstop" x="325" y="325">
+			
+		</element>
+	</method>
+	<method name="ernteReihe" startId="762908622">
+		<element id="762908622" string="Start" perform="" type="startstop" x="175" y="25">
+			<nextId return="true" value="762919392"/>
+		</element>
+		<element id="762919392" string="sammle" perform="sammle" type="procedure" x="175" y="125">
+			<nextId return="true" value="762938267"/>
+		</element>
+		<element id="762938267" string="vornFrei?" perform="vornFrei" type="decision" x="175" y="225">
+			<nextId return="true" value="762959453"/>
+			<nextId return="false" value="762964350"/>
+		</element>
+		<element id="762952518" string="sammle" perform="sammle" type="procedure" x="175" y="425">
+			<nextId return="true" value="762938267"/>
+		</element>
+		<element id="762959453" string="vor" perform="vor" type="command" x="175" y="325">
+			<nextId return="true" value="762952518"/>
+		</element>
+		<element id="762964350" string="Stop" perform="" type="startstop" x="325" y="525">
+			
+		</element>
+	</method>
+	<method name="kehrt" startId="762846420">
+		<element id="762846420" string="Start" perform="" type="startstop" x="175" y="25">
+			<nextId return="true" value="762850022"/>
+		</element>
+		<element id="762850022" string="linksUm" perform="linksUm" type="command" x="175" y="125">
+			<nextId return="true" value="762852533"/>
+		</element>
+		<element id="762852533" string="linksUm" perform="linksUm" type="command" x="175" y="225">
+			<nextId return="true" value="762855685"/>
+		</element>
+		<element id="762855685" string="Stop" perform="" type="startstop" x="175" y="325">
+			
+		</element>
+	</method>
+	<method name="rechtsUm" startId="762871405">
+		<element id="762871405" string="Start" perform="" type="startstop" x="175" y="25">
+			<nextId return="true" value="762876109"/>
+		</element>
+		<element id="762876109" string="kehrt" perform="kehrt" type="procedure" x="175" y="125">
+			<nextId return="true" value="762886677"/>
+		</element>
+		<element id="762886677" string="linksUm" perform="linksUm" type="command" x="175" y="225">
+			<nextId return="true" value="762891066"/>
+		</element>
+		<element id="762891066" string="Stop" perform="" type="startstop" x="175" y="325">
+			
+		</element>
+	</method>
+	<method name="sammle" startId="762994476">
+		<element id="762994476" string="Start" perform="" type="startstop" x="175" y="25">
+			<nextId return="true" value="762998867"/>
+		</element>
+		<element id="762998867" string="kornDa?" perform="kornDa" type="decision" x="175" y="125">
+			<nextId return="true" value="763003661"/>
+			<nextId return="false" value="763007261"/>
+		</element>
+		<element id="763003661" string="nimm" perform="nimm" type="command" x="175" y="225">
+			<nextId return="true" value="762998867"/>
+		</element>
+		<element id="763007261" string="Stop" perform="" type="startstop" x="325" y="325">
+			
+		</element>
+	</method>
+	<transition sourceId="762292512" destId="762312793" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762353281" destId="762336044" orientationS="3" orientationD="3" childIs="true"/>
+	<transition sourceId="762336044" destId="762400157" orientationS="1" orientationD="0" childIs="false"/>
+	<transition sourceId="762469771" destId="762489022" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762489022" destId="762497555" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762497555" destId="762503802" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762532676" destId="762537603" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762537603" destId="762540958" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762540958" destId="762537603" orientationS="3" orientationD="3" childIs="true"/>
+	<transition sourceId="762537603" destId="762547100" orientationS="1" orientationD="0" childIs="false"/>
+	<transition sourceId="762635826" destId="762652461" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762652461" destId="762662830" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762662830" destId="762681339" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762681339" destId="762687252" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762503802" destId="762786589" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762786589" destId="762509018" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762619012" destId="762823941" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762823941" destId="762635826" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762846420" destId="762850022" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762850022" destId="762852533" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762852533" destId="762855685" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762871405" destId="762876109" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762876109" destId="762886677" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762886677" destId="762891066" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762908622" destId="762919392" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762919392" destId="762938267" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762938267" destId="762959453" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762959453" destId="762952518" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762952518" destId="762938267" orientationS="3" orientationD="3" childIs="true"/>
+	<transition sourceId="762938267" destId="762964350" orientationS="1" orientationD="0" childIs="false"/>
+	<transition sourceId="762994476" destId="762998867" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762998867" destId="763003661" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="763003661" destId="762998867" orientationS="3" orientationD="3" childIs="true"/>
+	<transition sourceId="762998867" destId="763007261" orientationS="1" orientationD="0" childIs="false"/>
+	<transition sourceId="762312793" destId="763420858" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="763420858" destId="762336044" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="762336044" destId="763515246" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="763515246" destId="762353281" orientationS="2" orientationD="0" childIs="true"/>
+</FLOWCHART>

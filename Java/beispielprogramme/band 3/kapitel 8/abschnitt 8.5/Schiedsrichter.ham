@@ -1,0 +1,28 @@
+/*class*/class Schiedsrichter {
+
+    private Object startSchuss = new Object();
+
+    private boolean gestartet = false;
+
+    void gibStartSchuss() {
+        synchronized (this.startSchuss) {
+            if (this.gestartet) {
+
+                // Rennen kann nur einmal gestartet werden
+                return;
+            }
+            this.startSchuss.notifyAll();
+            this.gestartet = true;
+        }
+    }
+
+    Object getStartSchuss() {
+        return this.startSchuss;
+    }
+
+    boolean rennenGestartet() {
+        synchronized (this.startSchuss) {
+            return this.gestartet;
+        }
+    }
+}

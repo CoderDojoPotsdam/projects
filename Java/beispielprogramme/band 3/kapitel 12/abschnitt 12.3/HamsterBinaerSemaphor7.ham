@@ -1,0 +1,63 @@
+/*class*/class HamsterBinaerSemaphor7 extends HamsterBinaerSemaphor6 {
+
+    public HamsterBinaerSemaphor7(Position eingang) {
+        super(eingang);
+    }
+
+    public void p(int dieserHamster, HoehlenHamster ham) {
+
+        // Wunsch zum Betreten der Hoehle signalisieren
+        ham.gib();
+
+        // Prioritaet abgeben
+        ham.laufeZuKachel(this.eingang);
+        this.alternieren(dieserHamster, ham);
+
+        // unter Umstaenden warten, bis der andere Hamster die
+        // Hoehle verlaesst
+        while (this.blockiert(dieserHamster, ham)) {
+            // aktives Warten
+        }
+
+        // nun zum Haupteingang
+        ham.laufeZuKachel(this.eingang);
+        ham.setzeBlickrichtung(Hamster.OST);
+
+        // dieserHamster ist nun in der Hoehle
+    }
+
+    public void v(int dieserHamster, HoehlenHamster ham) {
+
+        // der Hamster entfernt sein Korn
+        ham.laufeZuKachel(this.eingangsSeiten[dieserHamster]);
+        ham.nimm();
+
+        // die Hoehle ist nun wieder frei
+    }
+
+    protected int anzahlKoerner(HoehlenHamster ham) {
+        if (ham.kornDa()) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    protected boolean blockiert(int dieserHamster,
+            HoehlenHamster ham) {
+        ham.laufeZuKachel(this.eingang);
+
+        // an der Reihe
+        if (this.anzahlKoerner(ham) == dieserHamster) {
+            return false;
+        }
+        ham.laufeZuKachel(this.eingangsSeiten[this
+                .andererHamster(dieserHamster)]);
+
+        // anderer Hamster will nicht in Hoehle
+        if (!ham.kornDa()) {
+            return false;
+        }
+        return true;
+    }
+}

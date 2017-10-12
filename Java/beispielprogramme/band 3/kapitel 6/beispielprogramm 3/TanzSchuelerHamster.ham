@@ -1,0 +1,18 @@
+/*class*/class TanzSchuelerHamster extends Hamster {
+
+    TanzLehrerHamster lehrer;
+
+    TanzSchuelerHamster(int r, int s, int b, int k,
+            TanzLehrerHamster lehrer) {
+        super(r, s, b, k);
+        this.lehrer = lehrer;
+    }
+
+    public void run() {
+        Aktion aktion = this.lehrer.getNaechsteAktion();
+        while (aktion != null) {
+            aktion.ausfuehren(this);
+            aktion = this.lehrer.getNaechsteAktion();
+        }
+    }
+}

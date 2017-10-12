@@ -1,0 +1,27 @@
+/*class*/class Wettlauf { // realisiert einen Hamster-Wettlauf
+
+    // in jedem Wettlauf-Zyklus darf jeder Hamster einmal ein
+    // Feld vorruecken
+    static Hamster zyklus(Hamster[] laeufer) {
+        for (int i = 0; i < laeufer.length; i++) {
+            if (laeufer[i].vornFrei()) {
+                laeufer[i].vor();
+            }
+            if (!laeufer[i].vornFrei()) { // Mauer erreicht, d.h.
+                                          // gewonnen!
+                return laeufer[i];
+                // Wettlauf beendet, der Sieger wird geliefert
+            }
+        }
+        return null; // Wettlauf noch nicht beendet
+    }
+
+    // Durchfuehrung des Wettlaufs
+    static Hamster durchfuehren(Hamster[] laeufer) {
+        Hamster sieger = null;
+        do {
+            sieger = Wettlauf.zyklus(laeufer);
+        } while (sieger == null);
+        return sieger;
+    }
+}

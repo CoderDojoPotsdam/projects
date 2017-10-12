@@ -1,0 +1,49 @@
+/*imperative program*/void main()
+{
+    ernteEineReiheUndLaufeZurueck();
+    rechtsUm();
+    while (vornFrei())
+    {
+      vor(); 
+      rechtsUm();
+      ernteEineReiheUndLaufeZurueck();
+      rechtsUm();
+    }
+}
+
+void ernteEineReiheUndLaufeZurueck()
+{
+    ernteEineReihe();
+    kehrt();
+    laufeZurueck();
+}
+
+void ernteEineReihe()
+{
+    sammle();
+    while (vornFrei())
+    {
+      vor();
+      sammle();
+    }
+}
+
+void laufeZurueck()
+{
+    while (vornFrei())
+    {
+      vor();
+    }
+}
+
+void sammle()
+{
+    while (kornDa())
+    {
+      nimm();
+    }
+}
+
+void rechtsUm() { kehrt(); linksUm(); }
+
+void kehrt() { linksUm(); linksUm(); }

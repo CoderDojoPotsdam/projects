@@ -1,0 +1,19 @@
+/*class*/class HinlaufHamster extends Hamster {
+
+    private int anzahlSchritte;
+
+    HinlaufHamster(Hamster ham, int anzahlSchritte) {
+        super(ham);
+        this.anzahlSchritte = anzahlSchritte;
+        this.start();
+    }
+
+    public void run() {
+        int schritte = 0;
+        while (this.vornFrei() && schritte < this.anzahlSchritte) {
+            this.vor();
+            schritte++;
+        }
+    }
+}
+

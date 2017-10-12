@@ -1,0 +1,11 @@
+/*object-oriented program*/void main() {
+    Hamster paul = Hamster.getStandardHamster();
+    String zeichenkette = "Der Februar hat 28 oder 29 Tage!";
+    for (int i = 0; i < zeichenkette.length(); i++) {
+        String zeichen = zeichenkette.substring(i, i + 1);
+        if (zeichen.compareTo("0") >= 0
+                && zeichen.compareTo("9") <= 0) {
+            paul.linksUm();
+        }
+    }
+}

@@ -1,0 +1,41 @@
+/*class*/class Position extends Object {
+    int reihe;
+
+    int spalte;
+
+    Position(int r, int s) {
+        this.reihe = r;
+        this.spalte = s;
+    }
+
+    int getReihe() {
+        return this.reihe;
+    }
+
+    int getSpalte() {
+        return this.spalte;
+    }
+
+    Position(Position pos) { // Copy-Konstruktor
+        this.reihe = pos.reihe;
+        this.spalte = pos.spalte;
+    }
+
+    protected Object clone() {
+        return new Position(this);
+    }
+
+    public boolean equals(Object obj) {
+        Position pos = (Position) obj;
+        return this.reihe == pos.reihe
+                && this.spalte == pos.spalte;
+    }
+
+    public int hashCode() {
+        return this.reihe + this.spalte;
+    }
+
+    public String toString() {
+        return "(" + this.reihe + "/" + this.spalte + ")";
+    }
+}

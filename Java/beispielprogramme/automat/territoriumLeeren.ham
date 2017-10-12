@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<FSM>
+	<startState name="laufeZurWand"></startState>
+	<numberingOfStates int="6"></numberingOfStates>
+	<typeOfFsm>false</typeOfFsm>
+	
+	<state name="laufeZurWand2" initial="false" final="false" x="688" y="231">
+
+		<transition fromState="laufeZurWand2" toState="laufeZurWand2">
+			<descriptions>
+				<description>
+					<input>
+
+							<booleanObject name="vornFrei" positioning="0"></booleanObject>
+					</input>
+					<output>
+						<voidObject name="vor"></voidObject>
+					</output>
+				</description>
+			</descriptions>
+		</transition>
+
+		<transition fromState="laufeZurWand2" toState="graseReiheAb">
+			<descriptions>
+				<description>
+					<input>
+
+						<booleanObject name="nicht" positioning="0">
+						<child>
+							<booleanObject name="vornFrei" positioning="1"></booleanObject>
+
+						</child>
+
+						</booleanObject>
+					</input>
+					<output>
+						<voidObject name="linksUm"></voidObject>
+					</output>
+				</description>
+			</descriptions>
+		</transition>
+	</state>
+
+	<state name="zurueck" initial="false" final="false" x="678" y="526">
+
+		<transition fromState="zurueck" toState="zurueck">
+			<descriptions>
+				<description>
+					<input>
+
+							<booleanObject name="vornFrei" positioning="0"></booleanObject>
+					</input>
+					<output>
+						<voidObject name="vor"></voidObject>
+					</output>
+				</description>
+			</descriptions>
+		</transition>
+
+		<transition fromState="zurueck" toState="inNaechsteReihe">
+			<descriptions>
+				<description>
+					<input>
+
+						<booleanObject name="nicht" positioning="0">
+						<child>
+							<booleanObject name="vornFrei" positioning="1"></booleanObject>
+
+						</child>
+
+						</booleanObject>
+					</input>
+					<output>
+						<voidObject name="linksUm"></voidObject>
+						<voidObject name="linksUm"></voidObject>
+						<voidObject name="linksUm"></voidObject>
+					</output>
+				</description>
+			</descriptions>
+		</transition>
+	</state>
+
+	<state name="inNaechsteReihe" initial="false" final="true" x="362" y="889">
+
+		<transition fromState="inNaechsteReihe" toState="graseReiheAb">
+			<descriptions>
+				<description>
+					<input>
+
+							<booleanObject name="vornFrei" positioning="0"></booleanObject>
+					</input>
+					<output>
+						<voidObject name="vor"></voidObject>
+						<voidObject name="linksUm"></voidObject>
+						<voidObject name="linksUm"></voidObject>
+						<voidObject name="linksUm"></voidObject>
+					</output>
+				</description>
+			</descriptions>
+		</transition>
+	</state>
+
+	<state name="graseReiheAb" initial="false" final="false" x="213" y="462">
+
+		<transition fromState="graseReiheAb" toState="graseReiheAb">
+			<descriptions>
+				<description>
+					<input>
+
+							<booleanObject name="kornDa" positioning="0"></booleanObject>
+					</input>
+					<output>
+						<voidObject name="nimm"></voidObject>
+					</output>
+				</description>
+
+				<description>
+					<input>
+
+						<booleanObject name="und" positioning="0">
+						<child>
+						<booleanObject name="nicht" positioning="0">
+						<child>
+							<booleanObject name="kornDa" positioning="1"></booleanObject>
+
+						</child>
+
+						</booleanObject>
+
+						</child>
+
+						<child>
+							<booleanObject name="vornFrei" positioning="1"></booleanObject>
+
+						</child>
+
+						</booleanObject>
+					</input>
+					<output>
+						<voidObject name="vor"></voidObject>
+					</output>
+				</description>
+			</descriptions>
+		</transition>
+
+		<transition fromState="graseReiheAb" toState="zurueck">
+			<descriptions>
+				<description>
+					<input>
+
+						<booleanObject name="und" positioning="0">
+						<child>
+						<booleanObject name="nicht" positioning="0">
+						<child>
+							<booleanObject name="kornDa" positioning="1"></booleanObject>
+
+						</child>
+
+						</booleanObject>
+
+						</child>
+
+						<child>
+						<booleanObject name="nicht" positioning="1">
+						<child>
+							<booleanObject name="vornFrei" positioning="1"></booleanObject>
+
+						</child>
+
+						</booleanObject>
+
+						</child>
+
+						</booleanObject>
+					</input>
+					<output>
+						<voidObject name="linksUm"></voidObject>
+						<voidObject name="linksUm"></voidObject>
+					</output>
+				</description>
+			</descriptions>
+		</transition>
+	</state>
+
+	<state name="laufeZurWand" initial="true" final="false" x="127" y="141">
+
+		<transition fromState="laufeZurWand" toState="laufeZurWand">
+			<descriptions>
+				<description>
+					<input>
+
+							<booleanObject name="vornFrei" positioning="0"></booleanObject>
+					</input>
+					<output>
+						<voidObject name="vor"></voidObject>
+					</output>
+				</description>
+			</descriptions>
+		</transition>
+
+		<transition fromState="laufeZurWand" toState="laufeZurWand2">
+			<descriptions>
+				<description>
+					<input>
+
+						<booleanObject name="nicht" positioning="0">
+						<child>
+							<booleanObject name="vornFrei" positioning="1"></booleanObject>
+
+						</child>
+
+						</booleanObject>
+					</input>
+					<output>
+						<voidObject name="linksUm"></voidObject>
+					</output>
+				</description>
+			</descriptions>
+		</transition>
+	</state>
+
+	<comment x="54" y="365">
+
+
+
+
+
+dann Territorium Reihe für Reihe abgrasen
+
+
+
+
+
+</comment>
+
+	<comment x="62" y="24">
+
+
+
+
+
+zunächst in eine Ecke laufen
+
+
+
+
+
+</comment>
+</FSM>

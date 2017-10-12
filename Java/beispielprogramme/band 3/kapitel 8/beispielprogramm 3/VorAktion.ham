@@ -1,0 +1,7 @@
+/*class*/class VorAktion implements Aktion {
+    public void ausfuehren(Hamster hamster) {
+        if (hamster.vornFrei()) {
+            hamster.vor();
+        }
+    }
+}

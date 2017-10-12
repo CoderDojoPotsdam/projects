@@ -1,0 +1,26 @@
+/*object-oriented program*/class VerliebterHamster extends Hamster {
+
+    VerliebterHamster(int r, int s, int b) {
+        super(r, s, b, 0);
+    }
+
+    public void run() {
+        while (!this.andererHamsterDa()) {
+            this.vor();
+        }
+    }
+
+    boolean andererHamsterDa() {
+        return Territorium.getAnzahlHamster(this.getReihe(),
+                this.getSpalte()) >= 2;
+    }
+}
+
+void main() {
+    VerliebterHamster paul = new VerliebterHamster(0, 0,
+            Hamster.OST);
+    VerliebterHamster maria = new VerliebterHamster(0,
+            Territorium.getAnzahlSpalten() - 1, Hamster.WEST);
+    paul.start();
+    maria.start();
+}

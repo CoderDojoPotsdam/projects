@@ -1,0 +1,7 @@
+/*class*/interface FrissHamster {
+
+    // die Methode zum Fressen; uebergeben wird, wie viele
+    // Koerner der Gegner gefressen hat; geliefert wird, wie
+    // viele Koerner der Hamster gefressen hat
+    public abstract int friss(int gegnerAnzahl);
+}

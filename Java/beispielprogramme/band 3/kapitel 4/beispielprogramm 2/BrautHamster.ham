@@ -1,0 +1,20 @@
+/*class*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+ */
+import util.AllroundHamster;
+
+class BrautHamster extends AllroundHamster implements Beobachter {
+
+    BrautHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    public void benachrichtigen(Beobachteter obj) {
+        BraeutigamHamster braeutigam = (BraeutigamHamster) obj;
+        this.laufeZuKachel(braeutigam.getReihe(), braeutigam
+                .getSpalte());
+    }
+}

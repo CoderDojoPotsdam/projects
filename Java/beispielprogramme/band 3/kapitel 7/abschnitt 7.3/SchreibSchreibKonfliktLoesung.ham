@@ -1,0 +1,15 @@
+/*object-oriented program*/void main() {
+    Hamster paul = Hamster.getStandardHamster();
+    Hamster heidi = new ZaehlHamster(0, 0);
+    Hamster maria = new ZaehlHamster(0, 1);
+    heidi.start();
+    maria.start();
+    try {
+        heidi.join();
+        maria.join();
+    } catch (Exception exc) {
+    }
+    paul.schreib("Heidi und Maria haben zusammen "
+            + ZaehlHamster.getGesammelteKoerner()
+            + " Koerner gesammelt.");
+}

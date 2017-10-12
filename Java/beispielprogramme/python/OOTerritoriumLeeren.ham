@@ -1,0 +1,69 @@
+/*python program*/# Ein neu erzeugter Hamster grast das Territorium ab und
+# zaehlt dabei die gesammelten Koerner
+
+class AbgrasHamster(Hamster):
+       
+    def __init__(self, reihe, spalte, blickrichtung, anzahlKoerner):
+        Hamster.__init__(self, reihe, spalte, blickrichtung, anzahlKoerner)
+        self.__Gesammelt = 0
+        
+    def kehrt(self):
+        self.linksUm()
+        self.linksUm()
+    
+    def rechtsUm(self):
+        self.kehrt() 
+        self.linksUm()
+
+    def laufeZurueck(self):
+        while self.vornFrei():
+            self.vor()
+
+    def sammle(self):
+        while self.kornDa():
+          self.nimm()
+          self.__Gesammelt += 1
+
+    def laufeZurWand(self):
+        while self.vornFrei():
+            self.vor()
+        
+    def laufeInEcke(self):
+        self.laufeZurWand()
+        self.linksUm()
+        self.laufeZurWand()
+        self.linksUm()
+
+    def ernteEineReihe(self):
+        self.sammle()
+        while self.vornFrei():
+            self.vor()
+            self.sammle()
+
+    def ernteEineReiheUndLaufeZurueck(self):
+        self.ernteEineReihe()
+        self.kehrt()
+        self.laufeZurueck()
+        
+    def gesammelteKoerner(self):
+        return self.__Gesammelt
+
+# Hauptprogramm
+paul = AbgrasHamster(2, 3, Hamster.WEST, 0)
+paul.laufeInEcke()
+paul.ernteEineReiheUndLaufeZurueck()
+paul.rechtsUm()
+while paul.vornFrei():
+    paul.vor()
+    paul.rechtsUm()
+    paul.ernteEineReiheUndLaufeZurueck()
+    paul.rechtsUm()
+paul.schreib("Gesammelte Koerner = " + str(paul.gesammelteKoerner()))
+
+
+
+
+
+
+
+

@@ -1,0 +1,21 @@
+/*imperative program*/int anzahl = 0; // globale Variable
+
+void laufeBisZurWand() {
+    while (vornFrei()) {
+      vor();
+      anzahl = anzahl + 1;  // Zuweisung
+    }
+}
+
+void laufeZurueckZumAusgangspunkt() {
+    while (anzahl > 0) { // Vergleichsausdruck
+      vor();
+      anzahl = anzahl - 1;
+    }
+}
+
+void main() {
+    laufeBisZurWand();
+    linksUm(); linksUm();
+    laufeZurueckZumAusgangspunkt();
+}

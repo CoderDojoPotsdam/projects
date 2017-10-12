@@ -1,0 +1,36 @@
+/*class*/class Tisch {
+    private int anzahlGabeln;
+
+    private boolean[] gabelReserviert;
+
+    Tisch(int anzahl) {
+        this.anzahlGabeln = anzahl;
+        this.gabelReserviert = new boolean[anzahl];
+        for (int i = 0; i < anzahl; i++) {
+            this.gabelReserviert[i] = false;
+        }
+    }
+
+    synchronized void reserviereGabeln(int gabel1, int gabel2) {
+        while (this.gabelReserviert[gabel1]
+                || this.gabelReserviert[gabel2]) {
+            try {
+                this.wait();
+            } catch (Exception e) {
+            }
+        }
+        this.gabelReserviert[gabel1] = true;
+        this.gabelReserviert[gabel2] = true;
+    }
+
+    synchronized void gibGabelnFrei(int gabel1, int gabel2) {
+        this.gabelReserviert[gabel1] = false;
+        this.gabelReserviert[gabel2] = false;
+        this.notifyAll(); // mindest zwei Nachbar-Hamster
+        // informieren
+    }
+
+    int getAnzahlGabeln() {
+        return this.anzahlGabeln;
+    }
+}

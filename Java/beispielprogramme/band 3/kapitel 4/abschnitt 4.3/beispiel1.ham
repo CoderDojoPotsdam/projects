@@ -1,0 +1,26 @@
+/*object-oriented program*/class LaufHamster extends Hamster {
+
+    LaufHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    public void run() {
+        while (this.vornFrei()) {
+            this.vor();
+        }
+    }
+}
+
+void main() {
+    Hamster paul = Hamster.getStandardHamster();
+    LaufHamster willi = new LaufHamster(1, 0, Hamster.OST, 0);
+
+    // Erzeugung und Start eines neuen Threads, der dem
+    // Thread-Objekt willi zugeordnet ist
+    willi.start();
+
+    // Paul wird zur Wand gesteuert
+    while (paul.vornFrei()) {
+        paul.vor();
+    }
+}

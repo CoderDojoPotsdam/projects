@@ -1,0 +1,14 @@
+/*object-oriented program*/void main() {
+  Hamster karl = Hamster.getStandardHamster();
+  int anzahl = karl.liesZahl("Laenge der Koernerreihe?");
+  SpielHamster paul = 
+    new SpielHamster(0, 0, Hamster.OST, 0, anzahl);
+  SpielHamster willi = 
+    new SpielHamster(0, 0, Hamster.OST, 0, anzahl);
+
+  NimmSpiel spiel = new NimmSpiel(paul, willi, anzahl);
+  SpielHamster sieger = spiel.spielen();
+
+  // der Sieger darf eine Ehrenrunde laufen
+  sieger.laufeEhrenrunde();
+}

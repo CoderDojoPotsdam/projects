@@ -1,0 +1,37 @@
+/*object-oriented program*/class DrehHamster extends Hamster {
+    DrehHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    void rechtsUm() {
+        this.kehrt();
+        this.linksUm();
+    }
+
+    void kehrt() {
+        this.linksUm();
+        this.linksUm();
+    }
+}
+
+class NachfrageHamster extends DrehHamster {
+    NachfrageHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    void kehrt() {
+        String antwort = this
+                .liesZeichenkette("Soll ich mich wirklich "
+                        + "umdrehen (ja/nein)?");
+        if (antwort.equals("ja")) {
+            super.kehrt();
+        }
+    }
+}
+
+void main() {
+    DrehHamster paul = new DrehHamster(0, 0, Hamster.OST, 0);
+    paul.rechtsUm(); // Hamster dreht sich
+    paul = new NachfrageHamster(0, 0, Hamster.OST, 0);
+    paul.rechtsUm(); // Hamster fragt nach
+}

@@ -1,0 +1,54 @@
+/*class*/public class BinaerSemaphor6 {
+
+    // Variablen fuer jeden Thread
+    private boolean[] kritisch = { false, false };
+
+    // "Schiedsrichtervariable"
+    private int anDerReihe = 0;
+
+    public void p(int dieserThread) {
+
+        // Wunsch zum Betreten des kritischen Abschnittes
+        // markieren
+        this.kritisch[dieserThread] = true;
+
+        // unter Umstaenden warten, bis der andere Thread den
+        // kritischen Abschnitt verlaesst
+        while (this.kritisch[this.andererThread(dieserThread)]) {
+
+            if (this.anDerReihe == this
+                    .andererThread(dieserThread)) {
+
+                // turnusmaessig ist der andere Thread an der
+                // Reihe
+
+                // dem anderen Thread die Chance geben, den
+                // kritischen Abschnitt zu betreten
+                this.kritisch[dieserThread] = false;
+
+                // warten bis dieser Thread an der Reihe ist
+                while (this.anDerReihe == this
+                        .andererThread(dieserThread)) {
+                    // aktives Warten
+                }
+
+                // Eintrittswunsch wiederholen
+                this.kritisch[dieserThread] = true;
+
+            }
+        }
+    }
+
+    public void v(int dieserThread) {
+
+        // Prioritaet abgeben
+        this.anDerReihe = this.andererThread(dieserThread);
+
+        // der kritische Abschnitt ist nun wieder frei
+        this.kritisch[dieserThread] = false;
+    }
+
+    private int andererThread(int dieserThread) {
+        return (dieserThread + 1) % 2;
+    }
+}

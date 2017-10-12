@@ -1,0 +1,81 @@
+/*class*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+// Hamster, die zwei Koerner gleichzeitig probieren wollen
+class ProbierHamster extends AllroundHamster {
+
+    private DeadlockErkenner zentrale; // der Deadlockerkenner
+
+    private Position pos1; // Position des ersten Korns
+
+    private Position pos2; // Position des zweiten Korns
+
+    ProbierHamster(int r, int s, int b, Position pos1,
+            Position pos2, DeadlockErkenner zentrale) {
+        super(r, s, b, 0);
+        this.pos1 = pos1;
+        this.pos2 = pos2;
+        this.zentrale = zentrale;
+    }
+
+    public void run() {
+        while (this.getAnzahlKoerner() < 2) {
+            // erstes Korn nehmen
+            this.laufeZuKachel(this.pos1.getReihe(), this.pos1
+                    .getSpalte());
+            this.sicheresNimm();
+
+            // zweites Korn nehmen
+            this.laufeZuKachel(this.pos2.getReihe(), this.pos2
+                    .getSpalte());
+            this.sicheresNimm();
+        }
+
+        // probieren
+        this.schreib("Hmmmm, das schmeckt");
+
+        // erstes Korn ablegen
+        this.gibUndBenachrichtige();
+
+        // zweites Korn ablegen
+        this.laufeZuKachel(this.pos1.getReihe(), this.pos1
+                .getSpalte());
+        this.gibUndBenachrichtige();
+    }
+
+    void sicheresNimm() {
+        Object kachel = Territorium.getKachel(this.getReihe(),
+                this.getSpalte());
+        synchronized (kachel) {
+            while (!this.kornDa()) {
+                try {
+                    this.zentrale.addWait();
+                    kachel.wait();
+                    this.zentrale.subWait();
+                } catch (InterruptedException exc) {
+                    // Betriebsmittel freigeben und dadurch
+                    // Deadlock beseitigen
+                    this.laufeZuKachel(this.pos1.getReihe(),
+                            this.pos1.getSpalte());
+                    this.gibUndBenachrichtige();
+                    return;
+                }
+            }
+            this.nimm();
+        }
+    }
+
+    void gibUndBenachrichtige() {
+        Object kachel = Territorium.getKachel(this.getReihe(),
+                this.getSpalte());
+        synchronized (kachel) {
+            this.gib();
+            kachel.notify();
+        }
+    }
+}

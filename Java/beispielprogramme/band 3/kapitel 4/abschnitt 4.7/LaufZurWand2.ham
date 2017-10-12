@@ -1,0 +1,28 @@
+/*object-oriented program*/class LaufHamster extends Hamster {
+
+    public void run() {
+        Hamster paul = Hamster.getStandardHamster();
+
+        // hin ...
+        int schritte = 0;
+        while (paul.vornFrei()) {
+            paul.vor();
+            schritte++;
+        }
+
+        // kehrt ...
+        paul.linksUm();
+        paul.linksUm();
+
+        // ... und zurueck
+        while (schritte > 0) {
+            paul.vor();
+            schritte--;
+        }
+    }
+}
+
+void main() {
+    LaufHamster dummy = new LaufHamster();
+    dummy.start();
+}

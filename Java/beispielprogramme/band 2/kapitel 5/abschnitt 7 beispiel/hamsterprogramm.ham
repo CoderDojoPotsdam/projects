@@ -1,0 +1,19 @@
+/*object-oriented program*/void main() {
+    // Erzeugung und Initial. zweier erweiterter Hamster
+    MeinHamster paul = new MeinHamster();
+    MeinHamster willi = new MeinHamster();
+    paul.init(2, 2, Hamster.NORD, 4);
+    willi.init(3, 4, Hamster.NORD, 7);
+
+    paul.sammle(); // Aufruf der neuen Methode sammle
+    willi.sammle();
+    while (paul.vornFrei() && // Aufruf des
+            willi.vornFrei()) { // normalen Hamster-Befehls
+        paul.vor();
+        paul.sammle();
+        willi.vor();
+        willi.sammle();
+    }
+    paul.legeGesammelteKoernerAb();
+    willi.legeGesammelteKoernerAb();
+}

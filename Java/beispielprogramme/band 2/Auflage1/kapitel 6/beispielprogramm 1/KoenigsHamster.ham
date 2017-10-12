@@ -1,0 +1,20 @@
+/*class*/class KoenigsHamster extends Hamster {
+  
+  // alle KoenigsHamster teilen sich einen BotschaftsHamster
+  static BotschaftsHamster botschafter = 
+    new BotschaftsHamster(Territorium.getAnzahlReihen() / 2,
+                          Territorium.getAnzahlSpalten() / 3,
+                          Hamster.SUED);
+  
+  KoenigsHamster(int r, int s, int b, int k) {
+    this.init(r, s, b, k);
+  }
+  
+  void schickeBotschafter() {
+    KoenigsHamster.botschafter.ueberbringeBotschaft();
+  }
+  
+  static BotschaftsHamster getBotschafter() {
+    return KoenigsHamster.botschafter;
+  }
+}

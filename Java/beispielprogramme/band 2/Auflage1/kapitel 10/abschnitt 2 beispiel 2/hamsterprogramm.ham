@@ -1,0 +1,6 @@
+/*object-oriented program*/void main() {
+    Hamster paul = new Hamster(3, 4, Hamster.OST, 3);
+    paul.schreib("Hurra!\nIch habe " + 
+                 paul.getAnzahlKoerner() + 
+                 " Koerner im Maul!");
+}

@@ -1,0 +1,18 @@
+/*class*/// spezielle Thread-Methode für die gleichzeitige
+// Benachrichtigung alle registrierten Braeute
+class BenachrichtigenThreadMethode extends Thread {
+
+    Beobachter beobachter;
+
+    Beobachteter beobachteter;
+
+    BenachrichtigenThreadMethode(Beobachter obj1,
+            Beobachteter obj2) {
+        this.beobachter = obj1;
+        this.beobachteter = obj2;
+    }
+
+    public void run() {
+        this.beobachter.benachrichtigen(this.beobachteter);
+    }
+}

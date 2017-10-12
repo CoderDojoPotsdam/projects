@@ -1,0 +1,12 @@
+/*class*/class Ende {
+
+    private static boolean endeWunsch = false;
+
+    synchronized static void beenden() {
+        Ende.endeWunsch = true;
+    }
+
+    synchronized static boolean endeWunschErfolgt() {
+        return Ende.endeWunsch;
+    }
+}

@@ -1,0 +1,21 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+void main() {
+    Hamster paul = Hamster.getStandardHamster();
+    int anzahlKunden = paul.liesZahl("Anzahl an Kunden?");
+    Kunde[] kunden = new Kunde[anzahlKunden];
+    Belegung[] belegungen = new Belegung[anzahlKunden];
+    Bankier bankier = new Bankier(belegungen);
+    for (int i = 0; i < anzahlKunden; i++) {
+        kunden[i] = new Kunde(6, 6, Hamster.OST, bankier);
+        int maxDarlehen = kunden[i]
+                .liesZahl("Maximales Darlehen?");
+        kunden[i].setMaxDarlehen(maxDarlehen);
+        belegungen[i] = new Belegung(kunden[i], maxDarlehen);
+        kunden[i].start();
+    }
+}

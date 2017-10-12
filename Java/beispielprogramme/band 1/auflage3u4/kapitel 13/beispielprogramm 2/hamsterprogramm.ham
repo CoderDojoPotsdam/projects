@@ -1,0 +1,33 @@
+/*imperative program*/boolean entwederLinksOderRechtsFrei() {
+
+    /*  Wahrheitstafel fuer "entweder oder"-Aussage
+
+        P Q   entweder-oder   !(P&&Q) && (P||Q)
+       -----------------------------------------
+        T T        F                 F
+        T F        T                 T
+        F T        T                 T
+        F F        F                 F
+    */
+
+    linksUm();
+    boolean p = vornFrei();
+    kehrt();
+    boolean q = vornFrei();
+    linksUm();
+    return !(p&&q) && (p||q);
+}
+
+void kehrt() {
+    linksUm(); 
+    linksUm();
+}
+
+// einfaches Testprogramm 
+void main() { 
+    if (entwederLinksOderRechtsFrei()) {
+        linksUm(); 
+    } else {
+        kehrt(); 
+    }
+} 

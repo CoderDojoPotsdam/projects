@@ -1,0 +1,3 @@
+/*class*/interface SammelHamster {
+    public abstract void sammle();
+}

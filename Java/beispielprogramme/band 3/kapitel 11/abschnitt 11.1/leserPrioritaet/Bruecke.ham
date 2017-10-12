@@ -1,0 +1,57 @@
+/*class*/class Bruecke {
+
+    private static Bruecke bruecke = new Bruecke();
+
+    static Bruecke getBruecke() {
+        return Bruecke.bruecke;
+    }
+
+    private int anzahlSchwergewichte;
+
+    private int anzahlLeichtgewichte;
+
+    private Bruecke() {
+        this.anzahlSchwergewichte = 0;
+        this.anzahlLeichtgewichte = 0;
+    }
+
+    // Ein schwergewichtiger Hamster darf nur dann die Brücke
+    // betreten, wenn die Anzahl der Schwergewichte
+    // und die Anzahl der Leichtgewichte, die sich gerade
+    // auf der Brücke befinden, gleich Null ist.
+    synchronized void betretenSchwergewicht() {
+        while (!(this.anzahlSchwergewichte == 0 && 
+                this.anzahlLeichtgewichte == 0)) {
+            try {
+                this.wait();
+            } catch (InterruptedException exc) {
+            }
+        }
+        this.anzahlSchwergewichte++;
+    }
+
+    synchronized void verlassenSchwergewicht() {
+        this.anzahlSchwergewichte--;
+        this.notifyAll();
+    }
+
+    // Ein leichtgewichtiger Hamster darf die Brücke nicht
+    // betreten, wenn die Anzahl der
+    // Schwergewichte, die sich gerade auf der Brücke befinden,
+    // größer als Null ist.
+    synchronized void betretenLeichtgewicht() {
+        while (this.anzahlSchwergewichte > 0) {
+            try {
+                this.wait();
+            } catch (InterruptedException exc) {
+            }
+        }
+        this.anzahlLeichtgewichte++;
+    }
+
+    synchronized void verlassenLeichtgewicht() {
+        this.anzahlLeichtgewichte--;
+        this.notifyAll();
+    }
+
+}

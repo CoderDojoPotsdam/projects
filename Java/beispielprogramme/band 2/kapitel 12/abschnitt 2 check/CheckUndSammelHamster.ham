@@ -1,0 +1,43 @@
+/*class*/class CheckUndSammelHamster extends Hamster implements
+        CheckHamster, SammelHamster {
+    CheckUndSammelHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    public boolean linksFrei() {
+        this.linksUm();
+        boolean frei = this.vornFrei();
+        this.rechtsUm();
+        return frei;
+    }
+
+    public boolean rechtsFrei() {
+        this.rechtsUm();
+        boolean frei = this.vornFrei();
+        this.linksUm();
+        return frei;
+    }
+
+    public boolean hintenFrei() {
+        this.kehrt();
+        boolean frei = this.vornFrei();
+        this.kehrt();
+        return frei;
+    }
+
+    public void sammle() {
+        while (this.kornDa()) {
+            this.nimm();
+        }
+    }
+
+    void kehrt() {
+        this.linksUm();
+        this.linksUm();
+    }
+
+    void rechtsUm() {
+        this.kehrt();
+        this.linksUm();
+    }
+}

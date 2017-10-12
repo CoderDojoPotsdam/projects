@@ -1,0 +1,12 @@
+/*class*/class Hamster2 extends Hamster1 {
+    int gesammelteKoerner;
+
+    // Definition (mindestens) eines Konstruktors ist
+    // erforderlich
+    Hamster2(int r, int s, int b, int k) {
+        super(r, s, b, k); // Aufruf des vier-parametrigen
+                           // Konstruktors der Klasse Hamster1
+                           // mittels des super-Konstruktes
+        this.gesammelteKoerner = 0;
+    }
+}

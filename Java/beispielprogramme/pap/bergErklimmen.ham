@@ -1,0 +1,91 @@
+<?xml version="1.0" ?>
+<FLOWCHART>
+	<method name="main" startId="763629029">
+		<element id="763629029" string="Start" perform="" type="startstop" x="175" y="25">
+			<nextId return="true" value="763641243"/>
+		</element>
+		<element id="763641243" string="laufeZumBerg" perform="laufeZumBerg" type="procedure" x="175" y="125">
+			<nextId return="true" value="763651787"/>
+		</element>
+		<element id="763651787" string="erklimmeBerg" perform="erklimmeBerg" type="procedure" x="175" y="225">
+			<nextId return="true" value="763658293"/>
+		</element>
+		<element id="763658293" string="Stop" perform="" type="startstop" x="175" y="325" terminate="true">
+			
+		</element>
+	</method>
+	<method name="laufeZumBerg" startId="763674741">
+		<element id="763674741" string="Start" perform="" type="startstop" x="175" y="25">
+			<nextId return="true" value="763678627"/>
+		</element>
+		<element id="763678627" string="vornFrei?" perform="vornFrei" type="decision" x="175" y="125">
+			<nextId return="true" value="763687461"/>
+			<nextId return="false" value="763692763"/>
+		</element>
+		<element id="763687461" string="vor" perform="vor" type="command" x="175" y="225">
+			<nextId return="true" value="763678627"/>
+		</element>
+		<element id="763692763" string="Stop" perform="" type="startstop" x="325" y="325">
+			
+		</element>
+	</method>
+	<method name="erklimmeBerg" startId="763730660">
+		<element id="763730660" string="Start" perform="" type="startstop" x="175" y="25">
+			<nextId return="true" value="763738642"/>
+		</element>
+		<element id="763738642" string="vornFrei?" perform="vornFrei" type="decision" x="175" y="125">
+			<nextId return="true" value="763806068"/>
+			<nextId return="false" value="763753861"/>
+		</element>
+		<element id="763753861" string="linksUm" perform="linksUm" type="command" x="175" y="225">
+			<nextId return="true" value="763757477"/>
+		</element>
+		<element id="763757477" string="vor" perform="vor" type="command" x="175" y="325">
+			<nextId return="true" value="763764406"/>
+		</element>
+		<element id="763764406" string="rechtsUm" perform="rechtsUm" type="procedure" x="175" y="425">
+			<nextId return="true" value="763798813"/>
+		</element>
+		<element id="763798813" string="vor" perform="vor" type="command" x="175" y="525">
+			<nextId return="true" value="763738642"/>
+		</element>
+		<element id="763806068" string="Stop" perform="" type="startstop" x="325" y="125">
+			
+		</element>
+	</method>
+	<method name="rechtsUm" startId="763768420">
+		<element id="763768420" string="Start" perform="" type="startstop" x="175" y="25">
+			<nextId return="true" value="763771021"/>
+		</element>
+		<element id="763771021" string="linksUm" perform="linksUm" type="command" x="175" y="125">
+			<nextId return="true" value="763773069"/>
+		</element>
+		<element id="763773069" string="linksUm" perform="linksUm" type="command" x="175" y="225">
+			<nextId return="true" value="763775501"/>
+		</element>
+		<element id="763775501" string="linksUm" perform="linksUm" type="command" x="175" y="325">
+			<nextId return="true" value="763778013"/>
+		</element>
+		<element id="763778013" string="Stop" perform="" type="startstop" x="175" y="425">
+			
+		</element>
+	</method>
+	<transition sourceId="763629029" destId="763641243" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="763641243" destId="763651787" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="763651787" destId="763658293" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="763674741" destId="763678627" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="763678627" destId="763687461" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="763687461" destId="763678627" orientationS="3" orientationD="3" childIs="true"/>
+	<transition sourceId="763678627" destId="763692763" orientationS="1" orientationD="0" childIs="false"/>
+	<transition sourceId="763768420" destId="763771021" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="763771021" destId="763773069" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="763773069" destId="763775501" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="763775501" destId="763778013" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="763730660" destId="763738642" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="763738642" destId="763806068" orientationS="1" orientationD="3" childIs="true"/>
+	<transition sourceId="763738642" destId="763753861" orientationS="2" orientationD="0" childIs="false"/>
+	<transition sourceId="763753861" destId="763757477" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="763757477" destId="763764406" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="763764406" destId="763798813" orientationS="2" orientationD="0" childIs="true"/>
+	<transition sourceId="763798813" destId="763738642" orientationS="3" orientationD="3" childIs="true"/>
+</FLOWCHART>

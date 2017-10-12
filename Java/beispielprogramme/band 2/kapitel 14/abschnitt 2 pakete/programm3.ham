@@ -1,0 +1,11 @@
+/*object-oriented program*/import reversi.*;
+
+void main() {
+    ReversiHamster paul = new ReversiHamster();
+    Spielbrett brett = new Spielbrett();
+    Spielzug zug = paul.liefereSpielzug();
+    if (Regeln.spielzugOk(zug)) {
+       // ...
+    }
+   // ...
+}

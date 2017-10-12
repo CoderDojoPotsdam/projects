@@ -1,0 +1,90 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+class ErmittlungsHamster extends AllroundHamster implements
+        Callable<Integer> {
+
+    private int maxHoehe;
+
+    ErmittlungsHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+        this.maxHoehe = -1;
+    }
+
+    public Integer call() {
+        this.maxHoehe = -1;
+        while (this.vornFrei()) {
+            this.vor();
+            this.bearbeiteKachel();
+        }
+        return this.maxHoehe;
+    }
+
+    private void bearbeiteKachel() {
+        int koerner = this.nimmAlle();
+        if (koerner > this.maxHoehe) {
+            this.maxHoehe = koerner;
+        }
+        this.gib(koerner); // Vermeidung von Seiteneffekten
+    }
+}
+
+class InfoHamster extends AllroundHamster {
+
+    InfoHamster(Hamster existierenderHamster) {
+        super(existierenderHamster.getReihe(),
+                existierenderHamster.getSpalte(), Hamster.NORD,
+                0);
+    }
+
+    public void run() {
+        
+        // zwei helfende Hamster werden auf die Suche geschickt;
+        // einer nach links, einer nach rechts
+        ErmittlungsHamster helferLinks = new ErmittlungsHamster(
+                this.getReihe(), this.getSpalte(), Hamster.WEST,
+                0);
+        ErmittlungsHamster helferRechts = new ErmittlungsHamster(
+                this.getReihe(), this.getSpalte(), Hamster.OST,
+                0);
+        Task<Integer> nachLinks = new Task<Integer>(helferLinks);
+        Task<Integer> nachRechts = new Task<Integer>(
+                helferRechts);
+        nachLinks.start();
+        nachRechts.start();
+
+        // die Kachel, auf der der Hamster steht uebernimmt der
+        // Hamster selber
+        int maxHoehe = this.nimmAlle();
+        this.gib(maxHoehe);
+
+        // nun wird das Endergebnis
+        // ermittelt und verkuendet
+        if (nachLinks.get() > maxHoehe) {
+            maxHoehe = nachLinks.get();
+        }
+        if (nachRechts.get() > maxHoehe) {
+            maxHoehe = nachRechts.get();
+        }
+        this.schreib("Die maximale Anzahl an "
+                + "Koernern auf Kacheln in\n"
+                + "der Reihe, in der ich stehe, betraegt "
+                + maxHoehe + "!");
+    }
+}
+
+void main() {
+    Hamster paul = Hamster.getStandardHamster();
+    paul.schreib("Meine Helfer und ich ermitteln "
+            + "die maximale Anzahl an Koernern\n"
+            + "auf Kacheln in der Reihe, in der ich stehe.");
+    InfoHamster willi = new InfoHamster(paul);
+     
+    // der Vertretungs-Hamster wird auf die Suche geschickt
+     willi.start();
+}

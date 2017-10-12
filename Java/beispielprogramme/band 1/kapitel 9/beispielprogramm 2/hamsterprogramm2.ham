@@ -1,0 +1,33 @@
+/*imperative program*/void main() {
+
+    // linke untere Ecke
+    if (!maulLeer()) {
+        gib();
+        if (!maulLeer()) {
+
+            // rechte untere Ecke
+            laufeBisInDieNaechsteEcke();
+            gib();
+            if (!maulLeer()) {
+
+                // rechte obere Ecke
+                laufeBisInDieNaechsteEcke();
+                gib();
+                if (!maulLeer()) {
+
+                    // linke obere Ecke
+                    laufeBisInDieNaechsteEcke();
+                    gib();
+                }
+            }
+        }
+    }
+}
+
+void laufeBisInDieNaechsteEcke() {
+    vor(); 
+    vor(); 
+    vor(); 
+    vor(); 
+    linksUm();
+}

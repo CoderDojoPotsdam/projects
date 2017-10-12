@@ -1,0 +1,5 @@
+/*object-oriented program*/void main() {
+    SocketNachmachHamster paul = new SocketNachmachHamster(Hamster
+            .getStandardHamster(), "localhost", 2345);
+    paul.macheNach();
+}

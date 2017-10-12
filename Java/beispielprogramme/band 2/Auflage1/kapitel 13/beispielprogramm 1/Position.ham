@@ -1,0 +1,12 @@
+/*class*/class Position {
+  int reihe;
+  int spalte;
+    
+  Position(int r, int s) {
+    this.reihe = r;
+    this.spalte = s;
+  }
+    
+  int getReihe() { return this.reihe; }
+  int getSpalte() { return this.spalte; }
+}

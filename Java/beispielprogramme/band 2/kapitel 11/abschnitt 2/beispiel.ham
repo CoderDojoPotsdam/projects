@@ -1,0 +1,23 @@
+/*object-oriented program*/class DrehHamster extends Hamster {
+    DrehHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    void rechtsUm() {
+        this.linksUm();
+        this.linksUm();
+        this.linksUm();
+    }
+}
+
+void main() {
+    /* 1 */ DrehHamster paul = new DrehHamster(2, 4,
+                Hamster.WEST, 0);
+    /* 2 */ paul.vor();
+    /* 3 */ paul.rechtsUm();
+
+    /* 4 */ Hamster willi = new DrehHamster(2, 4,
+                Hamster.WEST, 0);
+    /* 5 */ willi.vor();
+    /* 6 */ // willi.rechtsUm(); // Fehler
+}

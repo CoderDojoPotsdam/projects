@@ -1,0 +1,23 @@
+/*class*//*
+Windows:
+  CLASSPATH: Programme\beispielprogramme\band 2\Anhang B
+Linux, Solaris:
+  CLASSPATH: Programme/beispielprogramme/band 2/Anhang B
+*/
+package kalah;
+
+// repraesentiert einen Spielzug beim Kalah-Spiel
+public class Spielzug {
+
+    private int mulde; // Nummer einer Mulde
+
+    // initialisiert ein Spielzug-Objekt
+    public Spielzug(int muldeNummer) {
+        this.mulde = muldeNummer;
+    }
+
+    // liefert die Muldennummer
+    public int liefereMulde() {
+        return this.mulde;
+    }
+}

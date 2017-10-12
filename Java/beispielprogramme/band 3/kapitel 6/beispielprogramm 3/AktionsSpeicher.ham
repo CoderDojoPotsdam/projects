@@ -1,0 +1,20 @@
+/*class*/class AktionsSpeicher extends java.util.Vector<Aktion> {
+
+    void speichern(Aktion aktion) {
+    
+        // fuegt Aktion hinzu
+        this.add(aktion);
+    }
+
+    Aktion getNaechsteAktion() {
+        try {
+        
+            // liefert und entfernt aelteste Aktion
+            return this.remove(0);
+        } catch (ArrayIndexOutOfBoundsException exc) {
+        
+            // falls keine Aktion gespeichert ist
+            return null;
+        }
+    }
+}

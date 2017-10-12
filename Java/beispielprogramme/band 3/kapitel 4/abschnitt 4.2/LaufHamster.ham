@@ -1,0 +1,15 @@
+/*class*/class LaufHamster extends Hamster {
+
+    LaufHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    public void run() {
+
+        // laeuft bis zur Mauer
+        while (this.vornFrei()) {
+            this.vor();
+        }
+    }
+}
+

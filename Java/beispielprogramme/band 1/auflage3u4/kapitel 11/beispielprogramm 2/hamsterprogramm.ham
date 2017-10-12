@@ -1,0 +1,119 @@
+/*imperative program*/void main() {
+
+    // finde die Mulde
+    while (!rechtsFrei()) { 
+        vor(); 
+    }
+
+    // begib dich in die Mulde
+    rechtsUm(); 
+    vor(); 
+    linksUm();
+
+    // friss die Koerner
+    graseReiheAb();
+    while (begibDichInNaechsteReiheVonOst()) {
+        graseReiheAb();
+        if (begibDichInNaechsteReiheVonWest()) {
+            graseReiheAb();
+        }
+    }
+}
+
+void graseReiheAb() {
+    sammle();
+    while (vornFrei()) {
+        vor();
+        sammle();
+    }
+}
+
+void sammle() {
+    while (kornDa()) { 
+        nimm(); 
+    }
+}
+
+// Achtung: Die Funktion produziert Seiteneffekte!
+boolean begibDichInNaechsteReiheVonOst() {
+    kehrt();
+
+    // finde naechste Nische
+    while (vornFrei() && !linksFrei()) {
+        vor();
+    }
+    if (!linksFrei()) {
+
+        // Ende der Mulde erreicht
+        return false;
+    } else {
+
+        // begib dich in naechste Reihe
+        linksUm(); 
+        vor(); 
+        rechtsUm();
+        return true;
+    }
+}
+
+// Achtung: Die Funktion produziert Seiteneffekte!
+boolean begibDichInNaechsteReiheVonWest() {
+    kehrt();
+
+    // finde naechste Nische
+    while (vornFrei() && !rechtsFrei()) {
+        vor();
+    }
+    if (!rechtsFrei()) {
+
+        // Ende der Mulde erreicht
+        return false;
+    } else {
+
+        // begib dich in naechste Reihe
+        rechtsUm(); 
+        vor(); 
+        linksUm();
+        return true;
+    }
+}
+
+boolean linksFrei() {
+    linksUm();
+    if (vornFrei()) {
+
+        // links ist frei
+        rechtsUm(); 
+        return true;
+    } else {   
+
+        // links ist eine Mauer
+        rechtsUm(); 
+        return false;
+    }
+}  
+
+boolean rechtsFrei() {
+    rechtsUm();
+    if (vornFrei()) {
+
+        // rechts ist frei
+        linksUm(); 
+        return true;
+    } else {   
+
+        // rechts ist eine Mauer
+        linksUm(); 
+        return false;
+    }
+}  
+
+void rechtsUm() { 
+    kehrt(); 
+    linksUm(); 
+}
+
+void kehrt() { 
+    linksUm(); 
+    linksUm(); 
+}

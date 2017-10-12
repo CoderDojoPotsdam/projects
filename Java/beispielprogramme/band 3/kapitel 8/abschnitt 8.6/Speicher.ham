@@ -1,0 +1,34 @@
+/*class*/public class Speicher<T> {
+
+    private T speicher;
+
+    private boolean gefuellt;
+
+    public Speicher() {
+        this.gefuellt = false;
+    }
+
+    synchronized public void put(T wert) {
+        while (this.gefuellt) {
+            try {
+                this.wait();
+            } catch (InterruptedException exc) {
+            }
+        }
+        this.speicher = wert;
+        this.gefuellt = true;
+        this.notifyAll();
+    }
+
+    synchronized public T get() {
+        while (!this.gefuellt) {
+            try {
+                this.wait();
+            } catch (InterruptedException exc) {
+            }
+        }
+        this.gefuellt = false;
+        this.notifyAll();
+        return this.speicher;
+    }
+}

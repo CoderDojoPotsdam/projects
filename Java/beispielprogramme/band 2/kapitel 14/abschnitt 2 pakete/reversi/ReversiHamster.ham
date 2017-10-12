@@ -1,0 +1,7 @@
+/*class*/package reversi;
+
+public class ReversiHamster extends Hamster {
+    public ReversiHamster() {  }
+    public Spielzug liefereSpielzug() { return null; }
+    //  ...
+}

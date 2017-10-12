@@ -1,0 +1,5 @@
+/*object-oriented program*/void main() {
+    new LinksLaufHamster(Hamster.getStandardHamster(),
+            Hamster.getStandardHamster().getAnzahlKoerner(),
+            true);
+}

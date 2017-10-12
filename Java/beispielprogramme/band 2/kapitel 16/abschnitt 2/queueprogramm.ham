@@ -1,0 +1,32 @@
+/*object-oriented program*/import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Random;
+
+void main() {
+    AllroundHamster paul = new AllroundHamster(Hamster
+            .getStandardHamster());
+
+    Queue<Kachel> kachelSpeicher = new LinkedList<Kachel>();
+
+    Random zufall = new Random();
+    while (!paul.maulLeer()) {
+        int reihe = zufall.nextInt(Territorium
+                .getAnzahlReihen());
+        int spalte = zufall.nextInt(Territorium
+                .getAnzahlSpalten());
+        paul.laufeZuKachel(reihe, spalte);
+        paul.gib();
+        kachelSpeicher.offer(new Kachel(reihe, spalte));
+    }
+
+    AllroundHamster willi = new AllroundHamster(Hamster
+            .getStandardHamster());
+
+    Kachel kachel = kachelSpeicher.poll();
+    while (kachel != null) {
+        willi.laufeZuKachel(kachel.getReihe(), kachel
+                .getSpalte());
+        willi.nimm();
+        kachel = kachelSpeicher.poll();
+    }
+}

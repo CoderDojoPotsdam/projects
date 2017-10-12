@@ -1,0 +1,15 @@
+/*object-oriented program*//*
+Windows:
+  CLASSPATH: .;Programme\beispielprogramme\band 2\Anhang B
+Linux, Solaris:
+  CLASSPATH: .:Programme/beispielprogramme/band 2/Anhang B
+*/
+import kalah.*;
+import hamsterkalah.*;
+
+// Hauptprogramm
+void main() {
+    SchiedsrichterHamster schiedsrichter = new AbfrageSchiedsrichterHamster();
+    KalahSpiel spiel = new KalahSpiel(schiedsrichter);
+    spiel.spielen();
+}

@@ -1,0 +1,19 @@
+/*imperative program*/void main() {
+    if (kornDa()) {    // steht bereits auf einem Kornfeld
+
+        // friss erstes Korn
+        nimm();
+    } else {
+
+        // suche und friss erstes Korn
+        vor(); 
+        vor(); 
+        nimm();
+        linksUm();
+    }
+
+    // suche und friss zweites Korn
+    vor(); 
+    vor(); 
+    nimm();
+}

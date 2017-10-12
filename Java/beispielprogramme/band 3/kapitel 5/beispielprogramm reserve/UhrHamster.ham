@@ -1,0 +1,261 @@
+/*class*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+public class UhrHamster extends AllroundHamster {
+
+  public static final int ZIFFERN_HOEHE  = 5;
+  public static final int ZIFFERN_BREITE = 3;
+  public static final int DOPPELPUNKT_BREITE = 1;
+  public static final int ZWISCHENRAUM = 1;
+
+  protected int ersteZiffer, zweiteZiffer, dritteZiffer, vierteZiffer;
+
+  public UhrHamster(int stunden, int minuten) {
+    super(0, 0, Hamster.OST, 62);
+    this.ersteZiffer = stunden / 10;
+    this.maleZiffer(0, 0, this.ersteZiffer);
+    this.zweiteZiffer = stunden % 10;
+    this.maleZiffer(0, ZIFFERN_BREITE + ZWISCHENRAUM, this.zweiteZiffer);
+    this.maleDoppelpunkt(0, 2*ZIFFERN_BREITE + 2*ZWISCHENRAUM);
+    this.dritteZiffer = minuten / 10;
+    this.maleZiffer(0, 2*ZIFFERN_BREITE + DOPPELPUNKT_BREITE + 3*ZWISCHENRAUM, this.dritteZiffer);
+    this.vierteZiffer = minuten % 10;
+    this.maleZiffer(0, 3*ZIFFERN_BREITE + DOPPELPUNKT_BREITE + 4*ZWISCHENRAUM, this.vierteZiffer);
+    this.laufeZuKachel(0, 0);
+  }
+  
+  public void maleUhrzeit(int stunden, int minuten) {
+    if (this.ersteZiffer != stunden / 10) {
+      this.loescheZiffer(10, 0);
+      this.ersteZiffer = stunden / 10;
+      this.maleZiffer(0, 0, this.ersteZiffer);
+    }
+    if (this.zweiteZiffer != stunden % 10) {
+      this.loescheZiffer(0, ZIFFERN_BREITE + ZWISCHENRAUM);
+      this.zweiteZiffer = stunden % 10;
+      this.maleZiffer(0, ZIFFERN_BREITE + ZWISCHENRAUM, this.zweiteZiffer);
+    }
+    if (this.ersteZiffer != minuten / 10) {
+      this.loescheZiffer(0, 2*ZIFFERN_BREITE + DOPPELPUNKT_BREITE + 3*ZWISCHENRAUM);
+      this.dritteZiffer = minuten / 10;
+      this.maleZiffer(0, 2*ZIFFERN_BREITE + DOPPELPUNKT_BREITE + 3*ZWISCHENRAUM, this.dritteZiffer);
+    }
+    if (this.ersteZiffer != minuten % 10) {
+      this.loescheZiffer(0, 3*ZIFFERN_BREITE + DOPPELPUNKT_BREITE + 4*ZWISCHENRAUM);
+      this.vierteZiffer = minuten % 10;
+      this.maleZiffer(0, 3*ZIFFERN_BREITE + DOPPELPUNKT_BREITE + 4*ZWISCHENRAUM, this.vierteZiffer);
+    }
+    this.laufeZuKachel(0, 0);
+  }
+
+  protected void maleZiffer(int reihe, int spalte, int ziffer) {
+    this.laufeZuKachel(reihe, spalte);
+    if (ziffer == 0) {
+      this.maleZiffer0();
+    } else if (ziffer == 1) {
+      this.maleZiffer1();
+    } else if (ziffer == 2) {
+      this.maleZiffer2();
+    } else if (ziffer == 3) {
+      this.maleZiffer3();
+    } else if (ziffer == 3) {
+      this.maleZiffer3();
+    } else if (ziffer == 4) {
+      this.maleZiffer4();
+    } else if (ziffer == 5) {
+      this.maleZiffer5();
+    } else if (ziffer == 6) {
+      this.maleZiffer6();
+    } else if (ziffer == 7) {
+      this.maleZiffer7();
+    } else if (ziffer == 8) {
+      this.maleZiffer8();
+    } else if (ziffer == 9) {
+      this.maleZiffer9();
+    }
+  }
+
+  protected void loescheZiffer(int reihe, int spalte) {
+    for (int r=0; r<ZIFFERN_HOEHE; r++) {
+      this.laufeZuKachel(reihe+r, spalte);
+      this.setzeBlickrichtung(Hamster.OST);
+      this.nimm(1);
+      for (int i=0; i<ZIFFERN_BREITE-1; i++) {
+        this.vor();
+        this.nimm(1);
+      }
+    }
+  }
+
+  protected void maleDoppelpunkt(int reihe, int spalte) {
+    this.laufeZuKachel(reihe, spalte);
+    this.rechtsUm();
+    this.vor();
+    this.gib();
+    this.vor(2);
+    this.gib();
+  }
+
+  protected void maleZiffer0() {
+    this.setzeBlickrichtung(Hamster.OST);
+    this.gib();
+    this.vorUndGib(2);
+    this.rechtsUm();
+    this.vorUndGib(4);
+    this.rechtsUm();
+    this.vorUndGib(2);
+    this.rechtsUm();
+    this.vorUndGib(3);
+  }
+
+
+  protected void maleZiffer1() {
+    this.setzeBlickrichtung(Hamster.SUED);
+    this.vor(2);
+    this.gib();
+    this.linksUm();
+    this.vor();
+    this.linksUm();
+    this.vor();
+    this.gib();
+    this.rechtsUm();
+    this.vor();
+    this.linksUm();
+    this.vor();
+    this.gib();
+    this.kehrt();
+    this.vorUndGib(4);
+  }
+
+
+  protected void maleZiffer2() {
+    this.setzeBlickrichtung(Hamster.OST);
+    this.gib();
+    this.vorUndGib(2);
+    this.rechtsUm();
+    this.vorUndGib(2);
+    this.rechtsUm();
+    this.vorUndGib(2);
+    this.linksUm();
+    this.vorUndGib(2);
+    this.linksUm();
+    this.vorUndGib(2);
+  }
+
+  protected void maleZiffer3() {
+    this.setzeBlickrichtung(Hamster.OST);
+    this.gib();
+    this.vorUndGib(2);
+    this.rechtsUm();
+    this.vorUndGib(4);
+    this.rechtsUm();
+    this.vorUndGib(2);
+    this.rechtsUm();
+    this.vor(2);
+    this.rechtsUm();
+    this.gib();
+    this.vorUndGib(1);
+  }
+
+  protected void maleZiffer4() {
+    this.setzeBlickrichtung(Hamster.SUED);
+    this.gib();
+    this.vorUndGib(2);
+    this.linksUm();
+    this.vorUndGib(2);
+    this.linksUm();
+    this.vorUndGib(2);
+    this.kehrt();
+    this.vor(2);
+    this.vorUndGib(2);
+  }
+
+  protected void maleZiffer5() {
+    this.setzeBlickrichtung(Hamster.OST);
+    this.vor(2);
+    this.kehrt();
+    this.gib();
+    this.vorUndGib(2);
+    this.linksUm();
+    this.vorUndGib(2);
+    this.linksUm();
+    this.vorUndGib(2);
+    this.rechtsUm();
+    this.vorUndGib(2);
+    this.rechtsUm();
+    this.vorUndGib(2);
+  }
+
+  protected void maleZiffer6() {
+    this.setzeBlickrichtung(Hamster.OST);
+    this.vor(2);
+    this.kehrt();
+    this.gib();
+    this.vorUndGib(2);
+    this.linksUm();
+    this.vorUndGib(4);
+    this.linksUm();
+    this.vorUndGib(2);
+    this.linksUm();
+    this.vorUndGib(2);
+    this.linksUm();
+    this.vorUndGib(1);
+  }
+
+  protected void maleZiffer7() {
+    this.setzeBlickrichtung(Hamster.OST);
+    this.gib();
+    this.vorUndGib(2);
+    this.rechtsUm();
+    this.vorUndGib(4);
+    this.kehrt();
+    this.vor(2);
+    this.linksUm();
+    this.vorUndGib(1);
+  }
+
+  protected void maleZiffer8() {  
+    this.setzeBlickrichtung(Hamster.OST);
+    this.gib();
+    this.vorUndGib(2);
+    this.rechtsUm();
+    this.vorUndGib(4);
+    this.rechtsUm();
+    this.vorUndGib(2);
+    this.rechtsUm();
+    this.vorUndGib(3);
+    this.kehrt();
+    this.vor(1);
+    this.linksUm();
+    this.vorUndGib(1);
+  }
+
+  protected void maleZiffer9() {
+    this.setzeBlickrichtung(Hamster.OST);
+    this.gib();
+    this.vorUndGib(2);
+    this.rechtsUm();
+    this.vorUndGib(4);
+    this.rechtsUm();
+    this.vorUndGib(2);
+    this.rechtsUm();
+    this.vor();
+    this.vorUndGib(2);
+    this.kehrt();
+    this.vor();
+    this.linksUm();
+    this.vorUndGib(1);
+  }
+
+  protected void vorUndGib(int anzahl) {
+    for (int i=0; i<anzahl; i++) {
+      this.vor();
+      this.gib();
+    }
+  }
+}

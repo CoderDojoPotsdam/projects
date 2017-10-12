@@ -1,0 +1,14 @@
+/*class*/// Fehlertyp: ein String repraesentiert keine Ziffer
+class KeineZifferException extends Exception {
+  
+  String str;
+  
+  KeineZifferException(String str) {
+    super(str);
+    this.str = str;
+  }
+  
+  String getString() {
+    return this.str;
+  }
+}

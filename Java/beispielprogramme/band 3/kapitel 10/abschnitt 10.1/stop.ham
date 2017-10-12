@@ -1,0 +1,19 @@
+/*object-oriented program*/void main() {
+    FrissHamster paul = new FrissHamster(2, 2);
+    FrissHamster willi = new FrissHamster(4, 4);
+    paul.start();
+    willi.start();
+
+    // warten
+    try {
+        Thread.sleep(2000);
+    } catch (InterruptedException exc) {
+    }
+
+    // Hamster killen und Gesamtanzahl ausgeben
+    paul.stop();
+    willi.stop();
+    Hamster.getStandardHamster().schreib(
+            "Gesamtanzahl an Koernern: "
+            + FrissHamster.getGesamtAnzahlAnKoernernImMaul());
+}

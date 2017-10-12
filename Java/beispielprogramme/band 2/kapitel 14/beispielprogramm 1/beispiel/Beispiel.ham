@@ -1,0 +1,25 @@
+/*class*/package beispiel;
+
+public class Beispiel {
+    private int iPrivate;
+
+    int iOhne;
+
+    protected int iProtected;
+
+    public int iPublic;
+
+    public Beispiel() {
+        this.iPrivate = 0;
+        this.iOhne = 1;
+        this.iProtected = 2;
+        this.iPublic = 3;
+    }
+
+    public Beispiel(Beispiel obj) {
+        this.iPrivate = obj.iPrivate;
+        this.iOhne = obj.iOhne;
+        this.iProtected = obj.iProtected;
+        this.iPublic = obj.iPublic;
+    }
+}

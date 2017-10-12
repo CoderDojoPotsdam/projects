@@ -1,0 +1,9 @@
+/*class*/class Hamster1 extends Hamster {
+    Hamster1(int r, int s, int b, int k) {
+        this.init(r, s, b, k);
+    }
+
+    Hamster1(int r, int s, int b) {
+        this.init(r, s, b, 0);
+    }
+}

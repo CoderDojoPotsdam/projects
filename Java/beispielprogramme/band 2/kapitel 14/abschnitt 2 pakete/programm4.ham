@@ -1,0 +1,15 @@
+/*object-oriented program*/import reversi.ReversiHamster;
+import reversi.Spielbrett;
+import reversi.Spielzug;
+import reversi.Regeln;
+import static reversi.Regeln.spielzugOk; // static import
+
+void main() {
+    ReversiHamster paul = new ReversiHamster();
+    Spielbrett brett = new Spielbrett();
+    Spielzug zug = paul.liefereSpielzug();
+    if (spielzugOk(zug)) {  // Weglassen des Klassenamens
+       // ...
+    }
+    // ...
+}

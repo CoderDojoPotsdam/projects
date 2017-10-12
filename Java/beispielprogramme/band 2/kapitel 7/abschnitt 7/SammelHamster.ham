@@ -1,0 +1,17 @@
+/*class*/class SammelHamster extends Hamster {
+    static int gemeinsamGesammelteKoerner = 0; // Klassenattribut
+
+    SammelHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    public void nimm() {
+        super.nimm();
+        SammelHamster.gemeinsamGesammelteKoerner =
+            SammelHamster.gemeinsamGesammelteKoerner + 1;
+    }
+
+    static int getGemeinsamGesammelteKoerner() {
+        return SammelHamster.gemeinsamGesammelteKoerner;
+    }
+}

@@ -1,0 +1,40 @@
+/*class*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+class TurmWaechter extends AllroundHamster {
+
+    private static TurmWaechter turmWaechter = null;
+
+    private TurmWaechter(int s) {
+        super(Territorium.getAnzahlReihen() - 1, s,
+                Hamster.NORD, 0);
+    }
+
+    synchronized static TurmWaechter getTurmWaechter(int spalte) {
+        if (TurmWaechter.turmWaechter == null) {
+            TurmWaechter.turmWaechter = new TurmWaechter(spalte);
+        }
+        return TurmWaechter.turmWaechter;
+    }
+
+    synchronized void turmBesteigen(Tourist ham) {
+        this.vor();
+        ham.vor();
+        while (this.vornFrei() && this.kornDa()) {
+            this.vor();
+            ham.vor();
+        }
+        this.kehrt();
+        ham.kehrt();
+        while (this.vornFrei()) {
+            this.vor();
+            ham.vor();
+        }
+        this.kehrt();
+    }
+}

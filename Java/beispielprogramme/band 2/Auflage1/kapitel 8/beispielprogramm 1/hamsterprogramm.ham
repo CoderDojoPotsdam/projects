@@ -1,0 +1,14 @@
+/*object-oriented program*/void main() {
+  Hamster paul = Hamster.getStandardHamster();
+  SortierHamster willi = 
+    new SortierHamster(paul.getReihe(),
+                       paul.getSpalte(),
+                       paul.getBlickrichtung(),
+                       0);
+  willi.laufNachUntenLinks();
+  int spalten = willi.zaehleSpalten();
+  int[] koerner = new int[spalten];
+  willi.zaehleUndSammleKoerner(koerner);
+  willi.sortiereKoerner(koerner);
+  willi.legeAlleKoernerAb(koerner);
+}

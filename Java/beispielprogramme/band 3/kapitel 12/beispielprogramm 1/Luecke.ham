@@ -1,0 +1,69 @@
+/*class*/import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.Condition;
+
+class Luecke {
+
+  private int reihe;
+  private int spalte;
+  
+  private ReentrantLock sperre;
+  private Condition kornVerbraucht;
+  private Condition kornErzeugt;
+
+  Luecke(int r, int s) {
+      this.reihe = r;
+      this.spalte = s;
+      this.sperre = new ReentrantLock();
+      this.kornVerbraucht = this.sperre.newCondition();
+      this.kornErzeugt = this.sperre.newCondition();
+  }
+
+  void put(ErzeugerHamster ham) {
+      this.sperre.lock();
+      try {
+          while (Territorium.getAnzahlKoerner(this.reihe, this.spalte) > 0) {
+              try {
+                 this.kornVerbraucht.await();
+              } catch (Exception e) {}
+          }
+          ham.vor();
+          if (!ham.maulLeer()) {
+              ham.gib();
+          }
+          ham.linksUm(); ham.linksUm();
+          ham.vor();
+          this.kornErzeugt.signal();
+      } finally {
+          this.sperre.unlock();
+      }
+  }
+
+  void get(VerbraucherHamster ham) {
+      this.sperre.lock();
+      try {
+          while (Territorium.getAnzahlKoerner(this.reihe, this.spalte) == 0) {
+              try {
+                  this.kornErzeugt.await();
+              } catch (Exception e) {}
+          }
+          ham.vor();
+          if (ham.kornDa()) {
+             ham.nimm();
+          }
+          ham.linksUm(); ham.linksUm();
+          ham.vor();
+          this.kornVerbraucht.signal();
+      } finally {
+          this.sperre.unlock();
+      }
+  }
+
+  int getReihe() {
+      return this.reihe;
+  }
+
+  int getSpalte() {
+      return this.spalte;
+  }
+
+}

@@ -1,0 +1,81 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+import java.util.concurrent.CountDownLatch;
+
+class Laeufer extends AllroundHamster {
+
+    private CountDownLatch startschuss;
+
+    private CountDownLatch ende;
+
+    Laeufer(int r, int s, CountDownLatch startschuss,
+            CountDownLatch ende) {
+        super(r, s, Hamster.OST, 0);
+        this.startschuss = startschuss;
+        this.ende = ende;
+    }
+
+    public void run() {
+        try {
+
+            // auf Startschuss warten
+            this.startschuss.await();
+
+            // Wettrennen ist gestartet
+            while (this.vornFrei()) {
+                this.vor();
+            }
+
+            // geschafft
+            this.ende.countDown();
+        } catch (InterruptedException exc) {
+        }
+    }
+}
+
+void main() {
+    int ANZAHL_LAEUFER = 5;
+    Hamster starter = Hamster.getStandardHamster();
+
+    CountDownLatch start = new CountDownLatch(3);
+    CountDownLatch ende = new CountDownLatch(ANZAHL_LAEUFER);
+
+    for (int i = 1; i < ANZAHL_LAEUFER; i++) {
+        (new Laeufer(i, 0, start, ende)).start();
+    }
+
+    starter.schreib("Auf die Plaetze ...");
+    start.countDown();
+    try {
+        Thread.sleep(1000);
+    } catch (InterruptedException exc) {
+    }
+    starter.schreib("... fertig ...");
+    start.countDown();
+    try {
+        Thread.sleep(800);
+    } catch (InterruptedException exc) {
+    }
+
+    starter.schreib("... los!");
+    start.countDown();
+
+    // Wettrennen ist gestartet
+
+    // Nachzuegler
+    (new Laeufer(0, 0, start, ende)).start();
+
+    try {
+         // auf Ende warten
+        ende.await();
+    } catch (InterruptedException exc) {
+    }
+    
+    // Ende verkuenden
+    starter.schreib("Alle Leufer haben das Ziel erreicht!");
+}

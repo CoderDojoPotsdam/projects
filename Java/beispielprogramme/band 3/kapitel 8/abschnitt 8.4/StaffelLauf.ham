@@ -1,0 +1,82 @@
+/*object-oriented program*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+class StaffelHamster extends AllroundHamster {
+
+    private int ermuedung;
+
+    private Object staffelKorn;
+
+    StaffelHamster(int reihe, Object stab) {
+        super(reihe, 0, Hamster.OST, 0);
+        this.staffelKorn = stab;
+        this.ermuedung = 0;
+    }
+
+    public void run() {
+        while (true) {
+            this.aufStabWarten();
+            this.laufen();
+            this.stabUebergeben();
+            this.kehrt();
+        }
+    }
+
+    void aufStabWarten() {
+        synchronized (this.staffelKorn) {
+            while (!this.kornDa()) {
+                try {
+                    this.staffelKorn.wait();
+                } catch (InterruptedException exc) {
+                }
+            }
+            this.nimm();
+        }
+    }
+
+    void laufen() {
+        this.laufeZurWand();
+        this.kehrt();
+        this.laufeZurWand();
+    }
+
+    void stabUebergeben() {
+        synchronized (this.staffelKorn) {
+            this.gib();
+            this.staffelKorn.notify();
+        }
+    }
+
+    public void vor() {
+        super.vor();
+        this.ermuedung += 5;
+        this.pausieren(this.ermuedung);
+    }
+
+    public boolean kornDa() {
+        this.ermuedung += 1;
+        return super.kornDa();
+    }
+
+    void pausieren(int millisekunden) {
+        try {
+            Thread.sleep(millisekunden);
+        } catch (InterruptedException exc) {
+        }
+    }
+}
+
+void main() {
+    Object staffelKorn = new Object();
+    StaffelHamster laeufer1 = new StaffelHamster(0,
+            staffelKorn);
+    StaffelHamster laeufer2 = new StaffelHamster(0,
+            staffelKorn);
+    laeufer1.start();
+    laeufer2.start();
+}

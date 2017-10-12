@@ -1,0 +1,4 @@
+/*object-oriented program*/void main() {
+  Uhrzeit uhrzeit = new Uhrzeit();
+  uhrzeit.anzeigen();
+}

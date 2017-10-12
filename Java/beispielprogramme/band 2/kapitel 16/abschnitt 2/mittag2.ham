@@ -1,0 +1,19 @@
+/*object-oriented program*/import java.util.Calendar;
+
+void main() {
+    // repraesentiert Mittags 12.00 Uhr
+    Calendar mittag = Calendar.getInstance();
+    mittag.set(Calendar.HOUR_OF_DAY, 12);
+    mittag.set(Calendar.MINUTE, 0);
+    mittag.set(Calendar.SECOND, 0);
+    mittag.set(Calendar.MILLISECOND, 0);
+
+    Calendar uhr = Calendar.getInstance();
+    if (uhr.before(mittag)) {
+        Hamster.getStandardHamster().schreib(
+                "Es ist noch kein Mittag!");
+    } else {
+        Hamster.getStandardHamster().schreib(
+                "Mittag ist bereits vorbei!");
+    }
+}

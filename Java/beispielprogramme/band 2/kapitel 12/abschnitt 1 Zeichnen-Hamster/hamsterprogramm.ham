@@ -1,0 +1,7 @@
+/*object-oriented program*/void main() {
+    ZeichneZahlHamster paul = new ZeichneZahlHamster(0, 0,
+            Hamster.OST, 1000);
+    int zahl = paul
+            .liesZahl("Welche Zahl soll ich zeichnen?");
+    paul.zeichne(zahl);
+}

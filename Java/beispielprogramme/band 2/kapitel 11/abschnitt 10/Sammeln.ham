@@ -1,0 +1,13 @@
+/*class*/class Sammeln {
+    static void sammeln(int reihe, int spalte) {
+        Hamster[] alleHamster = Territorium.getHamster();
+        for (int h = 0; h < alleHamster.length; h++) {
+            if (alleHamster[h] instanceof AllroundHamster) { // Zeile
+                                                             // 3
+                // jetzt ist eine Typumwandlung ungefaehrlich
+                AllroundHamster alleskoenner = (AllroundHamster) alleHamster[h];
+                alleskoenner.laufeZuKachel(reihe, spalte);
+            }
+        }
+    }
+}

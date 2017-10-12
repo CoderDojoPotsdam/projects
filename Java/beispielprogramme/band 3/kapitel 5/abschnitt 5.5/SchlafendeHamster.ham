@@ -1,0 +1,40 @@
+/*object-oriented program*/class LaufHamster extends Hamster {
+
+    static final int TRAEGHEITSFAKTOR = 500; // halbe Sekunde
+
+    LaufHamster(int r, int s) {
+        super(r, s, Hamster.OST, 0);
+    }
+
+    public void run() {
+        this.sammle();
+        while (this.vornFrei()) {
+            this.vor();
+            this.ausruhen();
+            this.sammle();
+        }
+    }
+
+    void sammle() {
+        while (this.kornDa()) {
+            this.nimm();
+        }
+    }
+
+    void ausruhen() {
+
+        // pro Korn eine halbe Sekunde ausruhen
+        try {
+            Thread.sleep(this.getAnzahlKoerner()
+                    * LaufHamster.TRAEGHEITSFAKTOR);
+        } catch (InterruptedException exc) {
+        }
+    }
+}
+
+void main() {
+    LaufHamster paul = new LaufHamster(0, 0);
+    LaufHamster heidi = new LaufHamster(1, 0);
+    paul.start();
+    heidi.start();
+}

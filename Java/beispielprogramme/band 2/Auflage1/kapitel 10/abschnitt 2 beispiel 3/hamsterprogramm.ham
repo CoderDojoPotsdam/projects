@@ -1,0 +1,37 @@
+/*object-oriented program*/class SammelHamster extends Hamster {
+    int gesamtAnzahl;
+
+    SammelHamster(int r, int s, int b, int k) {
+      super(r, s, b, k);
+      this.gesamtAnzahl = 0;
+    }
+
+    void sammle() {
+      int anzahl = 0;
+      while (this.kornDa()) {
+        this.nimm();
+        anzahl = anzahl + 1;
+      }
+      this.schreib("Ich habe gerade " + 
+                   anzahl + 
+                   " Koerner gefressen!");
+      this.gesamtAnzahl = this.gesamtAnzahl + anzahl;
+    }
+
+    void graseReiheAb() {
+      this.sammle();
+      while (this.vornFrei()) {
+        this.vor();
+        this.sammle();
+      }
+      this.schreib("Ich habe insgesamt " + 
+                   this.gesamtAnzahl + 
+                   " Koerner gefressen!");
+    }
+}
+
+void main() {
+    SammelHamster paul = 
+      new SammelHamster(2, 0, Hamster.OST, 3);
+    paul.graseReiheAb();
+}

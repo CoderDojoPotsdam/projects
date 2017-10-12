@@ -1,0 +1,42 @@
+/*ruby program*/# Aufgabe:
+# der Hamster soll den Gipfel eines vor ihm stehenden
+# Berges erklimmen
+
+# der Hamster soll zum Berg laufen
+def laufeZumBerg
+    while vornFrei
+        vor
+    end
+end
+
+# der Hamster soll den Berg erklimmen
+def erklimmeDenBerg
+    while not gipfelErreicht
+        erklimmeEineStufe
+    end
+end
+
+# der Hamster soll eine Stufe erklimmen
+def erklimmeEineStufe
+    linksUm  # nun schaut der Hamster nach oben
+    vor      # der Hamster erklimmt die Mauer
+    rechtsUm # der Hamster wendet sich wieder dem Berg zu
+    vor      # der Hamster springt auf den Vorsprung
+end
+
+# der Hamster dreht sich nach rechts um
+def rechtsUm
+    linksUm
+    linksUm
+    linksUm
+end
+
+# hat der Hamster den Gipfel erreicht?
+def gipfelErreicht
+    return vornFrei
+end
+
+# der Hamster soll zunaechst bis zum Berg laufen
+# und dann den Berg erklimmen
+laufeZumBerg
+erklimmeDenBerg

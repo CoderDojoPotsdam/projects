@@ -1,0 +1,6 @@
+/*object-oriented program*/void main() {
+    Hamster paul = new UnglaublicherHamster(1);
+    Hamster karl = new UnglaublicherHamster(-1);
+    paul.start();
+    karl.start();
+}

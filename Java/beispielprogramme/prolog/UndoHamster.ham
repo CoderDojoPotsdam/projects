@@ -1,0 +1,49 @@
+/*prolog program*/%% Eintrittspunkt des Programms. 
+
+ main :- 
+	Aktionen = [vor,linksUm,linksUm,linksUm,vor,vor,vor,vor,linksUm,vor,
+		nimm,nimm,nimm,nimm,vor,linksUm,linksUm,linksUm,vor,vor,vor,
+		linksUm,linksUm,linksUm,vor,vor,vor,nimm,nimm,nimm,vor,linksUm,
+		linksUm,linksUm,vor,gib,gib,vor,gib,gib],
+	%write('Aktionen:'),tab(1),write(Aktionen),nl,
+	fuehreAus(Aktionen),
+	dreheUm(Aktionen,AktRev),
+	%write('Aktionen-Rückwärts:'),tab(1),write(AktRev),nl,
+	laufeInversAb(AktRev),!.
+	
+laufeInversAb([]).
+laufeInversAb([linksUm,linksUm|R]) :-
+	inverse(kehrt,InvL),
+	fuehreAus(InvL),
+	laufeInversAb(R).
+laufeInversAb([linksUm,linksUm,linksUm|R]) :-
+	inverse(rechtsUm,InvL),
+	fuehreAus(InvL),
+	laufeInversAb(R).
+laufeInversAb([K|R]) :-
+	inverse(K,InvL),
+	fuehreAus(InvL),
+	laufeInversAb(R).
+	
+inverse(vor,InvL) :-
+	InvL = [linksUm,linksUm,vor,linksUm,linksUm].
+inverse(linksUm,InvL) :-
+	InvL = [linksUm,linksUm,linksUm].
+inverse(rechtsUm,InvL) :-
+	InvL = [linksUm].
+inverse(kehrt,InvL) :-
+	InvL = [linksUm,linksUm].
+inverse(gib,InvL) :-
+	InvL = [nimm].
+inverse(nimm,InvL) :-
+	InvL = [gib].	
+
+fuehreAus([]).
+fuehreAus([K|R]) :-
+	call(K),
+	fuehreAus(R).
+
+dreheUm(L,LRev) :- dreheUm(L,[],LRev).
+dreheUm([X|Y],Z,W) :- dreheUm(Y,[X|Z],W).
+dreheUm([],X,X).
+	

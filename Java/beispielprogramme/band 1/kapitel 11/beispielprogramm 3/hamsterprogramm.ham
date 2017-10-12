@@ -1,0 +1,55 @@
+/*imperative program*/void main() {
+    gib(); // markiere Ausgangsposition
+    vor();
+
+    /*
+     * irgendwann kehrt der Hamster in seine
+     * Ausgangsposition zurueck
+     */
+    while (!kornDa()) {
+        if (rechtsFrei()) {
+            rechtsUm();
+            vor();
+        } else if (vornFrei()) {
+            vor();
+        } else if (linksFrei()) {
+            linksUm();
+            vor();
+        } else {
+            kehrt();
+            vor();
+        }
+    }
+}
+
+boolean rechtsFrei() {
+    rechtsUm();
+    if (vornFrei()) {
+        linksUm(); 
+        return true;
+    } else {   
+        linksUm(); 
+        return false;
+    }
+}  
+
+boolean linksFrei() {
+    linksUm();
+    if (vornFrei()) {
+        rechtsUm(); 
+        return true;
+    } else {   
+        rechtsUm(); 
+        return false;
+    }
+}  
+
+void rechtsUm() { 
+    kehrt(); 
+    linksUm(); 
+}
+
+void kehrt() { 
+    linksUm(); 
+    linksUm(); 
+}

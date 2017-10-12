@@ -1,0 +1,20 @@
+/*object-oriented program*/void main() {
+    Hamster paul = Hamster.getStandardHamster();
+
+    // hin ...
+    int schritte = 0;
+    while (paul.vornFrei()) {
+        paul.vor();
+        schritte++;
+    }
+
+    // kehrt ...
+    paul.linksUm();
+    paul.linksUm();
+
+    // ... und zurueck
+    while (schritte > 0) {
+        paul.vor();
+        schritte--;
+    }
+}

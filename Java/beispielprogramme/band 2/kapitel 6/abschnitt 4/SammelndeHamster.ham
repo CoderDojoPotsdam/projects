@@ -1,0 +1,13 @@
+/*object-oriented program*/void main() {
+    SammelHamster paul = new SammelHamster(0, 0,
+            Hamster.OST, 0);
+    paul.laufeUndSammle();
+
+    SammelHamster willi = new SammelHamster(1, 0,
+            Hamster.OST, 0);
+    willi.laufeUndSammle();
+
+    SammelHamster heidi = new SammelHamster(2, 0,
+            Hamster.OST, 0);
+    heidi.laufeUndSammle(); // Anweisung 6
+}

@@ -1,0 +1,12 @@
+/*class*/class Bestellung {
+
+    private int spalte;
+
+    Bestellung(int spalte) {
+        this.spalte = spalte;
+    }
+
+    int getSpalte() {
+        return this.spalte;
+    }
+}

@@ -1,0 +1,28 @@
+/*object-oriented program*/void main() {
+    // ein Hamster namens paul wird erzeugt und initialisiert
+    Hamster paul = new Hamster();
+    paul.init(0, 0, Hamster.OST, 0);
+
+    // ein Hamster namens willi wird erzeugt und
+    // initialisiert
+    Hamster willi = new Hamster();
+    willi.init(0, 9, Hamster.WEST, 0);
+
+    // paul und willi erledigen ihre Arbeit abwechselnd
+    if (paul.kornDa()) {
+        paul.nimm();
+    }
+    if (willi.kornDa()) {
+        willi.nimm();
+    }
+    while (paul.vornFrei() && willi.vornFrei()) {
+        paul.vor();
+        willi.vor();
+        if (paul.kornDa()) {
+            paul.nimm();
+        }
+        if (willi.kornDa()) {
+            willi.nimm();
+        }
+    }
+}

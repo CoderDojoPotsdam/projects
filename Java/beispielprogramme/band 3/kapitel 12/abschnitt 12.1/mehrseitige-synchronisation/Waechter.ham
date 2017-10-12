@@ -1,0 +1,23 @@
+/*class*/class Waechter extends Hamster {
+
+    private Semaphor sem;
+
+    Waechter(int r, int s, int b, int anzahl) {
+        super(r, s, b, 0);
+        if (anzahl < 0) {
+            anzahl = 0;
+        }
+
+        // maximal anzahl Hamster dürfen gleichzeitig in die
+        // Disko
+        this.sem = new Semaphor(anzahl);
+    }
+
+    void reinlassen() {
+        this.sem.p(); // einen Platz belegen
+    }
+
+    void rauslassen() {
+        this.sem.v(); // einen Platz freigeben
+    }
+}

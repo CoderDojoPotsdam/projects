@@ -1,0 +1,30 @@
+/*class*/class KornHamster extends Hamster implements
+        VornUndHintenKornHamster {
+    KornHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    public boolean vornKorn() {
+        if (!vornFrei()) {
+            return false;
+        }
+        vor();
+        boolean da = kornDa();
+        kehrt();
+        vor();
+        kehrt();
+        return da;
+    }
+
+    public boolean hintenKorn() {
+        kehrt();
+        boolean da = vornKorn();
+        kehrt();
+        return da;
+    }
+    
+    public void kehrt() {
+        linksUm();
+        linksUm();
+    }
+}

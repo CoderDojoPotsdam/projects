@@ -1,0 +1,11 @@
+/*object-oriented program*/void main() {
+    LaufendeHamsterGV paul = new LaufendeHamsterGV(0, 0,
+            Hamster.OST, 0);
+    LaufendeHamsterGV willi = new LaufendeHamsterGV(1, 0,
+            Hamster.OST, 0);
+    LaufendeHamsterGV heidi = new LaufendeHamsterGV(2, 0,
+            Hamster.OST, 0);
+    paul.start();
+    willi.start();
+    heidi.start();
+}

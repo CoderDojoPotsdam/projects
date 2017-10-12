@@ -1,0 +1,8 @@
+/*object-oriented program*/void main() {
+    // Standard-Hamster als AllroundSHamster
+    AllroundSHamster paul = AllroundSHamster
+            .getStandardHamsterAlsAllroundSHamster();
+    int reihe = paul.liesZahl("Welche Reihe?");
+    int spalte = paul.liesZahl("Welche Spalte?");
+    paul.laufeZuKachel(reihe, spalte);
+}

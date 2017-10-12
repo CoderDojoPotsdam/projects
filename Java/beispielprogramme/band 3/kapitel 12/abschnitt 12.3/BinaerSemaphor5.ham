@@ -1,0 +1,37 @@
+/*class*/public class BinaerSemaphor5 {
+
+    private boolean[] kritisch = { false, false };
+
+    public void p(int dieserThread) {
+
+        // zunaechst die eigene Variable setzen
+        this.kritisch[dieserThread] = true;
+
+        // dann die andere Variable ueberpruefen
+        while (this.kritisch[this.andererThread(dieserThread)]) {
+
+            // besetzt, also eigene Markierung rueckgaengig
+            // machen
+            this.kritisch[dieserThread] = false;
+
+            // Moment warten
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException exc) {
+            }
+
+            // erneut probieren
+            this.kritisch[dieserThread] = true;
+        }
+    }
+
+    public void v(int dieserThread) {
+
+        // der kritische Abschnitt ist nun wieder frei
+        this.kritisch[dieserThread] = false;
+    }
+
+    private int andererThread(int dieserThread) {
+        return (dieserThread + 1) % 2;
+    }
+}

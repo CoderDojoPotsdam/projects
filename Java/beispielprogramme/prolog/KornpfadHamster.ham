@@ -1,0 +1,80 @@
+/*prolog program*/%% Eintrittspunkt des Programms. 
+
+ main :- 
+ 	assert(letzteRichtung(keine)),
+	folgeDemPfad,
+	!.
+	
+:- dynamic letzteRichtung(_).
+speichereRichtung(R) :-
+	retractall(letzteRichtung(X)),
+	assert(letzteRichtung(R)).
+	
+folgeDemPfad :-
+	pruefeVorne,
+	folgeDemPfad.
+folgeDemPfad :-
+	undo,
+	pruefeLinks,
+	folgeDemPfad.
+folgeDemPfad :-
+	undo,
+	pruefeRechts,
+	folgeDemPfad.	
+folgeDemPfad :-
+	undo,
+	pruefeHinten,
+	folgeDemPfad.
+folgeDemPfad :-
+	undo,
+	sammleAlleKoernerEin,
+	write('fertig.').
+	
+sammleAlleKoernerEin :-
+	kornDa,nimm,
+	sammleAlleKoernerEin.
+sammleAlleKoernerEin.
+			
+pruefeVorne :-
+	speichereRichtung(keine),
+	vornFrei,vor,
+	speichereRichtung(v),
+	kornDa,nimm.
+pruefeLinks :-
+	speichereRichtung(l),
+	linksUm,
+	vornFrei,vor,
+	speichereRichtung(lv),
+	kornDa,nimm.
+pruefeHinten :-
+	speichereRichtung(h),
+	linksUm,linksUm,
+	vornFrei,vor,
+	speichereRichtung(hv),
+	kornDa,nimm.
+pruefeRechts :-
+	speichereRichtung(r),
+	linksUm,linksUm,linksUm,
+	vornFrei,vor,
+	speichereRichtung(rv),
+	kornDa,nimm.
+	
+undo :-
+	letzteRichtung(R),
+	schrittZurueck(R).
+	
+schrittZurueck(v) :-
+	linksUm,linksUm,vor,linksUm,linksUm.
+schrittZurueck(l) :-
+	linksUm,linksUm,linksUm.	
+schrittZurueck(lv) :-
+	linksUm,linksUm,vor,linksUm.
+schrittZurueck(r) :-
+	linksUm.		
+schrittZurueck(rv) :-
+	linksUm,linksUm,vor,linksUm,linksUm,linksUm.	
+schrittZurueck(h) :-
+	linksUm,linksUm.	
+schrittZurueck(hv) :-
+	linksUm,linksUm,vor.
+schrittZurueck(keine).

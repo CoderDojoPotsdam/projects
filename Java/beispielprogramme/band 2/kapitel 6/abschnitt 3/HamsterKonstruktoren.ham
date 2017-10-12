@@ -1,0 +1,14 @@
+/*object-oriented program*/void main() {
+    // Aufruf des Konstruktors in Zeile 6
+    Hamster paul = new Hamster(1, 0, Hamster.NORD, 3);
+    paul.vor(); // ok
+    
+    // Aufruf des Copy-Konstruktors in Zeile 14
+    Hamster manfred = new Hamster(paul);
+    paul.vor(); // ok
+
+    // Aufruf des Konstruktors in Zeile 10
+    Hamster willi = new Hamster();
+    willi.vor(); // Programmabbruch, da willi nicht 
+                 // initialisiert wurde
+}

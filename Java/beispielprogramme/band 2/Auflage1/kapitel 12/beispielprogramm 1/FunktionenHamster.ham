@@ -1,0 +1,35 @@
+/*class*/class FunktionenHamster extends AllroundHamster {
+  FunktionenHamster(Hamster hamster) {
+    super(hamster);
+  }
+  
+  // zeichnet den Funktionsgraph mit Koernern ins Territorium
+  void zeichneGraph(Funktion funktion) {
+    // Definitionsbereich: 0 .. Spaltenanzahl-1
+    for (int x=0; x<Territorium.getAnzahlSpalten(); x++) {
+      int y = funktion.f(x);  // dynamisch gebunden
+      // Wertebereich: 0 .. Reihenanzahl-1
+      if (y >= 0 && 
+          y < Territorium.getAnzahlReihen() && 
+          !this.maulLeer()) {
+        // r-Koordinate ermitteln
+        int r = Territorium.getAnzahlReihen() - y - 1;
+        this.gotoKachel(r, x);
+        this.gib();
+      }
+    }
+  }
+  
+  // frisst alle Koerner, die im Territorium liegen
+  void loeschen() {
+    for (int r=0; r<Territorium.getAnzahlReihen(); r++) {
+      for (int s=0; s<Territorium.getAnzahlSpalten(); s++) {
+        int koerner = Territorium.getAnzahlKoerner(r, s);
+        if (koerner > 0) {
+          this.gotoKachel(r, s);
+          this.nimm(koerner);
+        }
+      }
+    }
+  }
+}

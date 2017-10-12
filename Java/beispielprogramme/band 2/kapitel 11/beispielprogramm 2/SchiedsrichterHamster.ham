@@ -1,0 +1,16 @@
+/*class*/class SchiedsrichterHamster extends Hamster {
+
+    SchiedsrichterHamster(int r, int s) {
+        super(r, s, Hamster.OST, 0);
+    }
+
+    Wuerfel liefereWuerfel() {
+        // erzeugt und liefert einen neuen Wuerfel
+        return new Wuerfel();
+    }
+
+    int wuerfeln(Wuerfel wuerfel) {
+        // wuerfelt mit dem ihm uebergebenen Wuerfel
+        return wuerfel.wuerfeln();
+    }
+}

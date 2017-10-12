@@ -1,0 +1,31 @@
+/*class*/import java.util.concurrent.Semaphore;
+
+class Gabel extends Semaphore {
+
+    private Position pos;
+
+    Gabel(int reihe, int spalte) {
+        super(1, true);
+        this.pos = new Position(reihe, spalte);
+    }
+
+    void aufnehmen() {
+        this.acquireUninterruptibly();
+    }
+
+    void ablegen() {
+        this.release();
+    }
+
+    Position getPosition() {
+        return this.pos;
+    }
+
+    int getReihe() {
+        return this.pos.getReihe();
+    }
+
+    int getSpalte() {
+        return this.pos.getSpalte();
+    }
+}

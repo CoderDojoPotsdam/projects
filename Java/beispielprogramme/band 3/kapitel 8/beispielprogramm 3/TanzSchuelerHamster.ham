@@ -1,0 +1,39 @@
+/*class*/class TanzSchuelerHamster extends Hamster {
+
+    TanzLehrerHamster lehrer;
+
+    TanzSchuelerHamster(int r, int s, int b, int k,
+            TanzLehrerHamster lehrer) {
+        super(r, s, b, k);
+        this.lehrer = lehrer;
+    }
+
+    public void run() {
+        boolean ende = false;
+        while (!ende) {
+            ende = !this.fuehreNaechstenTanzschrittAus();
+            if (!ende) {
+                this.traeumen();
+            }
+        }
+    }
+
+    boolean fuehreNaechstenTanzschrittAus() {
+        synchronized (this.lehrer.aktionen) {
+            Aktion aktion = this.lehrer.getNaechsteAktion();
+            if (aktion == null) {
+                return false; // Ende
+            }
+            aktion.ausfuehren(this);
+        }
+        return true;
+    }
+
+    private void traeumen() {
+        int zeit = (int) (Math.random() * 1000);
+        try {
+            Thread.sleep(zeit);
+        } catch (InterruptedException exc) {
+        }
+    }
+}

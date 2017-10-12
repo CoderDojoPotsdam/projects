@@ -1,0 +1,12 @@
+/*object-oriented program*/void main() {
+  // zwei ZufallsHamster werden erzeugt, im Konstruktor
+  // der Klasse zufallsmaessig initialisiert und so lange auf die
+  // Paarungsreise geschickt, bis es mehr als 8 Hamster 
+  // (inkl. Standard-Hamster) gibt
+  ZufallsHamster paul = new ZufallsHamster();
+  ZufallsHamster heidi = new ZufallsHamster();
+  while (Hamster.getAnzahlHamster() <= 8) {
+    paul.lauf();
+    heidi.lauf();
+  }
+}

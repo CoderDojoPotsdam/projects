@@ -1,0 +1,63 @@
+/*object-oriented program*/Hamster paul;
+
+void main() {
+  paul = Hamster.getStandardHamster();
+  ernteEineReiheUndLaufeZurueck();
+  while(weitereReiheExistiert()) {
+    begibDichInNaechsteReihe();
+    ernteEineReiheUndLaufeZurueck();
+  }
+}
+
+boolean weitereReiheExistiert() {
+  paul.linksUm();
+  if (paul.vornFrei()) {
+    rechtsUm();
+    return true;
+  } else {
+    rechtsUm();
+    return false;
+  }
+}
+
+void begibDichInNaechsteReihe() {
+  paul.linksUm();
+  paul.vor();
+  paul.linksUm();
+}
+
+void ernteEineReiheUndLaufeZurueck() {
+  ernteEineReihe();
+  kehrt();
+  laufeZurueck();
+}
+
+void ernteEineReihe() {
+  sammle();
+  while (paul.vornFrei()) {
+    paul.vor();
+    sammle();
+  }
+}
+
+void laufeZurueck() {
+  while (paul.vornFrei()) {
+    paul.vor();
+  }
+}
+
+void sammle() {
+  while (paul.kornDa()) {
+    paul.nimm();
+  }
+}
+
+void rechtsUm() {
+  kehrt();
+  paul.linksUm();
+}
+
+void kehrt() {
+  paul.linksUm();
+  paul.linksUm();
+}

@@ -1,0 +1,18 @@
+/*class*/// realisiert gut trainierte Hamster, die beim Aufruf
+// des vor-Befehls gleich 3 Kacheln vorruecken
+class RennHamster extends Hamster {
+    RennHamster(int r, int s, int b, int k) {
+        super(r, s, b, k);
+    }
+
+    // ueberschriebene vor-Methode!
+    public void vor() {
+        super.vor();
+        if (this.vornFrei()) {
+            super.vor();
+            if (this.vornFrei()) {
+                super.vor();
+            }
+        }
+    }
+}

@@ -1,0 +1,64 @@
+/*class*//*
+ Windows:
+ CLASSPATH: .;Programme\beispielprogramme\band 3
+ Linux, Solaris:
+ CLASSPATH: .:Programme/beispielprogramme/band 3
+*/
+import util.AllroundHamster;
+
+class Schwergewicht extends AllroundHamster {
+
+    Schwergewicht() {
+        super(1, Territorium.getAnzahlSpalten() - 1,
+                Hamster.WEST, 0);
+    }
+
+    public void run() {
+        while (true) {
+            this.laufeZurBruecke();
+            Bruecke.getBruecke().betretenSchwergewicht();
+            this.laufeZumDuftendenKorn();
+
+            // riechen
+
+            this.verlasseDieBruecke();
+            Bruecke.getBruecke().verlassenSchwergewicht();
+            this.laufeZurueck();
+        }
+    }
+
+    void laufeZurBruecke() {
+        while (this.vornFrei()) {
+            this.vor();
+        }
+        this.rechtsUm();
+        this.vor();
+        this.linksUm();
+        this.vor();
+    }
+
+    void laufeZumDuftendenKorn() {
+        do {
+            this.vor();
+        } while (!this.koernerDa(2));
+        // duftendes Korn gefunden
+    }
+
+    void verlasseDieBruecke() {
+        this.kehrt();
+        while (this.kornDa()) {
+            this.vor();
+        }
+    }
+
+    void laufeZurueck() {
+        this.vor();
+        this.rechtsUm();
+        this.vor();
+        this.linksUm();
+        while (this.vornFrei()) {
+            this.vor();
+        }
+        this.kehrt();
+    }
+}
