@@ -1,0 +1,7 @@
+/*imperative program*/void main() { 
+while(vornFrei()) vor();
+while (kornDa()) nimm();
+linksUm(); linksUm();
+while(vornFrei()) vor();
+while (!maulLeer()) gib();    
+}

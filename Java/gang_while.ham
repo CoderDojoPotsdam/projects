@@ -1,0 +1,6 @@
+/*imperative program*/void main() { 
+while(vornFrei()) {vor();}
+linksUm();linksUm();
+while(vornFrei()) {vor();}
+    
+}
