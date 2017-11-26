@@ -1,0 +1,40 @@
+Gtk-Message: GtkDialog mapped without a transient parent. This is discouraged.
+/var/cache/apt/archives/lock:
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+/var/lib/dpkg/lock: 
+[6062] WARNING: pipe error (163): Die Verbindung wurde vom Kommunikationspartner zurückgesetzt: file /build/firefox-l1g98U/firefox-56.0+build6/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/blueman/main/PluginManager.py", line 212, in Run
+    ret = getattr(inst, function)(*args, **kwargs)
+  File "/usr/lib/python3/dist-packages/blueman/plugins/applet/AuthAgent.py", line 50, in on_manager_state_changed
+    agent.Release()
+  File "/usr/lib/python3/dist-packages/blueman/main/applet/BluezAgent.py", line 149, in Release
+    self.remove_from_connection()
+  File "/usr/lib/python3/dist-packages/dbus/service.py", line 626, in remove_from_connection
+    '(%r,%r)' % (self, connection, path))
+LookupError: <blueman.main.applet.BluezAgent.GlobalAgent at /org/blueman/agent/global at 0x7f2b8c15cab0> is not exported at a location matching (None,None)
+/var/lib/dpkg/lock: 
+
+(gnome-mines:12338): Gtk-CRITICAL **: gtk_widget_set_size_request: assertion 'height >= -1' failed
+
+----------- Extreme Tux Racer 0.7.1 ----------------
+----------- (C) 2010-2016 Extreme Tuxracer Team  --------
+
+CSPList::Load - unable to open /home/coderdojo/.etr/highscore
+could not load highscore list
+file 'players' does not exist, set default players
+** Message: Remote error from secret service: org.freedesktop.DBus.Error.UnknownMethod: Keine derartige Schnittstelle »org.freedesktop.Secret.Collection« des Objekts im Pfad /org/freedesktop/secrets/collection/login
+** Message: Remote error from secret service: org.freedesktop.DBus.Error.UnknownMethod: Keine derartige Schnittstelle »org.freedesktop.Secret.Collection« des Objekts im Pfad /org/freedesktop/secrets/collection/login
+** Message: Remote error from secret service: org.freedesktop.DBus.Error.UnknownMethod: Keine derartige Schnittstelle »org.freedesktop.Secret.Collection« des Objekts im Pfad /org/freedesktop/secrets/collection/login
+** Message: Remote error from secret service: org.freedesktop.DBus.Error.UnknownMethod: Keine derartige Schnittstelle »org.freedesktop.Secret.Collection« des Objekts im Pfad /org/freedesktop/secrets/collection/login
+** Message: Remote error from secret service: org.freedesktop.DBus.Error.UnknownMethod: Keine derartige Schnittstelle »org.freedesktop.Secret.Collection« des Objekts im Pfad /org/freedesktop/secrets/collection/login
+*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
+** Message: Remote error from secret service: org.freedesktop.DBus.Error.UnknownMethod: Keine derartige Schnittstelle »org.freedesktop.Secret.Collection« des Objekts im Pfad /org/freedesktop/secrets/collection/login
+** Message: Remote error from secret service: org.freedesktop.DBus.Error.UnknownMethod: Keine derartige Schnittstelle »org.freedesktop.Secret.Collection« des Objekts im Pfad /org/freedesktop/secrets/collection/login
+** Message: Remote error from secret service: org.freedesktop.DBus.Error.UnknownMethod: Keine derartige Schnittstelle »org.freedesktop.Secret.Collection« des Objekts im Pfad /org/freedesktop/secrets/collection/login
+[13964:13964:1014/154848.750960:ERROR:navigation_entry_screenshot_manager.cc(134)] Invalid entry with unique id: 1
+[14496:14532:1014/160104.953453:ERROR:browser_gpu_channel_host_factory.cc(103)] Failed to launch GPU process.
+Neues Fenster in aktueller Browsersitzung erstellt.
+[14586:14621:1014/160338.146868:ERROR:browser_gpu_channel_host_factory.cc(103)] Failed to launch GPU process.
+Neues Fenster in aktueller Browsersitzung erstellt.
+*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
