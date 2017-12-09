@@ -1,0 +1,38 @@
+[CLIENT] 0x36000fc
+  [CLIENT_ID] 259eb5080-8f4d-445b-bb3f-a8d3dba413ca
+  [CLIENT_LEADER] 0x3600001
+  [WINDOW_ROLE] xfce4-terminal-1504971711-1822490737
+  [RES_NAME] xfce4-terminal
+  [RES_CLASS] Xfce4-terminal
+  [WM_NAME] Terminal - coderdojo@coderdojo-free-software-foundation-europe: ~
+  [WM_COMMAND] (1) "xfce4-terminal"
+  [GEOMETRY] (511,294,577,359)
+  [GEOMETRY-MAXIMIZED] (511,294,577,359)
+  [SCREEN] 0
+  [DESK] 0
+  [FLAGS] 0x10000
+[CLIENT] 0x340001f
+  [CLIENT_LEADER] 0x3400001
+  [WINDOW_ROLE] browser
+  [RES_NAME] Navigator
+  [RES_CLASS] Firefox
+  [WM_NAME] skjf - Google Search - Mozilla Firefox
+  [WM_COMMAND] (1) "firefox"
+  [GEOMETRY] (188,63,1280,787)
+  [GEOMETRY-MAXIMIZED] (188,63,1280,787)
+  [SCREEN] 0
+  [DESK] 0
+  [FLAGS] 0x10000
+[CLIENT] 0x3600004
+  [CLIENT_ID] 259eb5080-8f4d-445b-bb3f-a8d3dba413ca
+  [CLIENT_LEADER] 0x3600001
+  [WINDOW_ROLE] xfce4-terminal-1504970187-145381472
+  [RES_NAME] xfce4-terminal
+  [RES_CLASS] Xfce4-terminal
+  [WM_NAME] Terminal - coderdojo@coderdojo-free-software-foundation-europe: ~
+  [WM_COMMAND] (1) "xfce4-terminal"
+  [GEOMETRY] (511,294,577,359)
+  [GEOMETRY-MAXIMIZED] (511,294,577,359)
+  [SCREEN] 0
+  [DESK] 0
+  [FLAGS] 0x10000

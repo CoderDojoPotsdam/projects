@@ -1,0 +1,26 @@
+
+(process:3491): indicator-sound-WARNING **: accounts-service-access.vala:218: unable to sync volume 0,714096 to AccountsService: GDBus.Error:org.freedesktop.DBus.Error.InvalidArgs: Keine derartige Schnittstelle »com.ubuntu.AccountsService.Sound«
+
+(process:3491): indicator-sound-WARNING **: accounts-service-access.vala:218: unable to sync volume 1,000000 to AccountsService: GDBus.Error:org.freedesktop.DBus.Error.InvalidArgs: Keine derartige Schnittstelle »com.ubuntu.AccountsService.Sound«
+
+(process:3491): indicator-sound-WARNING **: accounts-service-access.vala:218: unable to sync volume 0,987013 to AccountsService: GDBus.Error:org.freedesktop.DBus.Error.InvalidArgs: Keine derartige Schnittstelle »com.ubuntu.AccountsService.Sound«
+
+(process:3491): indicator-sound-WARNING **: accounts-service-access.vala:218: unable to sync volume 0,487000 to AccountsService: GDBus.Error:org.freedesktop.DBus.Error.InvalidArgs: Keine derartige Schnittstelle »com.ubuntu.AccountsService.Sound«
+
+(process:3491): indicator-sound-WARNING **: accounts-service-access.vala:230: unable to sync mute false to AccountsService: GDBus.Error:org.freedesktop.DBus.Error.InvalidArgs: Keine derartige Schnittstelle »com.ubuntu.AccountsService.Sound«
+
+(process:3491): indicator-sound-WARNING **: accounts-service-access.vala:218: unable to sync volume 0,487013 to AccountsService: GDBus.Error:org.freedesktop.DBus.Error.InvalidArgs: Keine derartige Schnittstelle »com.ubuntu.AccountsService.Sound«
+
+(process:3491): indicator-sound-WARNING **: accounts-service-access.vala:218: unable to sync volume 0,857132 to AccountsService: GDBus.Error:org.freedesktop.DBus.Error.InvalidArgs: Keine derartige Schnittstelle »com.ubuntu.AccountsService.Sound«
+
+(process:3491): indicator-sound-WARNING **: accounts-service-access.vala:218: unable to sync volume 0,525970 to AccountsService: GDBus.Error:org.freedesktop.DBus.Error.InvalidArgs: Keine derartige Schnittstelle »com.ubuntu.AccountsService.Sound«
+
+(process:3491): indicator-sound-WARNING **: accounts-service-access.vala:218: unable to sync volume 0,538961 to AccountsService: GDBus.Error:org.freedesktop.DBus.Error.InvalidArgs: Keine derartige Schnittstelle »com.ubuntu.AccountsService.Sound«
+
+(process:3491): indicator-sound-WARNING **: accounts-service-access.vala:218: unable to sync volume 0,701294 to AccountsService: GDBus.Error:org.freedesktop.DBus.Error.InvalidArgs: Keine derartige Schnittstelle »com.ubuntu.AccountsService.Sound«
+
+(process:3491): indicator-sound-WARNING **: accounts-service-access.vala:218: unable to sync volume 0,837662 to AccountsService: GDBus.Error:org.freedesktop.DBus.Error.InvalidArgs: Keine derartige Schnittstelle »com.ubuntu.AccountsService.Sound«
+
+(process:3491): indicator-sound-WARNING **: accounts-service-access.vala:218: unable to sync volume 0,837662 to AccountsService: GDBus.Error:org.freedesktop.DBus.Error.InvalidArgs: Keine derartige Schnittstelle »com.ubuntu.AccountsService.Sound«
+
+(process:3491): indicator-sound-WARNING **: accounts-service-access.vala:218: unable to sync volume 1,000000 to AccountsService: GDBus.Error:org.freedesktop.DBus.Error.InvalidArgs: Keine derartige Schnittstelle »com.ubuntu.AccountsService.Sound«
