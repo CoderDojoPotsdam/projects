@@ -1,0 +1,6 @@
+/opt/hamstermodell/1.8/hamstersimulator-v29-03-java8/Programme/hamster_neu1703.java:3: error: cannot find symbol
+rechtsUm();
+^
+  symbol:   method rechtsUm()
+  location: class hamster_neu1703
+1 error

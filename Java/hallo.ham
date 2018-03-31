@@ -1,0 +1,16 @@
+/*imperative program*/void main() 
+{
+vor(1);
+rechtsUm(1);
+vor(1);
+linksUm(1);
+vor(1);
+rechtsUm(1);
+vor(1);
+rechtsUm(1);
+vor(1);
+linksUm(1);
+vor(1);
+linksUm(1);
+}
+
