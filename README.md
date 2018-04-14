@@ -5,12 +5,12 @@ Projekte der Coder.
 
 - [Arduino](Arduino)
 - [Python](Python)
-- [Scratch](Scratch Projects)
+- [Scratch](Scratch%20Projects)
 - [Hour Of Code](HourOfCode.md)
 - [Java](Java)
 - [Contextfree Art](contextfree)
 - [Inkscape Zeichenprogramm](Inkscape)
-- [Windows Batch](Windows batch)
+- [Windows Batch](Windows%20batch)
 
 Zu diesem Repository
 --------------------
