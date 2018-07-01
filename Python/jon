@@ -1,0 +1,3 @@
+turtle import *
+
+forward(80)
