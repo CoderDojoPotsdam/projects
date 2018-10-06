@@ -2,8 +2,8 @@ f = open("superstar4.txt")
 l = f.readlines()
 group = (l[0].split())
 relations = {}
-for n in group:
-    relations[n] = []
+for person in group:
+    relations[person] = []
 print(relations)
 l = l[1:]
 for line in l:
